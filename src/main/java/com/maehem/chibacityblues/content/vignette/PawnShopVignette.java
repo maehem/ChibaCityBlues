@@ -23,12 +23,12 @@ import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.Character;
-import com.maehem.abyss.engine.babble.DialogResponse;
 import com.maehem.abyss.engine.babble.DialogResponseAction;
-import com.maehem.abyss.engine.babble.DialogSheet;
 import com.maehem.chibacityblues.content.things.deck.KomodoDeckThing;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.VignetteTrigger;
+import com.maehem.abyss.engine.babble.DialogResponse2;
+import com.maehem.abyss.engine.babble.DialogSheet2;
 import java.util.Properties;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
@@ -71,8 +71,7 @@ public class PawnShopVignette extends Vignette {
     
     /**
      * 
-     * @param w width of scene
-     * @param h height of scene
+     * @param gs
      * @param prevPort where the player came from
      * @param player the @Player
      */
@@ -107,7 +106,7 @@ public class PawnShopVignette extends Vignette {
         LOGGER.config("Add skin for pawn shop owner. " + BROKER_POSE_SHEET_FILENAME);
         // Dialog
         // Load dialog tree from file.
-        shopOwnerCharacter.getDialog().init(getWidth(), getHeight());
+//        shopOwnerCharacter.getDialog().init(getWidth(), getHeight());
 
         initShopOwnerDialog();
 
@@ -146,8 +145,8 @@ public class PawnShopVignette extends Vignette {
 
         // Eddie kicks the player out of the shop but gives him his item.
         DialogResponseAction exitAction = () -> {
-            shopOwnerCharacter.getDialog().setExit(leftDoor);
-            shopOwnerCharacter.getDialog().setActionDone(true);
+            shopOwnerCharacter.getDialogPane().setExit(leftDoor);
+            shopOwnerCharacter.getDialogPane().setActionDone(true);
             
             // Add cyberspace deck to inventory.
             shopOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
@@ -156,29 +155,29 @@ public class PawnShopVignette extends Vignette {
             // GameState set StreetVignette PawnShop door locked.
         };
 
-        DialogSheet ds4 = new DialogSheet(shopOwnerCharacter.getDialog());
+        DialogSheet2 ds4 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
         ds4.setDialogText(bundle.getString("dialog.eddie.ds4"));
-        ds4.addResponse(new DialogResponse(bundle.getString("dialog.p.ds4.1"), exitAction)); // Exit action
+        ds4.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds4.1"), exitAction)); // Exit action
 
-        DialogSheet ds3 = new DialogSheet(shopOwnerCharacter.getDialog());
+        DialogSheet2 ds3 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
         ds3.setDialogText(bundle.getString("dialog.eddie.ds3"));
-        ds3.addResponse(new DialogResponse(bundle.getString("dialog.p.ds1.3"), ds4));
+        ds3.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.3"), ds4));
 
-        DialogSheet ds2 = new DialogSheet(shopOwnerCharacter.getDialog());
+        DialogSheet2 ds2 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
         ds2.setDialogText(bundle.getString("dialog.eddie.ds2"));
-        ds2.addResponse(new DialogResponse(bundle.getString("dialog.p.ds1.2"), ds3));
-        ds2.addResponse(new DialogResponse(bundle.getString("dialog.p.ds1.3"), ds4));
+        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.2"), ds3));
+        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.3"), ds4));
 
-        DialogSheet ds1 = new DialogSheet(shopOwnerCharacter.getDialog());
+        DialogSheet2 ds1 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
         ds1.setDialogText(bundle.getString("dialog.eddie.ds1"));
-        ds1.addResponse(new DialogResponse(bundle.getString("dialog.p.ds1.1"), ds2));
-        ds1.addResponse(new DialogResponse(bundle.getString("dialog.p.ds1.2"), ds3));
-        ds1.addResponse(new DialogResponse(bundle.getString("dialog.p.ds1.3"), ds4));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.1"), ds2));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.2"), ds3));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.3"), ds4));
 
-        shopOwnerCharacter.getDialog().addDialogSheet(ds1);
-        shopOwnerCharacter.getDialog().addDialogSheet(ds2);
-        shopOwnerCharacter.getDialog().addDialogSheet(ds3);
-        shopOwnerCharacter.getDialog().addDialogSheet(ds4);
+        shopOwnerCharacter.getDialogPane().addDialogSheet(ds1);
+        shopOwnerCharacter.getDialogPane().addDialogSheet(ds2);
+        shopOwnerCharacter.getDialogPane().addDialogSheet(ds3);
+        shopOwnerCharacter.getDialogPane().addDialogSheet(ds4);
 
     }
 

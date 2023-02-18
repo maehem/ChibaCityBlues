@@ -60,10 +60,10 @@ public class StreetVignette2 extends Vignette {
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.42, 0.44,
             0.063, 0.014,
-            DonutShopVignette.PLAYER_START.getX(), 
-            DonutShopVignette.PLAYER_START.getY(), 
-            PoseSheet.Direction.AWAY,
-            "DonutShopVignette"
+            ChatsuboBarVignette.PLAYER_START.getX(), 
+            ChatsuboBarVignette.PLAYER_START.getY(), 
+            PoseSheet.Direction.TOWARD,
+            "ChatsuboBarVignette"
     );
 
     public StreetVignette2(GameState gs, VignetteTrigger prevPort, Player player) {
