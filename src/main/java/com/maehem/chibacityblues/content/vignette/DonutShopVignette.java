@@ -94,4 +94,9 @@ public class DonutShopVignette extends Vignette {
         return PROP_NAME;
     }
 
+    @Override
+    public Point2D getDefaultPlayerPosition() {
+        return PLAYER_START;
+    }
+
 }

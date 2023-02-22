@@ -111,4 +111,9 @@ public class StreetVignette2 extends Vignette {
         // example
         //setCondition(Integer.valueOf(p.getProperty(PROPERTY_CONDITION, String.valueOf(CONDITION_DEFAULT))));
     }
+
+    @Override
+    public Point2D getDefaultPlayerPosition() {
+        return PLAYER_START;
+    }
 }

@@ -27,6 +27,7 @@ import com.maehem.abyss.engine.babble.DialogResponse2;
 import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
 import java.util.Properties;
+import java.util.logging.Level;
 import javafx.geometry.Point2D;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -72,7 +73,7 @@ public class ChatsuboBarVignette extends Vignette {
     private int shopOwnerAnimationCount = 0;
 
     public ChatsuboBarVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);        
+        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
     }
 
     @Override
@@ -323,6 +324,11 @@ public class ChatsuboBarVignette extends Vignette {
     @Override
     public String getPropName() {
         return PROP_NAME;
+    }
+
+    @Override
+    public Point2D getDefaultPlayerPosition() {
+        return PLAYER_START;
     }
 
 }

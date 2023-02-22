@@ -199,4 +199,9 @@ public class PawnShopVignette extends Vignette {
         // Empty for now
         //setCondition(Integer.valueOf(p.getProperty(PROPERTY_CONDITION, String.valueOf(CONDITION_DEFAULT))));
     }
+
+    @Override
+    public Point2D getDefaultPlayerPosition() {
+        return PLAYER_START;
+    }
 }
