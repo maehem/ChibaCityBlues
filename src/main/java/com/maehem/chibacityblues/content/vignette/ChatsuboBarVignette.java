@@ -39,13 +39,14 @@ import javafx.scene.paint.Color;
  */
 public class ChatsuboBarVignette extends Vignette {
 
-    public  static final String PROP_NAME = "chatsubo-bar";    
+    public  static final String PROP_NAME = "chatsubo-bar";  
     private static final String CONTENT_BASE = "/content/vignette/"+ PROP_NAME +"/";
     private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
     private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
     private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";
     private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counter-overlay.png";
     private static final String BARTENDER_POSE_SHEET_FILENAME = CONTENT_BASE + "ratz-pose-sheet.png";
+    private static final int PAY_AMOUNT = 46;
 
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
     private static final double[] WALK_BOUNDARY = new double[] {
@@ -154,7 +155,7 @@ public class ChatsuboBarVignette extends Vignette {
 
     // TODO:  Ways to automate this.   JSON file?
     private void initShopOwnerDialog() {
-
+        barOwnerCharacter.setAllowTalk(true);
         // Example: Eddie kicks the player out of the shop but gives him his item.
 //        DialogResponseAction exitAction = () -> {
 //            barOwnerCharacter.getDialog().setExit(leftDoor);
@@ -166,30 +167,132 @@ public class ChatsuboBarVignette extends Vignette {
 //            // TODO:
 //            // GameState set StreetVignette PawnShop door locked.
 //        };
+        DialogSheet2 ds1 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds2 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds3 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds4 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds5 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds6 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds7 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds8 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds9 = new DialogSheet2(barOwnerCharacter.getDialogPane());
         
-        DialogResponseAction checkIfPaid = () -> {
-            // If paid, exit player and lock door.
-            barOwnerCharacter.getDialogPane().doCloseDialog();
-            barOwnerCharacter.getDialogPane().setActionDone(false);
+        // Ratz has nothing more to say.
+        DialogResponseAction endDialog = () -> {
+            barOwnerCharacter.setAllowTalk(false);
+            barOwnerCharacter.getDialogPane().setActionDone(true);
+            barOwnerCharacter.setTalking(false);
+        };
+                
+        ds9.setDialogText(bundle.getString("dialog.ds9.ratz"));
+        ds9.addResponse(new DialogResponse2( bundle.getString("dialog.ds9.p.1"), endDialog));
+
+        ds8.setDialogText(bundle.getString("dialog.ds8.ratz"));
+        ds8.addResponse(new DialogResponse2( bundle.getString("dialog.ds8.p.1"), ds9));
+        
+        ds7.setDialogText(bundle.getString("dialog.ds7.ratz"));
+        ds7.addResponse(new DialogResponse2( bundle.getString("dialog.ds7.p.1"), ds8));
+        
+        ds6.setDialogText(bundle.getString("dialog.ds6.ratz"));
+        ds6.addResponse(new DialogResponse2( bundle.getString("dialog.ds6.p.1"), ds4));
+        
+        ds5.setDialogText(bundle.getString("dialog.ds5.ratz"));
+        ds5.addResponse(new DialogResponse2( bundle.getString("dialog.ds5.p.1"), ds4));
+        
+        ds4.setDialogText(bundle.getString("dialog.ds4.ratz"));
+        ds4.addResponse(new DialogResponse2( bundle.getString("dialog.ds4.p.1"), ds5));
+        ds4.addResponse(new DialogResponse2( bundle.getString("dialog.ds4.p.2"), ds6));
+        ds4.addResponse(new DialogResponse2( bundle.getString("dialog.ds4.p.3"), ds7));
+
+
+                    // If paid, exit player and lock door.
+        DialogResponseAction payUpAction = () -> {
+            //barOwnerCharacter.getDialogPane().doCloseDialog();
             
-            //barOwnerCharacter.setTalking(false);
+            // Pop up money paymemt GUI.
+            setGiveMoneyShowing(PAY_AMOUNT, 
+                    "Pay " + barOwnerCharacter.getName() + " for your meal.", 
+                    (t) -> {  // Success action handler.
+                        barOwnerCharacter.getDialogPane().setCurrentDialogSheet(ds4);
+                        // Display ds4
+                        // Set dialog to ds4
+                        // open dialog
+                        
+                    }
+            );
+            // On cancel, open last dialog again.
+            
+            // On sucess, do the follwong.
+            
+            // We will only set action done if npc gets paid.
+            //barOwnerCharacter.getDialogPane().setActionDone(true);
+
+            
         };
 
         // Now just pay up. Nothing else to talk about.
-        DialogSheet2 ds2 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        ds3.setDialogText(bundle.getString("dialog.ds3.ratz"));
+        
+        // Configure the dialog based on if player can pay the bill.
+        DialogResponseAction preDs3 = () -> {
+            ds3.clearReponses();
+            ds3.addResponse(new DialogResponse2( // I'll see what i can do.
+                    bundle.getString("dialog.ds3.p.1"), 
+                    () -> { 
+                        barOwnerCharacter.getDialogPane().doCloseDialog();
+                        barOwnerCharacter.getDialogPane().setCurrentDialogSheet(ds1);
+                    }
+            ));
+            
+            // I have your money right here.
+            if (getGameState().getPlayer().getMoney() >= PAY_AMOUNT) {
+                ds3.addResponse(new DialogResponse2(
+                bundle.getString("dialog.ds3.p.2"),
+                payUpAction
+                ));
+            }
+            ds3.doResponseAction(); // calling this on a DialogSheet causes it to become the active dialog.
+        };
+                
+        // Now just pay up. Nothing else to talk about.
         ds2.setDialogText(bundle.getString("dialog.ds2.ratz"));
-        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds2.p.1"), checkIfPaid));
-
+        
+        // Configure the dialog based on if player can pay the bill.
+        DialogResponseAction preDs2 = () -> {
+            ds2.clearReponses();
+            ds2.addResponse(new DialogResponse2( // I'll see what I can do.
+                    bundle.getString("dialog.ds2.p.1"), 
+                    () -> {
+                        barOwnerCharacter.getDialogPane().doCloseDialog();
+                        barOwnerCharacter.getDialogPane().setCurrentDialogSheet(ds1);
+                    }
+            ));
+            
+            // I have your money right here.
+            if (getGameState().getPlayer().getMoney() >= PAY_AMOUNT) {
+                ds2.addResponse(new DialogResponse2(
+                bundle.getString("dialog.ds2.p.2"),
+                payUpAction
+                ));
+            }
+            ds2.doResponseAction(); // calling this on a DialogSheet causes it to become the active dialog.
+        };
+                
         // Ratz asks to get paid and player replies with snarky comeback.
-        DialogSheet2 ds1 = new DialogSheet2(barOwnerCharacter.getDialogPane());
         ds1.setDialogText(bundle.getString("dialog.ds1.ratz"));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds2));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds2));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), ds2));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), preDs2));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), preDs2));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), preDs2));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), preDs3));
 
         barOwnerCharacter.getDialogPane().addDialogSheet(ds1);
         barOwnerCharacter.getDialogPane().addDialogSheet(ds2);
+        barOwnerCharacter.getDialogPane().addDialogSheet(ds3);
+        barOwnerCharacter.getDialogPane().addDialogSheet(ds4);
+        barOwnerCharacter.getDialogPane().addDialogSheet(ds5);
+        barOwnerCharacter.getDialogPane().addDialogSheet(ds6);
+        barOwnerCharacter.getDialogPane().addDialogSheet(ds7);
+        barOwnerCharacter.getDialogPane().addDialogSheet(ds8);
     }
 
     @Override
