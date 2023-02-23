@@ -27,7 +27,6 @@ import com.maehem.abyss.engine.babble.DialogResponse2;
 import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
 import java.util.Properties;
-import java.util.logging.Level;
 import javafx.geometry.Point2D;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -321,10 +320,10 @@ public class ChatsuboBarVignette extends Vignette {
         //setCondition(Integer.valueOf(p.getProperty(PROPERTY_CONDITION, String.valueOf(CONDITION_DEFAULT))));
     }
 
-    @Override
-    public String getPropName() {
-        return PROP_NAME;
-    }
+//    @Override
+//    public String getPropName() {
+//        return PROP_NAME;
+//    }
 
     @Override
     public Point2D getDefaultPlayerPosition() {

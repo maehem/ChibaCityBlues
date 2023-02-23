@@ -89,10 +89,10 @@ public class DonutShopVignette extends Vignette {
         //setCondition(Integer.valueOf(p.getProperty(PROPERTY_CONDITION, String.valueOf(CONDITION_DEFAULT))));
     }
 
-    @Override
-    public String getPropName() {
-        return PROP_NAME;
-    }
+//    @Override
+//    public String getPropName() {
+//        return PROP_NAME;
+//    }
 
     @Override
     public Point2D getDefaultPlayerPosition() {

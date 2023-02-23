@@ -92,10 +92,10 @@ public class StreetVignette2 extends Vignette {
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
 
-    @Override
-    public String getPropName() {
-        return PROP_NAME;
-    }
+//    @Override
+//    public String getPropName() {
+//        return PROP_NAME;
+//    }
 
     @Override
     public Properties saveProperties() {
