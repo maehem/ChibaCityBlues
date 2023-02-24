@@ -60,8 +60,8 @@ public class ChatsuboBarVignette extends Vignette {
         0.68, 0.97,   // exit location
         0.21, 0.03,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
-        0.43, 0.50,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetVignette2"); // Exit to here
+        0.7, 0.80,   // player position at destination
+        PoseSheet.Direction.TOWARD, "StreetChatsuboVignette"); // Exit to here
     
     private static final TerminalTrigger terminal = new TerminalTrigger(
         0.43, 0.70,   // trigger location
