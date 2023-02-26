@@ -62,10 +62,10 @@ public class StreetChatsuboVignette extends Vignette {
             0.98, 0.66, // Location
             0.02, 0.34, // Size
             VignetteTrigger.SHOW_TRIGGER,
-            PawnShopVignette.PLAYER_START.getX(), 
-            PawnShopVignette.PLAYER_START.getY(), 
+            StreetBodyShopVignette.PLAYER_START.getX(), 
+            StreetBodyShopVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "PawnShopVignette" // Destination
+            "StreetBodyShopVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.65, 0.65,
