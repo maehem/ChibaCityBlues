@@ -104,9 +104,6 @@ public class PawnShopVignette extends Vignette {
         // TODO:   Check that file exists.  The current exception message is cryptic.
         shopOwnerCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(BROKER_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + BROKER_POSE_SHEET_FILENAME);
-        // Dialog
-        // Load dialog tree from file.
-//        shopOwnerCharacter.getDialog().init(getWidth(), getHeight());
 
         initShopOwnerDialog();
 
