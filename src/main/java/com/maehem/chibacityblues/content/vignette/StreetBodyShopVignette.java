@@ -78,10 +78,10 @@ public class StreetBodyShopVignette extends Vignette {
             0.37, 0.97,
             0.26, 0.03,
             VignetteTrigger.SHOW_TRIGGER,
-            DonutShopVignette.PLAYER_START.getX(), 
-            DonutShopVignette.PLAYER_START.getY(), 
+            DonutWorldVignette.PLAYER_START.getX(), 
+            DonutWorldVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
-            "DonutShopVignette"
+            "DonutWorldVignette"
     );
     
     //private com.maehem.abyss.engine.Character policeRobotCharacter;

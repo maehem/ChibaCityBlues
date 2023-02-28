@@ -58,7 +58,7 @@ public class PawnShopVignette extends Vignette {
             0.04, 0.06,  // port size
             0.72, 0.65,  // place player at this XY when they leave the pawn shop.        
             PoseSheet.Direction.LEFT, // Face this direction at destination
-            "StreetVignette2"  // Class name of destination vignette
+            "StreetMicrosoftsVignette"  // Class name of destination vignette
     );
     
     private static final Patch leftDoorPatch = new Patch(

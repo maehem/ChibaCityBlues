@@ -78,8 +78,8 @@ public class StreetMicrosoftsVignette extends Vignette {
             0.20, 0.97,
             0.70, 0.03,
             VignetteTrigger.SHOW_TRIGGER,
-            DonutShopVignette.PLAYER_START.getX(), 
-            DonutShopVignette.PLAYER_START.getY(), 
+            DonutWorldVignette.PLAYER_START.getX(), 
+            DonutWorldVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
             "DonutShopVignette"
     );
