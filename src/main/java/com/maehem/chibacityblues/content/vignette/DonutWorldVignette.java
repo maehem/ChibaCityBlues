@@ -18,10 +18,8 @@ package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
 import com.maehem.abyss.engine.GameState;
-import com.maehem.abyss.engine.MatrixTrigger;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
-import com.maehem.abyss.engine.TerminalTrigger;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.babble.DialogResponse2;
