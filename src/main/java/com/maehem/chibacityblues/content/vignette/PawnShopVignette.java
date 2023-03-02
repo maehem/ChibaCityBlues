@@ -18,7 +18,6 @@ package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
 
-import com.maehem.abyss.engine.Patch;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
@@ -40,31 +39,30 @@ import javafx.scene.image.ImageView;
  */
 public class PawnShopVignette extends Vignette {
 
-    private static final String PROP_NAME = "pawnshop";
+    //private static final String PROP_NAME = "pawnshop";
     private static final String CONTENT_BASE = "/content/vignette/pawn-shop/";
-    public static final Point2D PLAYER_START = new Point2D(0.20, 0.60);
+    public static final Point2D PLAYER_START = new Point2D(0.20, 0.77);
     private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counters.png";
-    private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "patch-left.png";
+    //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "patch-left.png";
     private static final String BROKER_POSE_SHEET_FILENAME = CONTENT_BASE + "pawn-broker-pose-sheet.png";
     private static final double[] WALK_BOUNDARY = {
-            0.16, 0.53,   0.23, 0.53,
-            0.26, 0.61,   0.63, 0.61,
-            0.75, 0.83,   0.04, 0.83,
-            0.08, 0.58,   0.02, 0.56,
-            0.02, 0.50,   0.11, 0.50
+            0.11, 0.73,   0.98, 0.73,
+            0.98, 0.99,   0.04, 0.99,
+            0.02, 0.78,   0.02, 0.72,
+            0.02, 0.66
     };
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
-            0.02, 0.50,  // port XY location
+            0.02, 0.70,  // port XY location
             0.04, 0.06,  // port size
             0.72, 0.65,  // place player at this XY when they leave the pawn shop.        
             PoseSheet.Direction.LEFT, // Face this direction at destination
             "StreetMicrosoftsVignette"  // Class name of destination vignette
     );
     
-    private static final Patch leftDoorPatch = new Patch(
-            0, 0, 425, 
-            PawnShopVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME)
-    );
+//    private static final Patch leftDoorPatch = new Patch(
+//            0, 0, 425, 
+//            PawnShopVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME)
+//    );
 
     private Character shopOwnerCharacter;
     private int shopOwnerAnimationCount = 0;
@@ -82,24 +80,24 @@ public class PawnShopVignette extends Vignette {
 
     @Override
     protected void init() {
-        setHorizon(0.2);
+        setHorizon(0.27);
 
         initShopOwner();        
         initBackground();
                 
         addPort(leftDoor);
         
-        addPatch(leftDoorPatch);
+        //addPatch(leftDoorPatch);
         
         // example Depth of field
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
 
     private void initShopOwner() {
-        shopOwnerCharacter = new Character(bundle.getString("character.eddie.name"));
-        shopOwnerCharacter.setScale(1.2);
-        shopOwnerCharacter.setLayoutX(600);
-        shopOwnerCharacter.setLayoutY(350);
+        shopOwnerCharacter = new Character(bundle.getString("character.npc.name"));
+        shopOwnerCharacter.setScale(1.4);
+        shopOwnerCharacter.setLayoutX(580);
+        shopOwnerCharacter.setLayoutY(450);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
         shopOwnerCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(BROKER_POSE_SHEET_FILENAME), 1, 4);
@@ -118,8 +116,8 @@ public class PawnShopVignette extends Vignette {
         // Display Cases (in front of shop owner )
         final ImageView counterView = new ImageView();
         counterView.setImage(new Image(PawnShopVignette.class.getResourceAsStream(COUNTERS_IMAGE_FILENAME)));
-        counterView.setLayoutX(getWidth() - counterView.getImage().getWidth());
-        counterView.setLayoutY(getHeight() - counterView.getImage().getHeight());
+        counterView.setLayoutX(0);
+        counterView.setLayoutY(0);
         //counterView.setBlendMode(BlendMode.MULTIPLY);
 
         // Add these in visual order.  Back to front.
@@ -139,8 +137,8 @@ public class PawnShopVignette extends Vignette {
 
     // TODO:  Ways to automate this.   JSON file?
     private void initShopOwnerDialog() {
-
-        // Eddie kicks the player out of the shop but gives him his item.
+        shopOwnerCharacter.setAllowTalk(true);
+        // Shin kicks the player out of the shop but gives him his item.
         DialogResponseAction exitAction = () -> {
             shopOwnerCharacter.getDialogPane().setExit(leftDoor);
             shopOwnerCharacter.getDialogPane().setActionDone(true);
@@ -150,26 +148,27 @@ public class PawnShopVignette extends Vignette {
             
             // TODO:
             // GameState set StreetVignette PawnShop door locked.
+            getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name() );
         };
 
         DialogSheet2 ds4 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
-        ds4.setDialogText(bundle.getString("dialog.eddie.ds4"));
-        ds4.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds4.1"), exitAction)); // Exit action
+        ds4.setDialogText(bundle.getString("dialog.ds4.npc"));
+        ds4.addResponse(new DialogResponse2(bundle.getString("dialog.ds4.p.1"), exitAction)); // Exit action
 
         DialogSheet2 ds3 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
-        ds3.setDialogText(bundle.getString("dialog.eddie.ds3"));
-        ds3.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.3"), ds4));
+        ds3.setDialogText(bundle.getString("dialog.ds3.npc"));
+        ds3.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
         DialogSheet2 ds2 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
-        ds2.setDialogText(bundle.getString("dialog.eddie.ds2"));
-        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.2"), ds3));
-        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.3"), ds4));
+        ds2.setDialogText(bundle.getString("dialog.ds2.npc"));
+        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
+        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
         DialogSheet2 ds1 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
-        ds1.setDialogText(bundle.getString("dialog.eddie.ds1"));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.1"), ds2));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.2"), ds3));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.p.ds1.3"), ds4));
+        ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
         shopOwnerCharacter.getDialogPane().addDialogSheet(ds1);
         shopOwnerCharacter.getDialogPane().addDialogSheet(ds2);
@@ -178,11 +177,11 @@ public class PawnShopVignette extends Vignette {
 
     }
 
-    @Override
-    public String getPropName() {
-        return PROP_NAME;
-    }
-
+//    @Override
+//    public String getPropName() {
+//        return getClass().getSimpleName();
+//    }
+//
     @Override
     public Properties saveProperties() {
         Properties p = new Properties();
