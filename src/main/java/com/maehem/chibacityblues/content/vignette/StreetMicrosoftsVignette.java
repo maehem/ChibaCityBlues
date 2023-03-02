@@ -69,10 +69,10 @@ public class StreetMicrosoftsVignette extends Vignette {
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.36, 0.56,
             0.14, 0.014,
-            ChatsuboBarVignette.PLAYER_START.getX(), 
-            ChatsuboBarVignette.PLAYER_START.getY(), 
+            MicroSoftsVignette.PLAYER_START.getX(), 
+            MicroSoftsVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
-            "BodyShopVignette"
+            "MicroSoftsVignette"
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.20, 0.97,
