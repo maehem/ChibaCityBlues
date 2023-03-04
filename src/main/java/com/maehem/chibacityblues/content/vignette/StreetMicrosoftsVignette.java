@@ -61,10 +61,10 @@ public class StreetMicrosoftsVignette extends Vignette {
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.87, 0.57, // Location
             0.06, 0.03, // Size
-            PawnShopVignette.PLAYER_START.getX(), 
-            PawnShopVignette.PLAYER_START.getY(),
+            BrothelVignette.PLAYER_START.getX(), 
+            BrothelVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "PawnShopVignette" // Destination
+            "BrothelVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.36, 0.56,
