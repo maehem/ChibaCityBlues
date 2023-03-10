@@ -45,8 +45,8 @@ public class StreetCheapHotelVignette extends Vignette {
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
             0.07, 0.68, // Location
             0.06, 0.10, // Size
-            StreetBodyShopVignette.PLAYER_START.getX(), 
-            StreetBodyShopVignette.PLAYER_START.getY(), 
+            CheapHotelVignette.PLAYER_START.getX(), 
+            CheapHotelVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
             "CheapHotelVignette" // Destination
     );
