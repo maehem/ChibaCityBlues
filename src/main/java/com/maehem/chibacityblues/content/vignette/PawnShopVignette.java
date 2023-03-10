@@ -35,7 +35,7 @@ import javafx.scene.image.ImageView;
 
 /**
  *
- * @author Mark J Koch [flatlinejack at maehem dot com]
+ * @author Mark J Koch [@maehem on GitHub]
  */
 public class PawnShopVignette extends Vignette {
 
@@ -54,9 +54,9 @@ public class PawnShopVignette extends Vignette {
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
             0.02, 0.70,  // port XY location
             0.04, 0.06,  // port size
-            0.72, 0.65,  // place player at this XY when they leave the pawn shop.        
+            0.72, 0.75,  // place player at this XY when they leave the pawn shop.        
             PoseSheet.Direction.LEFT, // Face this direction at destination
-            "StreetMicrosoftsVignette"  // Class name of destination vignette
+            "StreetPawnShopVignette"  // Class name of destination vignette
     );
     
 //    private static final Patch leftDoorPatch = new Patch(

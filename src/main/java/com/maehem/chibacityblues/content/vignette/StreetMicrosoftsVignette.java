@@ -23,35 +23,33 @@ import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import java.util.Properties;
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  *
- * @author Mark J Koch [flatlinejack at maehem dot com]
+ * @author Mark J Koch [@maehem on GitHub]
  */
 public class StreetMicrosoftsVignette extends Vignette {
 
     private static final String CONTENT_BASE = "/content/vignette/street-microsofts/";
-    private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
+    //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
-    public static final Point2D PLAYER_START = new Point2D(0.50, 0.86);
+    public static final Point2D PLAYER_START = new Point2D(0.50, 0.90);
 
     private static final double[] WALK_BOUNDARY = {
              0.02, 0.97,    0.15, 0.97,
              0.20, 0.99,    0.85, 0.99,
              0.90, 0.97,    0.99, 0.97,
-             0.99, 0.65,    0.85, 0.57,
-             0.69, 0.59,    0.42, 0.59,
-             0.45, 0.56,    0.32, 0.56,
-             0.29, 0.59,    0.02, 0.59,
+             0.99, 0.72,    0.85, 0.64,
+             0.69, 0.65,    0.62, 0.65,
+             0.59, 0.60,    0.42, 0.60,
+             0.40, 0.65,    0.02, 0.65,
              0.02, 0.97
     };
 
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
-            0.00, 0.59, // Location
-            0.02, 0.40, // Size
+            0.00, 0.65, // Location
+            0.02, 0.34, // Size
             VignetteTrigger.SHOW_TRIGGER,
             StreetBodyShopVignette.PLAYER_START.getX(), 
             StreetBodyShopVignette.PLAYER_START.getY(), 
@@ -59,7 +57,7 @@ public class StreetMicrosoftsVignette extends Vignette {
             "StreetBodyShopVignette" // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
-            0.87, 0.57, // Location
+            0.90, 0.66, // Location
             0.06, 0.03, // Size
             BrothelVignette.PLAYER_START.getX(), 
             BrothelVignette.PLAYER_START.getY(),
@@ -67,8 +65,8 @@ public class StreetMicrosoftsVignette extends Vignette {
             "BrothelVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
-            0.36, 0.56,
-            0.14, 0.014,
+            0.42, 0.60,
+            0.17, 0.014,
             MicroSoftsVignette.PLAYER_START.getX(), 
             MicroSoftsVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
@@ -78,10 +76,10 @@ public class StreetMicrosoftsVignette extends Vignette {
             0.20, 0.97,
             0.70, 0.03,
             VignetteTrigger.SHOW_TRIGGER,
-            DonutWorldVignette.PLAYER_START.getX(), 
-            DonutWorldVignette.PLAYER_START.getY(), 
+            StreetPawnShopVignette.PLAYER_START.getX(), 
+            StreetPawnShopVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
-            "DonutShopVignette"
+            "StreetPawnShopVignette"
     );
     
     public StreetMicrosoftsVignette(GameState gs, VignetteTrigger prevPort, Player player) {
@@ -108,14 +106,14 @@ public class StreetMicrosoftsVignette extends Vignette {
     
     private void initBackground() {
         // Skyline behind scene, through window.
-        final ImageView skylineView = new ImageView();
-        skylineView.setImage(new Image(getClass().getResourceAsStream(SKYLINE_IMAGE_FILENAME)));
-        skylineView.setFitWidth(1280);
-        skylineView.setPreserveRatio(true);
-        skylineView.setLayoutX(-500);
-        skylineView.setLayoutY(0);
-        // Add these in visual order.  Back to front.
-        getSkylineGroup().getChildren().add( skylineView );
+//        final ImageView skylineView = new ImageView();
+//        skylineView.setImage(new Image(getClass().getResourceAsStream(SKYLINE_IMAGE_FILENAME)));
+//        skylineView.setFitWidth(1280);
+//        skylineView.setPreserveRatio(true);
+//        skylineView.setLayoutX(-500);
+//        skylineView.setLayoutY(0);
+//        // Add these in visual order.  Back to front.
+//        getSkylineGroup().getChildren().add( skylineView );
     }
 
     @Override

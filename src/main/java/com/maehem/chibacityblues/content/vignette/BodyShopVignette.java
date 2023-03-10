@@ -30,12 +30,12 @@ import javafx.geometry.Point2D;
 
 /**
  *
- * @author Mark J Koch [flatlinejack at maehem dot com]
+ * @author Mark J Koch [@maehem on GitHub]
  */
 public class BodyShopVignette extends Vignette {
 
-    public  static final String PROP_NAME = "body-shop";  
-    private static final String CONTENT_BASE = "/content/vignette/"+ PROP_NAME +"/";
+    //public  static final String PROP_NAME = "body-shop";  
+    private static final String CONTENT_BASE = "/content/vignette/body-shop/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
     //private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
     //private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";

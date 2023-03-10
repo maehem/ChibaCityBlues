@@ -35,7 +35,7 @@ import javafx.scene.paint.Color;
 
 /**
  *
- * @author Mark J Koch [flatlinejack at maehem dot com]
+ * @author Mark J Koch [@maehem on GitHub]
  */
 public class StreetChatsuboVignette extends Vignette {
 

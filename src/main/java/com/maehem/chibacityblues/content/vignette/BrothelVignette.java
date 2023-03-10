@@ -32,7 +32,7 @@ import javafx.geometry.Point2D;
 
 /**
  *
- * @author Mark J Koch [flatlinejack at maehem dot com]
+ * @author Mark J Koch [@maehem on GitHub]
  */
 public class BrothelVignette extends Vignette {
 

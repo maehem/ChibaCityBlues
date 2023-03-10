@@ -28,64 +28,57 @@ import javafx.geometry.Point2D;
  *
  * @author Mark J Koch [@maehem on GitHub]
  */
-public class StreetBodyShopVignette extends Vignette {
+public class StreetPawnShopVignette extends Vignette {
 
-    private static final String CONTENT_BASE = "/content/vignette/street-body-shop/";
+    private static final String CONTENT_BASE = "/content/vignette/street-shins/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
-    public static final Point2D PLAYER_START = new Point2D(0.50, 0.86);
+    public static final Point2D PLAYER_START = new Point2D(0.50, 0.90);
 
     private static final double[] WALK_BOUNDARY = {
-             0.02, 0.97,    0.35, 0.97,
-             0.37, 0.99,    0.63, 0.99,
-             0.65, 0.97,    0.99, 0.97,
-             0.99, 0.72,    0.42, 0.72,
-             0.45, 0.70,     0.32, 0.70,
-             0.29, 0.72,     0.02, 0.72,
+             0.02, 0.97,    0.99, 0.97,
+             0.99, 0.73,
+             0.80, 0.60,    0.30, 0.60,
              0.02, 0.97
     };
 
-    private static final VignetteTrigger leftDoor = new VignetteTrigger(
-            0.00, 0.70, // Location
-            0.02, 0.30, // Size
-            VignetteTrigger.SHOW_TRIGGER,
-            StreetChatsuboVignette.PLAYER_START.getX(), 
-            StreetChatsuboVignette.PLAYER_START.getY(), 
-            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "StreetChatsuboVignette" // Destination
-    );
+//    private static final VignetteTrigger leftDoor = new VignetteTrigger(
+//            0.00, 0.65, // Location
+//            0.02, 0.34, // Size
+//            VignetteTrigger.SHOW_TRIGGER,
+//            StreetBodyShopVignette.PLAYER_START.getX(), 
+//            StreetBodyShopVignette.PLAYER_START.getY(), 
+//            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
+//            "StreetBodyShopVignette" // Destination
+//    );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
-            0.98, 0.70, // Location
-            0.02, 0.30, // Size
-            VignetteTrigger.SHOW_TRIGGER,
-            StreetMicrosoftsVignette.PLAYER_START.getX(), 
-            StreetMicrosoftsVignette.PLAYER_START.getY(), 
+            0.84, 0.62, // Location
+            0.08, 0.05, // Size
+            PawnShopVignette.PLAYER_START.getX(), 
+            PawnShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "StreetMicrosoftsVignette" // Destination
+            "PawnShopVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
-            0.32, 0.70,
-            0.14, 0.014,
-            ChatsuboBarVignette.PLAYER_START.getX(), 
-            ChatsuboBarVignette.PLAYER_START.getY(), 
-            PoseSheet.Direction.TOWARD,
-            "BodyShopVignette"
+            0.12, 0.60,
+            0.70, 0.014,
+            StreetMicrosoftsVignette.PLAYER_START.getX(), 
+            StreetMicrosoftsVignette.PLAYER_START.getY(), 
+            PoseSheet.Direction.AWAY,
+            "StreetMicrosoftsVignette"
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
-            0.37, 0.97,
-            0.26, 0.03,
+            0.02, 0.96,
+            0.96, 0.04,
             VignetteTrigger.SHOW_TRIGGER,
-            DonutWorldVignette.PLAYER_START.getX(), 
-            DonutWorldVignette.PLAYER_START.getY(), 
+            StreetCheapHotelVignette.PLAYER_START.getX(), 
+            StreetCheapHotelVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
-            "DonutWorldVignette"
+            "StreetCheapHotelVignette"
     );
     
-    //private com.maehem.abyss.engine.Character policeRobotCharacter;
-    //private int npcAnimationCount = 0;
-
-    public StreetBodyShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
+    public StreetPawnShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
     }
 
@@ -95,12 +88,10 @@ public class StreetBodyShopVignette extends Vignette {
 
     @Override
     protected void init() {
-        //getPlayer().setScale(DEFAULT_SCALE*0.90);
-        setHorizon(0.42);
+        setHorizon(0.38);
         // set player position
         //setPlayerPosition(PLAYER_START);
 
-        addPort(leftDoor); 
         addPort(rightDoor);
         addPort(topDoor);
         addPort(bottomDoor);
@@ -114,8 +105,8 @@ public class StreetBodyShopVignette extends Vignette {
 //        skylineView.setImage(new Image(getClass().getResourceAsStream(SKYLINE_IMAGE_FILENAME)));
 //        skylineView.setFitWidth(1280);
 //        skylineView.setPreserveRatio(true);
-//        skylineView.setLayoutX(0);
-//        skylineView.setLayoutY(-200);
+//        skylineView.setLayoutX(-500);
+//        skylineView.setLayoutY(0);
 //        // Add these in visual order.  Back to front.
 //        getSkylineGroup().getChildren().add( skylineView );
     }

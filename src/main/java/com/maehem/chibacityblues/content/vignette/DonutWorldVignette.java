@@ -30,11 +30,11 @@ import javafx.geometry.Point2D;
 
 /**
  *
- * @author Mark J Koch [flatlinejack at maehem dot com]
+ * @author Mark J Koch [@maehem on GitHub]
  */
 public class DonutWorldVignette extends Vignette {
 
-    public  static final String PROP_NAME = "donut-world";    
+    //public  static final String PROP_NAME = "donut-world";    
     private static final String CONTENT_BASE = "/content/vignette/donut-world/";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
