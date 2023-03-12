@@ -45,10 +45,10 @@ public class StreetMblJuliusVignette extends Vignette {
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
             0.08, 0.77, // Location
             0.06, 0.10, // Size
-            StreetBodyShopVignette.PLAYER_START.getX(), 
-            StreetBodyShopVignette.PLAYER_START.getY(), 
+            MaasBiolabsVignette.PLAYER_START.getX(), 
+            MaasBiolabsVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "MassBiolabsVignette" // Destination
+            "MaasBiolabsVignette" // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.98, 0.63, // Location
@@ -86,7 +86,7 @@ public class StreetMblJuliusVignette extends Vignette {
 
     @Override
     protected void init() {
-        setHorizon(0.47);
+        setHorizon(0.55);
         // set player position
         //setPlayerPosition(PLAYER_START);
 
