@@ -87,7 +87,7 @@ public class StreetGentlemanLoserVignette extends Vignette {
 
     @Override
     protected void init() {
-        setHorizon(0.47);
+        setHorizon(0.55);
         // set player position
         //setPlayerPosition(PLAYER_START);
 
