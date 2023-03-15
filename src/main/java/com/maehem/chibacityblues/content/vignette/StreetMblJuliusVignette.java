@@ -38,7 +38,7 @@ public class StreetMblJuliusVignette extends Vignette {
 
     private static final double[] WALK_BOUNDARY = {
              0.02, 0.97,    0.99, 0.97,
-             0.89, 0.77,    0.14, 0.77,
+             0.95, 0.77,    0.14, 0.77,
              0.02, 0.97
     };
 
@@ -51,16 +51,16 @@ public class StreetMblJuliusVignette extends Vignette {
             "MaasBiolabsVignette" // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
-            0.98, 0.63, // Location
+            0.92, 0.63, // Location
             0.02, 0.20, // Size
-            PawnShopVignette.PLAYER_START.getX(), 
-            PawnShopVignette.PLAYER_START.getY(),
+            JuliusDeaneVignette.PLAYER_START.getX(), 
+            JuliusDeaneVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "JuliusDeanVignette" // Destination
+            "JuliusDeaneVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.25, 0.76,
-            0.63, 0.014,
+            0.53, 0.014,
             StreetGentlemanLoserVignette.PLAYER_START.getX(), 
             StreetGentlemanLoserVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.AWAY,
@@ -86,7 +86,7 @@ public class StreetMblJuliusVignette extends Vignette {
 
     @Override
     protected void init() {
-        setHorizon(0.55);
+        setHorizon(0.50);
         // set player position
         //setPlayerPosition(PLAYER_START);
 
