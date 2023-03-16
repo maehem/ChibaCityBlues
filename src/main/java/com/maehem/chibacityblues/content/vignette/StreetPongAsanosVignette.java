@@ -67,10 +67,10 @@ public class StreetPongAsanosVignette extends Vignette {
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.32, 0.70,
             0.14, 0.014,
-            ChatsuboBarVignette.PLAYER_START.getX(), 
-            ChatsuboBarVignette.PLAYER_START.getY(), 
+            HouseOfPongVignette.PLAYER_START.getX(), 
+            HouseOfPongVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
-            "PongVignette"
+            "HouseOfPongVignette"
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.37, 0.97,
