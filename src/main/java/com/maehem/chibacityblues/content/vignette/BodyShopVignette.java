@@ -86,7 +86,7 @@ public class BodyShopVignette extends Vignette {
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
         npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
-        LOGGER.config("Add skin for pawn shop owner. " + NPC_POSE_SHEET_FILENAME);
+        LOGGER.config("Add skin for npc. " + NPC_POSE_SHEET_FILENAME);
         // Dialog
         // Load dialog tree from file.
 //        barOwnerCharacter.getDialog().init(getWidth(), getHeight());
