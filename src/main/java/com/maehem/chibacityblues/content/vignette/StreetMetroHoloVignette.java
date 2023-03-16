@@ -41,7 +41,7 @@ public class StreetMetroHoloVignette extends Vignette {
              0.37, 0.99,    0.63, 0.99,
              0.65, 0.97,    0.99, 0.97,
              0.99, 0.72,    0.42, 0.72,
-             0.45, 0.70,     0.32, 0.70,
+             0.35, 0.70,     0.22, 0.70,
              0.29, 0.72,     0.02, 0.72,
              0.02, 0.97
     };
@@ -65,12 +65,12 @@ public class StreetMetroHoloVignette extends Vignette {
             "StreetCrazyEdosVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
-            0.32, 0.70,
+            0.22, 0.70,
             0.14, 0.014,
-            ChatsuboBarVignette.PLAYER_START.getX(), 
-            ChatsuboBarVignette.PLAYER_START.getY(), 
+            MetroHolographixVignette.PLAYER_START.getX(), 
+            MetroHolographixVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
-            "MetroHoloVignette"
+            "MetroHolographixVignette"
     );
 //    private static final VignetteTrigger bottomDoor = new VignetteTrigger(
 //            0.37, 0.97,
