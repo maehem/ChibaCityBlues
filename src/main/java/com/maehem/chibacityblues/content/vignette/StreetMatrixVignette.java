@@ -76,8 +76,8 @@ public class StreetMatrixVignette extends Vignette {
             0.37, 0.97,
             0.26, 0.03,
             VignetteTrigger.SHOW_TRIGGER,
-            StreetMatrixVignette.PLAYER_START.getX(), 
-            StreetMatrixVignette.PLAYER_START.getY(), 
+            MatrixVignette.PLAYER_START.getX(), 
+            MatrixVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
             "MatrixVignette"
     );
