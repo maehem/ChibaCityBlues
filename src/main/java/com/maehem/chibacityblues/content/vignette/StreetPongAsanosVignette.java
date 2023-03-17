@@ -37,13 +37,10 @@ public class StreetPongAsanosVignette extends Vignette {
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.86);
 
     private static final double[] WALK_BOUNDARY = {
-             0.02, 0.97,    0.35, 0.97,
-             0.37, 0.99,    0.63, 0.99,
-             0.65, 0.97,    0.99, 0.97,
-             0.99, 0.72,    0.42, 0.72,
-             0.45, 0.70,     0.32, 0.70,
-             0.29, 0.72,     0.02, 0.72,
-             0.02, 0.97
+             0.05, 0.97,    0.95, 0.97,
+             0.95, 0.80,    
+             0.70, 0.70,    0.20, 0.70,
+             0.10, 0.97
     };
 
 //    private static final VignetteTrigger leftDoor = new VignetteTrigger(
@@ -56,25 +53,24 @@ public class StreetPongAsanosVignette extends Vignette {
 //            "StreetShinsSideVignette" // Destination
 //    );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
-            0.98, 0.70, // Location
-            0.02, 0.30, // Size
-            VignetteTrigger.SHOW_TRIGGER,
-            StreetMicrosoftsVignette.PLAYER_START.getX(), 
-            StreetMicrosoftsVignette.PLAYER_START.getY(), 
+            0.88, 0.72, // Location
+            0.06, 0.08, // Size
+            AsanosVignette.PLAYER_START.getX(), 
+            AsanosVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
             "AsanosVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
-            0.32, 0.70,
-            0.14, 0.014,
+            0.44, 0.68,
+            0.12, 0.03,
             HouseOfPongVignette.PLAYER_START.getX(), 
             HouseOfPongVignette.PLAYER_START.getY(), 
             PoseSheet.Direction.TOWARD,
             "HouseOfPongVignette"
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
-            0.37, 0.97,
-            0.26, 0.03,
+            0.05, 0.97,
+            0.90, 0.03,
             VignetteTrigger.SHOW_TRIGGER,
             StreetCrazyEdosVignette.PLAYER_START.getX(), 
             StreetCrazyEdosVignette.PLAYER_START.getY(), 
