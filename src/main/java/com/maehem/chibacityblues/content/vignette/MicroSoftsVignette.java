@@ -81,6 +81,7 @@ public class MicroSoftsVignette extends Vignette {
 
     private void initNPC() {
         npcCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.npc.name"));
+        npcCharacter.setAccountId("062788138");
         npcCharacter.setScale(1.3);
         npcCharacter.setLayoutX(300);
         npcCharacter.setLayoutY(460);

@@ -59,7 +59,7 @@ public class ChibaCityBlues extends Application {
     public void start(Stage stage) throws Exception {
         engine.start(stage);
         
-        engine.getPlayer().setAccountId(56306118);
+        engine.getPlayer().setAccountId("056306118");
         // Overide the default menequin skin for the player.
         engine.getPlayer().setSkin(
                 getClass().getResourceAsStream(
@@ -74,6 +74,8 @@ public class ChibaCityBlues extends Application {
         String helpBundlePath = "content.messages.bbs.help";
         ResourceBundle helpBundle = ResourceBundle.getBundle(helpBundlePath);
         engine.getGameState().initHelp(helpBundle);
+        
+        pubTerm.getBanking().updateContent(engine.getGameState()); // Lastest player info updated.
      }
 
     /**
