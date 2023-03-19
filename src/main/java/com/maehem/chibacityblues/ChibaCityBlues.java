@@ -54,6 +54,12 @@ public class ChibaCityBlues extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         engine.start(stage);
+        
+        // Overide the default menequin skin for the player.
+        engine.getPlayer().setSkin(
+                getClass().getResourceAsStream(
+                        "/content/player/pose-sheet-1.png"), 04, 12
+        );
     }
 
     /**
