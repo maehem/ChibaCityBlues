@@ -18,7 +18,10 @@ package com.maehem.chibacityblues;
 
 import com.maehem.abyss.Engine;
 import com.maehem.abyss.engine.GameState;
+import com.maehem.abyss.engine.bbs.PublicTerminalSystem;
+import com.maehem.abyss.engine.bbs.widgets.BBSHeader;
 import com.maehem.chibacityblues.content.matrix.DefaultSitesList;
+import com.maehem.chibacityblues.content.sites.SiteHeader;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -60,6 +63,11 @@ public class ChibaCityBlues extends Application {
                 getClass().getResourceAsStream(
                         "/content/player/pose-sheet-1.png"), 04, 12
         );
+        
+        engine.getGameState().getPublicTerminal().setHeader(
+                new BBSHeader(PublicTerminalSystem.FONT, SiteHeader.PAX)
+        );
+        
     }
 
     /**
