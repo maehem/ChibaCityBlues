@@ -52,23 +52,29 @@ public class ChibaCityBlues extends Application {
         String msgBundlePath = "content.messages.bbs.bulletin";
         ResourceBundle msgBundle = ResourceBundle.getBundle(msgBundlePath);
         gameState.initMessages(msgBundle);
-    }
+
+   }
     
     @Override
     public void start(Stage stage) throws Exception {
         engine.start(stage);
         
+        engine.getPlayer().setAccountId(56306118);
         // Overide the default menequin skin for the player.
         engine.getPlayer().setSkin(
                 getClass().getResourceAsStream(
                         "/content/player/pose-sheet-1.png"), 04, 12
         );
         
-        engine.getGameState().getPublicTerminal().setHeader(
+        PublicTerminalSystem pubTerm = engine.getGameState().getPublicTerminal();
+        pubTerm.setHeader(
                 new BBSHeader(PublicTerminalSystem.FONT, SiteHeader.PAX)
         );
         
-    }
+        String helpBundlePath = "content.messages.bbs.help";
+        ResourceBundle helpBundle = ResourceBundle.getBundle(helpBundlePath);
+        engine.getGameState().initHelp(helpBundle);
+     }
 
     /**
      * @param args the command line arguments
