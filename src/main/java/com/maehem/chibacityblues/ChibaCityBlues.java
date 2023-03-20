@@ -60,6 +60,8 @@ public class ChibaCityBlues extends Application {
         engine.start(stage);
         
         engine.getPlayer().setAccountId("056306118");
+        engine.getPlayer().setBankMoney(2000);
+        engine.getPlayer().setMoney(6);
         // Overide the default menequin skin for the player.
         engine.getPlayer().setSkin(
                 getClass().getResourceAsStream(
