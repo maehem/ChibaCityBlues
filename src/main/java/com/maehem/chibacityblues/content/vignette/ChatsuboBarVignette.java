@@ -23,6 +23,7 @@ import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.TerminalTrigger;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
+import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.DialogResponse2;
 import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
@@ -156,6 +157,11 @@ public class ChatsuboBarVignette extends Vignette {
     // TODO:  Ways to automate this.   JSON file?
     private void initShopOwnerDialog() {
         barOwnerCharacter.setAllowTalk(true);
+        
+        DialogPane dialogPane = barOwnerCharacter.getDialogPane();
+        
+        dialogPane.setVars(new String[]{ getGameState().getPlayer().getName() });
+        
         // Example: Eddie kicks the player out of the shop but gives him his item.
 //        DialogResponseAction exitAction = () -> {
 //            barOwnerCharacter.getDialog().setExit(leftDoor);
@@ -167,20 +173,20 @@ public class ChatsuboBarVignette extends Vignette {
 //            // TODO:
 //            // GameState set StreetVignette PawnShop door locked.
 //        };
-        DialogSheet2 ds1 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds2 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds3 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds4 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds5 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds6 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds7 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds8 = new DialogSheet2(barOwnerCharacter.getDialogPane());
-        DialogSheet2 ds9 = new DialogSheet2(barOwnerCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds2 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds3 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds4 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds5 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds6 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds7 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds8 = new DialogSheet2(dialogPane);
+        DialogSheet2 ds9 = new DialogSheet2(dialogPane);
         
         // Ratz has nothing more to say.
         DialogResponseAction endDialog = () -> {
             barOwnerCharacter.setAllowTalk(false);
-            barOwnerCharacter.getDialogPane().setActionDone(true);
+            dialogPane.setActionDone(true);
             barOwnerCharacter.setTalking(false);
         };
                 
@@ -263,8 +269,8 @@ public class ChatsuboBarVignette extends Vignette {
             ds2.addResponse(new DialogResponse2( // I'll see what I can do.
                     bundle.getString("dialog.ds2.p.1"), 
                     () -> {
-                        barOwnerCharacter.getDialogPane().doCloseDialog();
-                        barOwnerCharacter.getDialogPane().setCurrentDialogSheet(ds1);
+                        dialogPane.doCloseDialog();
+                        dialogPane.setCurrentDialogSheet(ds1);
                     }
             ));
             
@@ -285,14 +291,14 @@ public class ChatsuboBarVignette extends Vignette {
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), preDs2));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), preDs3));
 
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds1);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds2);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds3);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds4);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds5);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds6);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds7);
-        barOwnerCharacter.getDialogPane().addDialogSheet(ds8);
+        dialogPane.addDialogSheet(ds1);
+        dialogPane.addDialogSheet(ds2);
+        dialogPane.addDialogSheet(ds3);
+        dialogPane.addDialogSheet(ds4);
+        dialogPane.addDialogSheet(ds5);
+        dialogPane.addDialogSheet(ds6);
+        dialogPane.addDialogSheet(ds7);
+        dialogPane.addDialogSheet(ds8);
     }
 
     @Override
