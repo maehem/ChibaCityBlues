@@ -98,8 +98,8 @@ public class BrothelVignette extends Vignette {
         npcCharacter.setLayoutY(550);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        npcCharacter.setSkin(BrothelVignette.class.getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
-        npcCharacter.setCameo(BrothelVignette.class.getResourceAsStream(NPC_CAMEO_FILENAME));
+        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
         LOGGER.config("Add skin for npc. " + NPC_POSE_SHEET_FILENAME);
 
         initNpcDialog();
