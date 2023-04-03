@@ -36,7 +36,7 @@ public class DonutWorldVignette extends Vignette {
 
     //public  static final String PROP_NAME = "donut-world";    
     private static final String CONTENT_BASE = "/content/vignette/donut-world/";
-    private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
+    private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-donut-cop.png";
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
     private static final double[] WALK_BOUNDARY = new double[] {
                 0.05, 0.70,    0.56, 0.70,
@@ -47,19 +47,8 @@ public class DonutWorldVignette extends Vignette {
     private static final VignetteTrigger exitPort = new VignetteTrigger(
         0.38, 0.68,   // exit location
         0.21, 0.03,   // exit size
-        0.50, 0.80,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetBodyShopVignette");
-    
-//    private static final MatrixTrigger matrixJack = new MatrixTrigger(
-//        0.58, 0.50,   // trigger location
-//        0.05, 0.05,   // trigger size
-//        0x00205 // matrix address
-//    );
-//    
-//    private static final TerminalTrigger terminal = new TerminalTrigger(
-//        0.28, 0.50,   // trigger location
-//        0.05, 0.05   // trigger size
-//    );
+        0.50, 0.90,   // player position at destination
+        PoseSheet.Direction.AWAY, "StreetBodyShopVignette");
     
     private com.maehem.abyss.engine.Character npcCharacter;
     
@@ -71,24 +60,19 @@ public class DonutWorldVignette extends Vignette {
     protected void init() {        
         setHorizon(0.2);
         addPort(exitPort);
-//        addJack( matrixJack );
-//        addTerminal( terminal );
 
         initNpc();
     }
 
     private void initNpc() {
         npcCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.npc.name"));
-        npcCharacter.setScale(1.6);
-        npcCharacter.setLayoutX(1000);
-        npcCharacter.setLayoutY(600);
+        npcCharacter.setScale(2.0  );
+        npcCharacter.setLayoutX(1040);
+        npcCharacter.setLayoutY(618);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
         npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + NPC_POSE_SHEET_FILENAME);
-        // Dialog
-        // Load dialog tree from file.
-//        barOwnerCharacter.getDialog().init(getWidth(), getHeight());
 
         initNpcDialog();
 
@@ -98,7 +82,6 @@ public class DonutWorldVignette extends Vignette {
         );
     }
 
-    // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
         DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
