@@ -47,6 +47,7 @@ public class ChatsuboBarVignette extends Vignette {
     private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";
     private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counter-overlay.png";
     private static final String BARTENDER_POSE_SHEET_FILENAME = CONTENT_BASE + "ratz-pose-sheet.png";
+    private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
     private static final int PAY_AMOUNT = 46;
 
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
@@ -69,7 +70,7 @@ public class ChatsuboBarVignette extends Vignette {
         0.07, 0.07   // trigger size
     );
     
-    private com.maehem.abyss.engine.Character barOwnerCharacter;
+    private com.maehem.abyss.engine.Character npcCharacter;
     private int shopOwnerAnimationCount = 0;
 
     public ChatsuboBarVignette(GameState gs, VignetteTrigger prevPort, Player player) {
@@ -92,23 +93,25 @@ public class ChatsuboBarVignette extends Vignette {
     }
 
     private void initShopOwner() {
-        barOwnerCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.ratz.name"));
-        barOwnerCharacter.setScale(1.3);
-        barOwnerCharacter.setLayoutX(300);
-        barOwnerCharacter.setLayoutY(460);
+        npcCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.ratz.name"));
+        npcCharacter.setScale(1.3);
+        npcCharacter.setLayoutX(300);
+        npcCharacter.setLayoutY(460);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        barOwnerCharacter.setSkin(getClass().getResourceAsStream(BARTENDER_POSE_SHEET_FILENAME), 1, 4);
+        npcCharacter.setSkin(getClass().getResourceAsStream(BARTENDER_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + BARTENDER_POSE_SHEET_FILENAME);
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
+        npcCharacter.getDialogPane().setCameoTranslate(0, 10);
         // Dialog
         // Load dialog tree from file.
 //        barOwnerCharacter.getDialog().init(getWidth(), getHeight());
 
         initShopOwnerDialog();
 
-        getCharacterList().add(barOwnerCharacter);
+        getCharacterList().add(npcCharacter);
         getBgGroup().getChildren().add(
-                barOwnerCharacter
+                npcCharacter
         );
     }
 
@@ -156,9 +159,9 @@ public class ChatsuboBarVignette extends Vignette {
 
     // TODO:  Ways to automate this.   JSON file?
     private void initShopOwnerDialog() {
-        barOwnerCharacter.setAllowTalk(true);
+        npcCharacter.setAllowTalk(true);
         
-        DialogPane dialogPane = barOwnerCharacter.getDialogPane();
+        DialogPane dialogPane = npcCharacter.getDialogPane();
         
         dialogPane.setVars(new String[]{ getGameState().getPlayer().getName() });
         
@@ -185,9 +188,9 @@ public class ChatsuboBarVignette extends Vignette {
         
         // Ratz has nothing more to say.
         DialogResponseAction endDialog = () -> {
-            barOwnerCharacter.setAllowTalk(false);
+            npcCharacter.setAllowTalk(false);
             dialogPane.setActionDone(true);
-            barOwnerCharacter.setTalking(false);
+            npcCharacter.setTalking(false);
         };
                 
         ds9.setDialogText(bundle.getString("dialog.ds9.ratz"));
@@ -217,9 +220,9 @@ public class ChatsuboBarVignette extends Vignette {
             
             // Pop up money paymemt GUI.
             setGiveMoneyShowing(PAY_AMOUNT, 
-                    "Pay " + barOwnerCharacter.getName() + " for your meal.", 
+                    "Pay " + npcCharacter.getName() + " for your meal.", 
                     (t) -> {  // Success action handler.
-                        barOwnerCharacter.getDialogPane().setCurrentDialogSheet(ds4);
+                        npcCharacter.getDialogPane().setCurrentDialogSheet(ds4);
                         // Display ds4
                         // Set dialog to ds4
                         // open dialog
@@ -245,8 +248,8 @@ public class ChatsuboBarVignette extends Vignette {
             ds3.addResponse(new DialogResponse2( // I'll see what i can do.
                     bundle.getString("dialog.ds3.p.1"), 
                     () -> { 
-                        barOwnerCharacter.getDialogPane().doCloseDialog();
-                        barOwnerCharacter.getDialogPane().setCurrentDialogSheet(ds1);
+                        npcCharacter.getDialogPane().doCloseDialog();
+                        npcCharacter.getDialogPane().setCurrentDialogSheet(ds1);
                     }
             ));
             
@@ -306,7 +309,7 @@ public class ChatsuboBarVignette extends Vignette {
         shopOwnerAnimationCount++;
         if (shopOwnerAnimationCount > 40) {
             shopOwnerAnimationCount = 0;
-            barOwnerCharacter.nextPose();
+            npcCharacter.nextPose();
         }
     }
 
