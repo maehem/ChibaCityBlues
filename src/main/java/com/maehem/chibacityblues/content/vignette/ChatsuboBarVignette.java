@@ -103,10 +103,6 @@ public class ChatsuboBarVignette extends Vignette {
         LOGGER.config("Add skin for pawn shop owner. " + BARTENDER_POSE_SHEET_FILENAME);
         npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
         npcCharacter.getDialogPane().setCameoTranslate(0, 10);
-        // Dialog
-        // Load dialog tree from file.
-//        barOwnerCharacter.getDialog().init(getWidth(), getHeight());
-
         initShopOwnerDialog();
 
         getCharacterList().add(npcCharacter);
