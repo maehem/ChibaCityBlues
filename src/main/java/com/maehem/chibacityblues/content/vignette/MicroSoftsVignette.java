@@ -56,7 +56,7 @@ public class MicroSoftsVignette extends Vignette {
         0.22, 0.03,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.7, 0.80,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetBodyShopVignette"); // Exit to here
+        PoseSheet.Direction.TOWARD, "StreetMicrosoftsVignette"); // Exit to here
     
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;
