@@ -92,7 +92,7 @@ public class StreetMicrosoftsVignette extends Vignette {
 
     @Override
     protected void init() {
-        setHorizon(0.30);
+        setHorizon(0.38);
         // set player position
         //setPlayerPosition(PLAYER_START);
 
