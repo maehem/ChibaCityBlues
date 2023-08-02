@@ -1,17 +1,17 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
@@ -23,12 +23,15 @@ import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import java.util.Properties;
 import javafx.geometry.Point2D;
+import javafx.scene.media.Media;
 
 /**
  *
  * @author Mark J Koch [@maehem on GitHub]
  */
 public class StreetSpacePortVignette extends Vignette {
+
+    private static final String MUSIC = "/content/audio/music/Uncan - Interpolation.mp3";
 
     private static final String CONTENT_BASE = "/content/vignette/street-spaceport/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
@@ -45,8 +48,8 @@ public class StreetSpacePortVignette extends Vignette {
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
             0.08, 0.77, // Location
             0.06, 0.10, // Size
-            StreetBodyShopVignette.PLAYER_START.getX(), 
-            StreetBodyShopVignette.PLAYER_START.getY(), 
+            StreetBodyShopVignette.PLAYER_START.getX(),
+            StreetBodyShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
             "SpacePortVignette" // Destination
     );
@@ -54,7 +57,7 @@ public class StreetSpacePortVignette extends Vignette {
 //            0.98, 0.63, // Location
 //            0.02, 0.20, // Size
 //            VignetteTrigger.SHOW_TRIGGER,
-//            PawnShopVignette.PLAYER_START.getX(), 
+//            PawnShopVignette.PLAYER_START.getX(),
 //            PawnShopVignette.PLAYER_START.getY(),
 //            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
 //            "JuliusDeanVignette" // Destination
@@ -62,8 +65,8 @@ public class StreetSpacePortVignette extends Vignette {
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.25, 0.76,
             0.63, 0.014,
-            StreetMblJuliusVignette.PLAYER_START.getX(), 
-            StreetMblJuliusVignette.PLAYER_START.getY(), 
+            StreetMblJuliusVignette.PLAYER_START.getX(),
+            StreetMblJuliusVignette.PLAYER_START.getY(),
             PoseSheet.Direction.AWAY,
             "StreetMblJuliusVignette"
     );
@@ -71,14 +74,18 @@ public class StreetSpacePortVignette extends Vignette {
 //            0.02, 0.97,
 //            0.96, 0.03,
 //            VignetteTrigger.SHOW_TRIGGER,
-//            DonutWorldVignette.PLAYER_START.getX(), 
-//            DonutWorldVignette.PLAYER_START.getY(), 
+//            DonutWorldVignette.PLAYER_START.getX(),
+//            DonutWorldVignette.PLAYER_START.getY(),
 //            PoseSheet.Direction.TOWARD,
 //            "StreetSpacePortVignette"
 //    );
-    
+
+    private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
+
     public StreetSpacePortVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+
+        setMusic(media);
     }
 
     @Override
@@ -98,7 +105,7 @@ public class StreetSpacePortVignette extends Vignette {
 
         initBackground();
     }
-    
+
     private void initBackground() {
         // Skyline behind scene, through window.
 //        final ImageView skylineView = new ImageView();
@@ -116,7 +123,7 @@ public class StreetSpacePortVignette extends Vignette {
         Properties p = new Properties();
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 

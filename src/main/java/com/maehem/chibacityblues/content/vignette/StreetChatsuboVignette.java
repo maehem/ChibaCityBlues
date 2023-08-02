@@ -31,6 +31,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 
 /**
@@ -39,6 +40,7 @@ import javafx.scene.paint.Color;
  */
 public class StreetChatsuboVignette extends Vignette {
 
+    private static final String MUSIC = "/content/audio/music/Audiorezout - Cepheus.mp3";
     //private static final String PROP_NAME = "street2";
     private static final String CONTENT_BASE = "/content/vignette/street-chatsubo/";
     private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
@@ -76,11 +78,14 @@ public class StreetChatsuboVignette extends Vignette {
             "ChatsuboBarVignette"
     );
     
+    private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
+
     private com.maehem.abyss.engine.Character policeRobotCharacter;
     private int npcAnimationCount = 0;
 
     public StreetChatsuboVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        setMusic(media);
     }
 
     @Override

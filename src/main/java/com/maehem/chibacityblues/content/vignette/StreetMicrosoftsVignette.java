@@ -16,13 +16,16 @@
 */
 package com.maehem.chibacityblues.content.vignette;
 
+import static com.maehem.abyss.Engine.LOGGER;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import java.util.Properties;
+import java.util.logging.Level;
 import javafx.geometry.Point2D;
+import javafx.scene.media.Media;
 
 /**
  *
@@ -36,6 +39,8 @@ public class StreetMicrosoftsVignette extends Vignette {
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.90);
 
+    private static final String MUSIC = "/content/audio/music/Audiorezout - Cepheus.mp3";
+    
     private static final double[] WALK_BOUNDARY = {
              0.02, 0.97,    0.15, 0.97,
              0.20, 0.99,    0.85, 0.99,
@@ -82,8 +87,11 @@ public class StreetMicrosoftsVignette extends Vignette {
             "StreetPawnShopVignette"
     );
     
+    private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
+    
     public StreetMicrosoftsVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        setMusic(media);
     }
 
     @Override
@@ -102,6 +110,7 @@ public class StreetMicrosoftsVignette extends Vignette {
         addPort(bottomDoor);
 
         initBackground();
+        
     }
     
     private void initBackground() {

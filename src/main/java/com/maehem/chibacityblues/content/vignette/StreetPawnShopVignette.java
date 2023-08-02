@@ -1,17 +1,17 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
@@ -23,12 +23,15 @@ import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import java.util.Properties;
 import javafx.geometry.Point2D;
+import javafx.scene.media.Media;
 
 /**
  *
  * @author Mark J Koch [@maehem on GitHub]
  */
 public class StreetPawnShopVignette extends Vignette {
+
+    private static final String MUSIC = "/content/audio/music/Uncan - Interpolation.mp3";
 
     private static final String CONTENT_BASE = "/content/vignette/street-shins/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
@@ -47,15 +50,15 @@ public class StreetPawnShopVignette extends Vignette {
 //            0.00, 0.65, // Location
 //            0.02, 0.34, // Size
 //            VignetteTrigger.SHOW_TRIGGER,
-//            StreetBodyShopVignette.PLAYER_START.getX(), 
-//            StreetBodyShopVignette.PLAYER_START.getY(), 
+//            StreetBodyShopVignette.PLAYER_START.getX(),
+//            StreetBodyShopVignette.PLAYER_START.getY(),
 //            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
 //            "StreetBodyShopVignette" // Destination
 //    );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.84, 0.62, // Location
             0.08, 0.05, // Size
-            PawnShopVignette.PLAYER_START.getX(), 
+            PawnShopVignette.PLAYER_START.getX(),
             PawnShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
             "PawnShopVignette" // Destination
@@ -63,8 +66,8 @@ public class StreetPawnShopVignette extends Vignette {
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.12, 0.60,
             0.70, 0.014,
-            StreetMicrosoftsVignette.PLAYER_START.getX(), 
-            StreetMicrosoftsVignette.PLAYER_START.getY(), 
+            StreetMicrosoftsVignette.PLAYER_START.getX(),
+            StreetMicrosoftsVignette.PLAYER_START.getY(),
             PoseSheet.Direction.AWAY,
             "StreetMicrosoftsVignette"
     );
@@ -72,14 +75,18 @@ public class StreetPawnShopVignette extends Vignette {
             0.02, 0.96,
             0.96, 0.04,
             VignetteTrigger.SHOW_TRIGGER,
-            StreetCheapHotelVignette.PLAYER_START.getX(), 
-            StreetCheapHotelVignette.PLAYER_START.getY(), 
+            StreetCheapHotelVignette.PLAYER_START.getX(),
+            StreetCheapHotelVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
             "StreetCheapHotelVignette"
     );
-    
+
+    private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
+
     public StreetPawnShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+
+        setMusic(media);
     }
 
     @Override
@@ -98,7 +105,7 @@ public class StreetPawnShopVignette extends Vignette {
 
         initBackground();
     }
-    
+
     private void initBackground() {
         // Skyline behind scene, through window.
 //        final ImageView skylineView = new ImageView();
@@ -116,7 +123,7 @@ public class StreetPawnShopVignette extends Vignette {
         Properties p = new Properties();
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 

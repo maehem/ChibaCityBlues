@@ -23,6 +23,7 @@ import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import java.util.Properties;
 import javafx.geometry.Point2D;
+import javafx.scene.media.Media;
 
 /**
  *
@@ -31,6 +32,7 @@ import javafx.geometry.Point2D;
 public class StreetBodyShopVignette extends Vignette {
 
     private static final String CONTENT_BASE = "/content/vignette/street-body-shop/";
+    private static final String MUSIC = "/content/audio/music/Audiorezout - Cepheus.mp3";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
@@ -82,11 +84,13 @@ public class StreetBodyShopVignette extends Vignette {
             "DonutWorldVignette"
     );
     
+    private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
     //private com.maehem.abyss.engine.Character policeRobotCharacter;
     //private int npcAnimationCount = 0;
 
     public StreetBodyShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        setMusic(media);
     }
 
     @Override
