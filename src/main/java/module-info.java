@@ -2,6 +2,7 @@ module com.maehem.chibacityblues {
     requires java.logging;
     requires javafx.controls;
     requires javafx.graphics;
+    requires javafx.media;
     requires java.base;
 
     requires com.maehem.abyss;
