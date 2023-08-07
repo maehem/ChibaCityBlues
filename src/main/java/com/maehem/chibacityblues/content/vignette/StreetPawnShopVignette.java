@@ -13,7 +13,7 @@
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
     License for the specific language governing permissions and limitations
     under the License.
-*/
+ */
 package com.maehem.chibacityblues.content.vignette;
 
 import com.maehem.abyss.engine.GameState;
@@ -40,21 +40,12 @@ public class StreetPawnShopVignette extends Vignette {
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.90);
 
     private static final double[] WALK_BOUNDARY = {
-             0.02, 0.97,    0.99, 0.97,
-             0.99, 0.73,
-             0.80, 0.60,    0.30, 0.60,
-             0.02, 0.97
+        0.02, 0.97, 0.99, 0.97,
+        0.99, 0.73,
+        0.80, 0.60, 0.30, 0.60,
+        0.02, 0.97
     };
 
-//    private static final VignetteTrigger leftDoor = new VignetteTrigger(
-//            0.00, 0.65, // Location
-//            0.02, 0.34, // Size
-//            VignetteTrigger.SHOW_TRIGGER,
-//            StreetBodyShopVignette.PLAYER_START.getX(),
-//            StreetBodyShopVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-//            "StreetBodyShopVignette" // Destination
-//    );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.84, 0.62, // Location
             0.08, 0.05, // Size
@@ -84,7 +75,7 @@ public class StreetPawnShopVignette extends Vignette {
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 
     public StreetPawnShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
 
         setMusic(media);
     }
