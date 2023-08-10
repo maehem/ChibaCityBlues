@@ -1,17 +1,17 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
@@ -47,6 +47,7 @@ public class StreetChatsuboVignette extends Vignette {
     private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.86);
+    public static final Point2D PLAYER_START_R = new Point2D(0.80, 0.86);
 
     private static final double[] WALK_BOUNDARY = {
              0.05, 0.9,     0.11, 0.8,
@@ -57,27 +58,27 @@ public class StreetChatsuboVignette extends Vignette {
     };
 
 //    private static final Patch pawnShopDoorPatch = new Patch(
-//            1140, 0, 500, 
+//            1140, 0, 500,
 //            StreetChatsuboVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME));
-    
+
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.98, 0.66, // Location
             0.02, 0.34, // Size
             VignetteTrigger.SHOW_TRIGGER,
-            StreetBodyShopVignette.PLAYER_START.getX(), 
-            StreetBodyShopVignette.PLAYER_START.getY(), 
-            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
+            StreetBodyShopVignette.PLAYER_START_L.getX(),
+            StreetBodyShopVignette.PLAYER_START_L.getY(),
+            PoseSheet.Direction.RIGHT, // Player position and orientation at destination
             "StreetBodyShopVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.65, 0.65,
             0.073, 0.014,
-            ChatsuboBarVignette.PLAYER_START.getX(), 
-            ChatsuboBarVignette.PLAYER_START.getY(), 
+            ChatsuboBarVignette.PLAYER_START.getX(),
+            ChatsuboBarVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
             "ChatsuboBarVignette"
     );
-    
+
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 
     private com.maehem.abyss.engine.Character policeRobotCharacter;
@@ -107,7 +108,7 @@ public class StreetChatsuboVignette extends Vignette {
         addPort(topDoor);
 
         initBackground();
-        initNpc();        
+        initNpc();
 
         // example: Depth of field
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
@@ -130,7 +131,7 @@ public class StreetChatsuboVignette extends Vignette {
         getCharacterList().add(policeRobotCharacter);
         getBgGroup().getChildren().add( policeRobotCharacter );
     }
-    
+
     private void initBackground() {
         // Skyline behind scene, through window.
         final ImageView skylineView = new ImageView();
@@ -171,7 +172,7 @@ public class StreetChatsuboVignette extends Vignette {
         Properties p = new Properties();
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 

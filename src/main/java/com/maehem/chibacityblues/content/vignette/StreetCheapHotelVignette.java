@@ -38,6 +38,8 @@ public class StreetCheapHotelVignette extends Vignette {
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.90);
+    public static final Point2D PLAYER_START_R = new Point2D(0.85, 0.90);
+    public static final Point2D PLAYER_START_L = new Point2D(0.15, 0.90);
 
     private static final double[] WALK_BOUNDARY = {
              0.02, 0.97,    0.99, 0.97,
@@ -57,8 +59,8 @@ public class StreetCheapHotelVignette extends Vignette {
             0.98, 0.68, // Location
             0.02, 0.20, // Size
             VignetteTrigger.SHOW_TRIGGER,
-            StreetShinsSideVignette.PLAYER_START.getX(),
-            StreetShinsSideVignette.PLAYER_START.getY(),
+            StreetShinsSideVignette.PLAYER_START_L.getX(),
+            StreetShinsSideVignette.PLAYER_START_L.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
             "StreetShinsSideVignette" // Destination
     );

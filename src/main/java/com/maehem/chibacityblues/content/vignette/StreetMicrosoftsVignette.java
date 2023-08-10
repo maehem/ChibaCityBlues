@@ -1,29 +1,27 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
 
-import static com.maehem.abyss.Engine.LOGGER;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import java.util.Properties;
-import java.util.logging.Level;
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
 
@@ -38,9 +36,11 @@ public class StreetMicrosoftsVignette extends Vignette {
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "door-right-wing.png";
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.90);
+    public static final Point2D PLAYER_START_L = new Point2D(0.20, 0.90);
+    public static final Point2D PLAYER_START_R = new Point2D(0.70, 0.90);
 
     private static final String MUSIC = "/content/audio/music/Audiorezout - Cepheus.mp3";
-    
+
     private static final double[] WALK_BOUNDARY = {
              0.02, 0.97,    0.15, 0.97,
              0.20, 0.99,    0.85, 0.99,
@@ -56,24 +56,24 @@ public class StreetMicrosoftsVignette extends Vignette {
             0.00, 0.65, // Location
             0.02, 0.34, // Size
             VignetteTrigger.SHOW_TRIGGER,
-            StreetBodyShopVignette.PLAYER_START.getX(), 
-            StreetBodyShopVignette.PLAYER_START.getY(), 
-            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
+            StreetBodyShopVignette.PLAYER_START_R.getX(),
+            StreetBodyShopVignette.PLAYER_START_R.getY(),
+            PoseSheet.Direction.LEFT, // Player position and orientation at destination
             "StreetBodyShopVignette" // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.90, 0.66, // Location
             0.06, 0.03, // Size
-            BrothelVignette.PLAYER_START.getX(), 
+            BrothelVignette.PLAYER_START.getX(),
             BrothelVignette.PLAYER_START.getY(),
-            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
+            PoseSheet.Direction.RIGHT, // Player position and orientation at destination
             "BrothelVignette" // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.42, 0.60,
             0.17, 0.014,
-            MicroSoftsVignette.PLAYER_START.getX(), 
-            MicroSoftsVignette.PLAYER_START.getY(), 
+            MicroSoftsVignette.PLAYER_START.getX(),
+            MicroSoftsVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
             "MicroSoftsVignette"
     );
@@ -81,14 +81,14 @@ public class StreetMicrosoftsVignette extends Vignette {
             0.20, 0.97,
             0.70, 0.03,
             VignetteTrigger.SHOW_TRIGGER,
-            StreetPawnShopVignette.PLAYER_START.getX(), 
-            StreetPawnShopVignette.PLAYER_START.getY(), 
+            StreetPawnShopVignette.PLAYER_START.getX(),
+            StreetPawnShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
             "StreetPawnShopVignette"
     );
-    
+
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
-    
+
     public StreetMicrosoftsVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
         setMusic(media);
@@ -104,15 +104,15 @@ public class StreetMicrosoftsVignette extends Vignette {
         // set player position
         //setPlayerPosition(PLAYER_START);
 
-        addPort(leftDoor); 
+        addPort(leftDoor);
         addPort(rightDoor);
         addPort(topDoor);
         addPort(bottomDoor);
 
         initBackground();
-        
+
     }
-    
+
     private void initBackground() {
         // Skyline behind scene, through window.
 //        final ImageView skylineView = new ImageView();
@@ -130,7 +130,7 @@ public class StreetMicrosoftsVignette extends Vignette {
         Properties p = new Properties();
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 
