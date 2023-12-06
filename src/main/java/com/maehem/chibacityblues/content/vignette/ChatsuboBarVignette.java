@@ -70,7 +70,8 @@ public class ChatsuboBarVignette extends Vignette {
 
     private static final TerminalTrigger terminal = new TerminalTrigger(
         0.43, 0.70,   // trigger location
-        0.07, 0.07   // trigger size
+        0.07, 0.07, // trigger size
+            0.00, 0.55 // trigger icon location
     );
 
     private final  Media media = new Media(getClass().getResource(MUSIC).toExternalForm());

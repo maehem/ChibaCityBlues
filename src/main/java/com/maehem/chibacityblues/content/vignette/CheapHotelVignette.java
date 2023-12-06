@@ -1,17 +1,17 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
@@ -31,7 +31,7 @@ import javafx.geometry.Point2D;
  */
 public class CheapHotelVignette extends Vignette {
 
-    //public  static final String PROP_NAME = "body-shop";  
+    //public  static final String PROP_NAME = "body-shop";
     private static final String CONTENT_BASE = "/content/vignette/cheap-hotel/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
     //private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
@@ -52,26 +52,27 @@ public class CheapHotelVignette extends Vignette {
         VignetteTrigger.SHOW_TRIGGER,
         0.3, 0.80,   // player position at destination
         PoseSheet.Direction.RIGHT, "StreetCheapHotelVignette"); // Exit to here
-    
+
     private static final TerminalTrigger terminal = new TerminalTrigger(
         0.46, 0.71,   // trigger location
-        0.07, 0.07   // trigger size
+        0.07, 0.07, // trigger size
+            0.00, 0.20 // trigger icon location
     );
-    
+
     public CheapHotelVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
     }
 
     @Override
-    protected void init() {        
+    protected void init() {
         setHorizon(0.25);
 
         // Do in this order.  TODO: Leverage Z-order of JavaFX?
         // Background is autoloaded by superclass.
         initBackground(); // then layer in any fixtures on top of them
-        
+
         //getBgGroup().setOpacity(0.7);
-        
+
         addPort(exitPort);
         addTerminal( terminal );
     }
@@ -86,10 +87,10 @@ public class CheapHotelVignette extends Vignette {
     @Override
     public Properties saveProperties() {
         Properties p = new Properties();
-        
+
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 
