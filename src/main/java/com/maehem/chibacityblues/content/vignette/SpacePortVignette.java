@@ -81,19 +81,19 @@ public class SpacePortVignette extends Vignette {
 
     private void initBackground() {
         // Display Window Frame Mask (in front of ticket NPC )
-        final ImageView counterView = new ImageView();
-        counterView.setImage(new Image(PawnShopVignette.class.getResourceAsStream(COUNTERS_IMAGE_FILENAME)));
-        counterView.setLayoutX(956);
-        counterView.setLayoutY(114);
+        final ImageView windowMask = new ImageView();
+        windowMask.setImage(new Image(getClass().getResourceAsStream(COUNTERS_IMAGE_FILENAME)));
+        windowMask.setLayoutX(956);
+        windowMask.setLayoutY(221);
         // Add these in visual order.  Back to front.
-        getBgGroup().getChildren().add(counterView);
+        getBgGroup().getChildren().add(windowMask);
     }
 
     private void initNPC() {
         npcCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.npc.name"));
         npcCharacter.setScale(0.7);
         npcCharacter.setLayoutX(1040);
-        npcCharacter.setLayoutY(290);
+        npcCharacter.setLayoutY(250);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
         LOGGER.config("Add skin for npc. " + NPC_POSE_SHEET_FILENAME);
