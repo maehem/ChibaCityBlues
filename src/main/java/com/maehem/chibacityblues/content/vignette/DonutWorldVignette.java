@@ -39,6 +39,7 @@ public class DonutWorldVignette extends Vignette {
     //public  static final String PROP_NAME = "donut-world";
     private static final String CONTENT_BASE = "/content/vignette/donut-world/";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-donut-cop.png";
+    private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
     private static final String TABLE_PATCH_IMAGE_FILENAME = CONTENT_BASE + "patch-cop-table.png";
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
     private static final double[] WALK_BOUNDARY = new double[] {
@@ -75,8 +76,8 @@ public class DonutWorldVignette extends Vignette {
         npcCharacter.setLayoutY(768);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + NPC_POSE_SHEET_FILENAME);
+        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
 
         initNpcDialog();
 
@@ -101,6 +102,8 @@ public class DonutWorldVignette extends Vignette {
 
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
+        LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
         DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
         DialogSheet2 ds2 = new DialogSheet2(npcCharacter.getDialogPane());
 
