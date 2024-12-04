@@ -41,6 +41,7 @@ public class BodyShopVignette extends Vignette {
     //private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";
     //private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counter-overlay.png";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
+    private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
 
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
     private static final double[] WALK_BOUNDARY = new double[] {
@@ -85,8 +86,8 @@ public class BodyShopVignette extends Vignette {
         npcCharacter.setLayoutY(580);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for npc. " + NPC_POSE_SHEET_FILENAME);
+        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         // Dialog
         // Load dialog tree from file.
 //        barOwnerCharacter.getDialog().init(getWidth(), getHeight());
@@ -103,6 +104,8 @@ public class BodyShopVignette extends Vignette {
     // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
+
         // Example: Eddie kicks the player out of the shop but gives him his item.
 //        DialogResponseAction exitAction = () -> {
 //            barOwnerCharacter.getDialog().setExit(leftDoor);
