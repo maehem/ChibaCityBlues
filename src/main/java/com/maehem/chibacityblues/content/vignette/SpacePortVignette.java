@@ -22,6 +22,9 @@ import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
+import com.maehem.abyss.engine.babble.DialogResponse2;
+import com.maehem.abyss.engine.babble.DialogResponseAction;
+import com.maehem.abyss.engine.babble.DialogSheet2;
 import java.util.Properties;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
@@ -40,6 +43,7 @@ public class SpacePortVignette extends Vignette {
     //private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";
     private static final String COUNTERS_IMAGE_FILENAME = CONTENT_BASE + "ticket-window-mask.png";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
+    private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
 
     public static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
     private static final double[] WALK_BOUNDARY = new double[] {
@@ -92,8 +96,8 @@ public class SpacePortVignette extends Vignette {
         npcCharacter.setLayoutY(290);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for npc. " + NPC_POSE_SHEET_FILENAME);
+        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         // Dialog
         // Load dialog tree from file.
 //        barOwnerCharacter.getDialog().init(getWidth(), getHeight());
@@ -105,35 +109,36 @@ public class SpacePortVignette extends Vignette {
     }
 
     private void initNpcDialog() {
-//        npcCharacter.setAllowTalk(true);
-//        // Example: Eddie kicks the player out of the shop but gives him his item.
-////        DialogResponseAction exitAction = () -> {
-////            barOwnerCharacter.getDialog().setExit(leftDoor);
-////            barOwnerCharacter.getDialog().setActionDone(true);
-////
-////            // Add cyberspace deck to inventory.
-////            barOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
-////
-////            // TODO:
-////            // GameState set StreetVignette PawnShop door locked.
-////        };
-//        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
+        npcCharacter.setAllowTalk(true);
+        npcCharacter.adjustHearingBoundary(0, 300);
+        LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
+        // Example: Eddie kicks the player out of the shop but gives him his item.
+//        DialogResponseAction exitAction = () -> {
+//            barOwnerCharacter.getDialog().setExit(leftDoor);
+//            barOwnerCharacter.getDialog().setActionDone(true);
 //
-//        // Ratz has nothing more to say.
-//        DialogResponseAction endDialog = () -> {
-//            npcCharacter.setAllowTalk(false);
-//            npcCharacter.getDialogPane().setActionDone(true);
-//            npcCharacter.setTalking(false);
+//            // Add cyberspace deck to inventory.
+//            barOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
+//
+//            // TODO:
+//            // GameState set StreetVignette PawnShop door locked.
 //        };
-//
-//        // Ratz asks to get paid and player replies with snarky comeback.
-//        ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), endDialog));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), endDialog));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), endDialog));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), endDialog));
-//
-//        npcCharacter.getDialogPane().addDialogSheet(ds1);
+        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
+
+        // Ratz has nothing more to say.
+        DialogResponseAction endDialog = () -> {
+            npcCharacter.setAllowTalk(false);
+            npcCharacter.getDialogPane().setActionDone(true);
+            npcCharacter.setTalking(false);
+        };
+
+        // Ratz asks to get paid and player replies with snarky comeback.
+        ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), endDialog));
+        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), endDialog));
+
+        npcCharacter.getDialogPane().addDialogSheet(ds1);
     }
 
     @Override
