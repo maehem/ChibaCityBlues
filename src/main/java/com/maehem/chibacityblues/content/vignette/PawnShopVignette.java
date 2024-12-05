@@ -43,7 +43,7 @@ public class PawnShopVignette extends Vignette {
     public static final Point2D PLAYER_START = new Point2D(0.20, 0.77);
     private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counters.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "patch-left.png";
-    private static final String BROKER_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
+    private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
     private static final double[] WALK_BOUNDARY = {
             0.11, 0.73,   0.98, 0.73,
@@ -64,8 +64,8 @@ public class PawnShopVignette extends Vignette {
 //            PawnShopVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME)
 //    );
 
-    private Character shopOwnerCharacter;
-    private int shopOwnerAnimationCount = 0;
+    private Character npcCharacter;
+    private int npcAnimationCount = 0;
 
     /**
      *
@@ -94,20 +94,20 @@ public class PawnShopVignette extends Vignette {
     }
 
     private void initShopOwner() {
-        shopOwnerCharacter = new Character(bundle.getString("character.npc.name"));
-        shopOwnerCharacter.setScale(1.6);
-        shopOwnerCharacter.setLayoutX(580);
-        shopOwnerCharacter.setLayoutY(480);
+        npcCharacter = new Character(bundle.getString("character.npc.name"));
+        npcCharacter.setScale(1.6);
+        npcCharacter.setLayoutX(580);
+        npcCharacter.setLayoutY(480);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        shopOwnerCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(BROKER_POSE_SHEET_FILENAME), 1, 4);
-        LOGGER.config("Add skin for pawn shop owner. " + BROKER_POSE_SHEET_FILENAME);
+        npcCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
+        LOGGER.config("Add skin for pawn shop owner. " + NPC_POSE_SHEET_FILENAME);
 
         initShopOwnerDialog();
 
-        getCharacterList().add(shopOwnerCharacter);
+        getCharacterList().add(npcCharacter);
         getBgGroup().getChildren().add(
-                shopOwnerCharacter
+                npcCharacter
         );
     }
 
@@ -127,55 +127,55 @@ public class PawnShopVignette extends Vignette {
     @Override
     public void loop() {
         // animate shop owner.
-        shopOwnerAnimationCount++;
-        if (shopOwnerAnimationCount > 40) {
-            shopOwnerAnimationCount = 0;
-            shopOwnerCharacter.nextPose();
+        npcAnimationCount++;
+        if (npcAnimationCount > 40) {
+            npcAnimationCount = 0;
+            npcCharacter.nextPose();
         }
 
     }
 
     // TODO:  Ways to automate this.   JSON file?
     private void initShopOwnerDialog() {
-        shopOwnerCharacter.setAllowTalk(true);
+        npcCharacter.setAllowTalk(true);
         LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
-        shopOwnerCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
         // Shin kicks the player out of the shop but gives him his item.
         DialogResponseAction exitAction = () -> {
-            shopOwnerCharacter.getDialogPane().setExit(leftDoor);
-            shopOwnerCharacter.getDialogPane().setActionDone(true);
+            npcCharacter.getDialogPane().setExit(leftDoor);
+            npcCharacter.getDialogPane().setActionDone(true);
 
             // Add cyberspace deck to inventory.
-            shopOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
+            npcCharacter.give(new KomodoDeckThing(), getPlayer());
 
             // TODO:
             // GameState set StreetVignette PawnShop door locked.
             getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name() );
         };
 
-        DialogSheet2 ds4 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
+        DialogSheet2 ds4 = new DialogSheet2(npcCharacter.getDialogPane());
         ds4.setDialogText(bundle.getString("dialog.ds4.npc"));
         ds4.addResponse(new DialogResponse2(bundle.getString("dialog.ds4.p.1"), exitAction)); // Exit action
 
-        DialogSheet2 ds3 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
+        DialogSheet2 ds3 = new DialogSheet2(npcCharacter.getDialogPane());
         ds3.setDialogText(bundle.getString("dialog.ds3.npc"));
         ds3.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-        DialogSheet2 ds2 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
+        DialogSheet2 ds2 = new DialogSheet2(npcCharacter.getDialogPane());
         ds2.setDialogText(bundle.getString("dialog.ds2.npc"));
         ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
         ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-        DialogSheet2 ds1 = new DialogSheet2(shopOwnerCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
         ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-        shopOwnerCharacter.getDialogPane().addDialogSheet(ds1);
-        shopOwnerCharacter.getDialogPane().addDialogSheet(ds2);
-        shopOwnerCharacter.getDialogPane().addDialogSheet(ds3);
-        shopOwnerCharacter.getDialogPane().addDialogSheet(ds4);
+        npcCharacter.getDialogPane().addDialogSheet(ds1);
+        npcCharacter.getDialogPane().addDialogSheet(ds2);
+        npcCharacter.getDialogPane().addDialogSheet(ds3);
+        npcCharacter.getDialogPane().addDialogSheet(ds4);
 
     }
 
