@@ -1,33 +1,32 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
-
+import com.maehem.abyss.engine.Character;
+import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
-import com.maehem.abyss.engine.Character;
-import com.maehem.abyss.engine.babble.DialogResponseAction;
-import com.maehem.chibacityblues.content.things.deck.KomodoDeckThing;
-import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.babble.DialogResponse2;
+import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
+import com.maehem.chibacityblues.content.things.deck.KomodoDeckThing;
 import java.util.Properties;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
@@ -44,7 +43,8 @@ public class PawnShopVignette extends Vignette {
     public static final Point2D PLAYER_START = new Point2D(0.20, 0.77);
     private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counters.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "patch-left.png";
-    private static final String BROKER_POSE_SHEET_FILENAME = CONTENT_BASE + "pawn-broker-pose-sheet.png";
+    private static final String BROKER_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
+    private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
     private static final double[] WALK_BOUNDARY = {
             0.11, 0.73,   0.98, 0.73,
             0.98, 0.99,   0.04, 0.99,
@@ -54,21 +54,21 @@ public class PawnShopVignette extends Vignette {
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
             0.02, 0.70,  // port XY location
             0.04, 0.06,  // port size
-            0.72, 0.75,  // place player at this XY when they leave the pawn shop.        
+            0.72, 0.75,  // place player at this XY when they leave the pawn shop.
             PoseSheet.Direction.LEFT, // Face this direction at destination
             "StreetPawnShopVignette"  // Class name of destination vignette
     );
-    
+
 //    private static final Patch leftDoorPatch = new Patch(
-//            0, 0, 425, 
+//            0, 0, 425,
 //            PawnShopVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME)
 //    );
 
     private Character shopOwnerCharacter;
     private int shopOwnerAnimationCount = 0;
-    
+
     /**
-     * 
+     *
      * @param gs
      * @param prevPort where the player came from
      * @param player the @Player
@@ -80,24 +80,24 @@ public class PawnShopVignette extends Vignette {
 
     @Override
     protected void init() {
-        setHorizon(0.27);
+        setHorizon(0.3);
 
-        initShopOwner();        
+        initShopOwner();
         initBackground();
-                
+
         addPort(leftDoor);
-        
+
         //addPatch(leftDoorPatch);
-        
+
         // example Depth of field
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
 
     private void initShopOwner() {
         shopOwnerCharacter = new Character(bundle.getString("character.npc.name"));
-        shopOwnerCharacter.setScale(1.4);
+        shopOwnerCharacter.setScale(1.6);
         shopOwnerCharacter.setLayoutX(580);
-        shopOwnerCharacter.setLayoutY(450);
+        shopOwnerCharacter.setLayoutY(480);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
         shopOwnerCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(BROKER_POSE_SHEET_FILENAME), 1, 4);
@@ -138,14 +138,16 @@ public class PawnShopVignette extends Vignette {
     // TODO:  Ways to automate this.   JSON file?
     private void initShopOwnerDialog() {
         shopOwnerCharacter.setAllowTalk(true);
+        LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
+        shopOwnerCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
         // Shin kicks the player out of the shop but gives him his item.
         DialogResponseAction exitAction = () -> {
             shopOwnerCharacter.getDialogPane().setExit(leftDoor);
             shopOwnerCharacter.getDialogPane().setActionDone(true);
-            
+
             // Add cyberspace deck to inventory.
             shopOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
-            
+
             // TODO:
             // GameState set StreetVignette PawnShop door locked.
             getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name() );
@@ -186,7 +188,7 @@ public class PawnShopVignette extends Vignette {
     public Properties saveProperties() {
         Properties p = new Properties();
 //        p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 
