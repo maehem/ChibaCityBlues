@@ -67,6 +67,28 @@ public class PawnShopVignette extends Vignette {
     private Character npcCharacter;
     private int npcAnimationCount = 0;
 
+    // Array slots must match dialog.x fields in the bundle.
+    // They are resolved at the init() phase.
+    private static final ArrayList<BabbleNode> DIALOG_CHAIN_NEW = new ArrayList<>() {
+        {
+            add(new NarrationBabbleNode());                         // 0: Long Room Description
+            add(new NarrationBabbleNode());                         // 1: Short Room Description
+            add(new DialogBabbleNode(3, 4, 5));         // 2: NPC Talks to Player --> 3,4,5
+            add(new OptionBabbleNode(7));                       // 3: Player Response. "Why such a rush?"
+            add(new OptionBabbleNode(6));                       // 4: Player Response. "Okay. Give me deck..."
+            add(new OptionBabbleNode(8));                       // 5: Player Response. "I don't have cash..."
+            add(new DialogBabbleNode(ITEM_BUY.num));            // 6: NPC Opens Vend window. "Give ticket and money..."
+            add(new DialogBabbleNode(3, 4, 5));         // 7: NPC Talks to Player --> 3,4,5. "Your deck scare away customer..."
+            add(new DialogBabbleNode(9, 10));               // 8: NPC Talks to Player --> 3,4,5. "What? I no want deck..."
+            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 13)); // 9: Player Response. "Thanks for my deck..."
+            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 13)); // 10: Player Response. "Okay pal!..."
+            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 13)); // 11: Player Response. "Thanks. I knew you'd..."
+            add(new NarrationBabbleNode(DIALOG_NO_MORE.num, EXIT_L.num)); // 12: NPC: "Shin slams door..."
+            add(new NarrationBabbleNode(DESC.num, 12)); // 13: NPC: "Shin gives you your deck."
+            add(new DialogBabbleNode(ITEM_GET.num, DESC.num, 13)); // 14: NPC gives deck. "You no have ticket?..."
+        }
+    };
+
     /**
      *
      * @param gs
