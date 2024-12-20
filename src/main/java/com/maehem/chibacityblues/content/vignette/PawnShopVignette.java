@@ -13,7 +13,7 @@
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
     License for the specific language governing permissions and limitations
     under the License.
-*/
+ */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
@@ -41,29 +41,28 @@ public class PawnShopVignette extends Vignette {
     //private static final String PROP_NAME = "pawnshop";
     private static final String CONTENT_BASE = "/content/vignette/pawn-shop/";
     public static final Point2D PLAYER_START = new Point2D(0.20, 0.77);
-    private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counters.png";
+    private static final String COUNTERS_IMAGE_FILENAME = CONTENT_BASE + "counters.png";
     //private static final String DOOR_PATCH_IMAGE_FILENAME = CONTENT_BASE + "patch-left.png";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
     private static final double[] WALK_BOUNDARY = {
-            0.11, 0.73,   0.98, 0.73,
-            0.98, 0.99,   0.04, 0.99,
-            0.02, 0.78,   0.02, 0.72,
-            0.02, 0.66
+        0.11, 0.73, 0.98, 0.73,
+        0.98, 0.99, 0.04, 0.99,
+        0.02, 0.78, 0.02, 0.72,
+        0.02, 0.66
     };
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
-            0.02, 0.70,  // port XY location
-            0.04, 0.06,  // port size
-            0.72, 0.75,  // place player at this XY when they leave the pawn shop.
+            0.02, 0.70, // port XY location
+            0.04, 0.06, // port size
+            0.72, 0.75, // place player at this XY when they leave the pawn shop.
             PoseSheet.Direction.LEFT, // Face this direction at destination
-            "StreetPawnShopVignette"  // Class name of destination vignette
+            "StreetPawnShopVignette" // Class name of destination vignette
     );
 
 //    private static final Patch leftDoorPatch = new Patch(
 //            0, 0, 425,
 //            PawnShopVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME)
 //    );
-
     private Character npcCharacter;
     private int npcAnimationCount = 0;
 
@@ -121,7 +120,7 @@ public class PawnShopVignette extends Vignette {
         //counterView.setBlendMode(BlendMode.MULTIPLY);
 
         // Add these in visual order.  Back to front.
-        getBgGroup().getChildren().add( counterView );
+        getBgGroup().getChildren().add(counterView);
     }
 
     @Override
