@@ -31,6 +31,7 @@ import javafx.scene.media.Media;
  */
 public class StreetBodyShopVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 5;
     private static final String CONTENT_BASE = "/content/vignette/street-body-shop/";
     private static final String MUSIC = "/content/audio/music/Audiorezout - Cepheus.mp3";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
@@ -91,7 +92,7 @@ public class StreetBodyShopVignette extends Vignette {
     //private int npcAnimationCount = 0;
 
     public StreetBodyShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
         setMusic(media);
     }
 

@@ -36,6 +36,7 @@ import javafx.scene.image.ImageView;
  */
 public class DonutWorldVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 6;
     //public  static final String PROP_NAME = "donut-world";
     private static final String CONTENT_BASE = "/content/vignette/donut-world/";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-donut-cop.png";
@@ -57,7 +58,7 @@ public class DonutWorldVignette extends Vignette {
     private com.maehem.abyss.engine.Character npcCharacter;
 
     public DonutWorldVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
     }
 
     @Override
@@ -104,13 +105,13 @@ public class DonutWorldVignette extends Vignette {
         npcCharacter.setAllowTalk(true);
         LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
         npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
-        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
-        DialogSheet2 ds2 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
+        DialogSheet2 ds2 = new DialogSheet2(getDialogPane());
 
         // Ratz has nothing more to say.
         DialogResponseAction endDialog = () -> {
             npcCharacter.setAllowTalk(false);
-            npcCharacter.getDialogPane().setActionDone(true);
+            getDialogPane().setActionDone(true);
             npcCharacter.setTalking(false);
         };
 
@@ -126,8 +127,8 @@ public class DonutWorldVignette extends Vignette {
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds2));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), ds2));
 
-        npcCharacter.getDialogPane().addDialogSheet(ds1);
-        npcCharacter.getDialogPane().addDialogSheet(ds2);
+        getDialogPane().addDialogSheet(ds1);
+        getDialogPane().addDialogSheet(ds2);
     }
 
     @Override

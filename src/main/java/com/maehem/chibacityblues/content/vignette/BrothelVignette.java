@@ -1,31 +1,30 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
-
+import com.maehem.abyss.engine.Character;
+import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
-import com.maehem.abyss.engine.Character;
-import com.maehem.abyss.engine.babble.DialogResponseAction;
-import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.babble.DialogResponse2;
+import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
 import java.util.Properties;
 import javafx.geometry.Point2D;
@@ -36,6 +35,7 @@ import javafx.geometry.Point2D;
  */
 public class BrothelVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 24;
     //private static final String PROP_NAME = "pawnshop";
     private static final String CONTENT_BASE = "/content/vignette/brothel/";
     public static final Point2D PLAYER_START = new Point2D(0.20, 0.77);
@@ -52,27 +52,27 @@ public class BrothelVignette extends Vignette {
     private static final VignetteTrigger leftDoor = new VignetteTrigger(
             0.02, 0.70,  // port XY location
             0.04, 0.06,  // port size
-            0.86, 0.75,  // place player at this XY when they leave the pawn shop.        
+            0.86, 0.75,  // place player at this XY when they leave the pawn shop.
             PoseSheet.Direction.TOWARD, // Face this direction at destination
             "StreetMicrosoftsVignette"  // Class name of destination vignette
     );
-    
+
 //    private static final Patch leftDoorPatch = new Patch(
-//            0, 0, 425, 
+//            0, 0, 425,
 //            PawnShopVignette.class.getResourceAsStream(DOOR_PATCH_IMAGE_FILENAME)
 //    );
 
     private Character npcCharacter;
     private int npcAnimationCount = 0;
-    
+
     /**
-     * 
+     *
      * @param gs
      * @param prevPort where the player came from
      * @param player the @Player
      */
     public BrothelVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
         // Don't put things here.  Override @init() which is called during creation.
     }
 
@@ -80,13 +80,13 @@ public class BrothelVignette extends Vignette {
     protected void init() {
         setHorizon(0.37);
 
-        initNpc();        
+        initNpc();
         initBackground();
-                
+
         addPort(leftDoor);
-        
+
         //addPatch(leftDoorPatch);
-        
+
         // example Depth of field
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
@@ -135,12 +135,12 @@ public class BrothelVignette extends Vignette {
     // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
-        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
-        DialogSheet2 ds2 = new DialogSheet2(npcCharacter.getDialogPane());
-        DialogSheet2 ds3 = new DialogSheet2(npcCharacter.getDialogPane());
-        DialogSheet2 ds4 = new DialogSheet2(npcCharacter.getDialogPane());
-        DialogSheet2 ds5 = new DialogSheet2(npcCharacter.getDialogPane());
-        DialogSheet2 ds6 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
+        DialogSheet2 ds2 = new DialogSheet2(getDialogPane());
+        DialogSheet2 ds3 = new DialogSheet2(getDialogPane());
+        DialogSheet2 ds4 = new DialogSheet2(getDialogPane());
+        DialogSheet2 ds5 = new DialogSheet2(getDialogPane());
+        DialogSheet2 ds6 = new DialogSheet2(getDialogPane());
 
         DialogResponseAction npcNoTalkAction = () -> {
             npcCharacter.setAllowTalk(false);
@@ -148,8 +148,8 @@ public class BrothelVignette extends Vignette {
 
         DialogResponseAction takeFeeAction = () -> {
             // Take fee from player
-            
-            
+
+
             ds4.doResponseAction();
         };
 
@@ -177,10 +177,10 @@ public class BrothelVignette extends Vignette {
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds2));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds3));
 
-        npcCharacter.getDialogPane().addDialogSheet(ds1);
-        npcCharacter.getDialogPane().addDialogSheet(ds2);
-        npcCharacter.getDialogPane().addDialogSheet(ds3);
-        npcCharacter.getDialogPane().addDialogSheet(ds4);
+        getDialogPane().addDialogSheet(ds1);
+        getDialogPane().addDialogSheet(ds2);
+        getDialogPane().addDialogSheet(ds3);
+        getDialogPane().addDialogSheet(ds4);
     }
 
 //    @Override
@@ -192,7 +192,7 @@ public class BrothelVignette extends Vignette {
     public Properties saveProperties() {
         Properties p = new Properties();
 //        p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 

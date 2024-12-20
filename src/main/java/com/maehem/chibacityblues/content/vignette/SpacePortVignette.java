@@ -36,6 +36,7 @@ import javafx.scene.image.ImageView;
  */
 public class SpacePortVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 19;
     //public  static final String PROP_NAME = "body-shop";
     private static final String CONTENT_BASE = "/content/vignette/space-port/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
@@ -62,7 +63,7 @@ public class SpacePortVignette extends Vignette {
         PoseSheet.Direction.RIGHT, "StreetSpacePortVignette"); // Exit to here
 
     public SpacePortVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
     }
 
     @Override
@@ -124,12 +125,12 @@ public class SpacePortVignette extends Vignette {
 //            // TODO:
 //            // GameState set StreetVignette PawnShop door locked.
 //        };
-        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
 
         // Ratz has nothing more to say.
         DialogResponseAction endDialog = () -> {
             npcCharacter.setAllowTalk(false);
-            npcCharacter.getDialogPane().setActionDone(true);
+            getDialogPane().setActionDone(true);
             npcCharacter.setTalking(false);
         };
 
@@ -138,7 +139,7 @@ public class SpacePortVignette extends Vignette {
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), endDialog));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), endDialog));
 
-        npcCharacter.getDialogPane().addDialogSheet(ds1);
+        getDialogPane().addDialogSheet(ds1);
     }
 
     @Override

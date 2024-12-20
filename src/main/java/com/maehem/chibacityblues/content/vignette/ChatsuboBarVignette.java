@@ -41,6 +41,7 @@ import javafx.scene.paint.Color;
  */
 public class ChatsuboBarVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 1;
     private static final String MUSIC = "/content/audio/music/Uncan - The Cold.mp3";
 
     //public  static final String PROP_NAME = "chatsubo-bar";
@@ -81,7 +82,7 @@ public class ChatsuboBarVignette extends Vignette {
 //    private final MusicTrack musicTrack;
 
     public ChatsuboBarVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
 
 //        musicTrack = new MusicTrack(media);
 //        musicTrack.play();
@@ -118,7 +119,7 @@ public class ChatsuboBarVignette extends Vignette {
         npcCharacter.setSkin(getClass().getResourceAsStream(BARTENDER_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + BARTENDER_POSE_SHEET_FILENAME);
         npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
-        npcCharacter.getDialogPane().setCameoTranslate(0, 10);
+        getDialogPane().setCameoTranslate(0, 10);
         initShopOwnerDialog();
 
         getCharacterList().add(npcCharacter);
@@ -173,7 +174,7 @@ public class ChatsuboBarVignette extends Vignette {
     private void initShopOwnerDialog() {
         npcCharacter.setAllowTalk(true);
 
-        DialogPane dialogPane = npcCharacter.getDialogPane();
+        DialogPane dialogPane = getDialogPane();
 
         dialogPane.setVars(new String[]{ getGameState().getPlayer().getName() });
 
@@ -234,7 +235,7 @@ public class ChatsuboBarVignette extends Vignette {
             setGiveMoneyShowing(PAY_AMOUNT,
                     "Pay " + npcCharacter.getName() + " for your meal.",
                     (t) -> {  // Success action handler.
-                        npcCharacter.getDialogPane().setCurrentDialogSheet(ds4);
+                        getDialogPane().setCurrentDialogSheet(ds4);
                         // Display ds4
                         // Set dialog to ds4
                         // open dialog
@@ -260,8 +261,8 @@ public class ChatsuboBarVignette extends Vignette {
             ds3.addResponse(new DialogResponse2( // I'll see what i can do.
                     bundle.getString("dialog.ds3.p.1"),
                     () -> {
-                        npcCharacter.getDialogPane().doCloseDialog();
-                        npcCharacter.getDialogPane().setCurrentDialogSheet(ds1);
+                        getDialogPane().doCloseDialog();
+                        getDialogPane().setCurrentDialogSheet(ds1);
                     }
             ));
 
