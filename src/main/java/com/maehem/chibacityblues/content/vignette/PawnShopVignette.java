@@ -38,6 +38,7 @@ import javafx.scene.image.ImageView;
  */
 public class PawnShopVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 25;
     //private static final String PROP_NAME = "pawnshop";
     private static final String CONTENT_BASE = "/content/vignette/pawn-shop/";
     public static final Point2D PLAYER_START = new Point2D(0.20, 0.77);
@@ -73,7 +74,7 @@ public class PawnShopVignette extends Vignette {
      * @param player the @Player
      */
     public PawnShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
         // Don't put things here.  Override @init() which is called during creation.
     }
 
