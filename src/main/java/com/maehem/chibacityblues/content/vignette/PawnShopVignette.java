@@ -150,7 +150,7 @@ public class PawnShopVignette extends Vignette {
 
             // TODO:
             // GameState set StreetVignette PawnShop door locked.
-            getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name() );
+            getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name());
         };
 
         DialogSheet2 ds4 = new DialogSheet2(npcCharacter.getDialogPane());
