@@ -103,17 +103,6 @@ public class CrazyEdosVignette extends Vignette {
     // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
-        // Example: Eddie kicks the player out of the shop but gives him his item.
-//        DialogResponseAction exitAction = () -> {
-//            barOwnerCharacter.getDialog().setExit(leftDoor);
-//            barOwnerCharacter.getDialog().setActionDone(true);
-//
-//            // Add cyberspace deck to inventory.
-//            barOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
-//
-//            // TODO:
-//            // GameState set StreetVignette PawnShop door locked.
-//        };
         DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
 
         // Ratz has nothing more to say.

@@ -178,17 +178,6 @@ public class ChatsuboBarVignette extends Vignette {
 
         dialogPane.setVars(new String[]{ getGameState().getPlayer().getName() });
 
-        // Example: Eddie kicks the player out of the shop but gives him his item.
-//        DialogResponseAction exitAction = () -> {
-//            barOwnerCharacter.getDialog().setExit(leftDoor);
-//            barOwnerCharacter.getDialog().setActionDone(true);
-//
-//            // Add cyberspace deck to inventory.
-//            barOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
-//
-//            // TODO:
-//            // GameState set StreetVignette PawnShop door locked.
-//        };
         DialogSheet2 ds1 = new DialogSheet2(dialogPane);
         DialogSheet2 ds2 = new DialogSheet2(dialogPane);
         DialogSheet2 ds3 = new DialogSheet2(dialogPane);
