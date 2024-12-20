@@ -21,13 +21,24 @@ import com.maehem.abyss.engine.Character;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
+import com.maehem.abyss.engine.Thing;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
+import com.maehem.abyss.engine.babble.BabbleNode;
+import com.maehem.abyss.engine.babble.DialogBabbleNode;
+import static com.maehem.abyss.engine.babble.DialogCommand.*;
+import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.DialogResponse2;
 import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
+import com.maehem.abyss.engine.babble.NarrationBabbleNode;
+import com.maehem.abyss.engine.babble.OptionBabbleNode;
+import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
 import com.maehem.chibacityblues.content.things.deck.KomodoDeckThing;
+import java.util.ArrayList;
+import java.util.MissingResourceException;
 import java.util.Properties;
+import java.util.logging.Level;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,6 +78,7 @@ public class PawnShopVignette extends Vignette {
     private Character npcCharacter;
     private int npcAnimationCount = 0;
 
+    // Dialog chain is a list of dialog types ( NPC or response ).
     // Array slots must match dialog.x fields in the bundle.
     // They are resolved at the init() phase.
     private static final ArrayList<BabbleNode> DIALOG_CHAIN_NEW = new ArrayList<>() {
@@ -105,26 +117,50 @@ public class PawnShopVignette extends Vignette {
         setHorizon(0.3);
 
         initDialogText();
+        initNpc();
+
+        setDialogPane(new DialogPane(this, npcCharacter));
         initNpcDialog();
+
         initBackground();
 
         addPort(leftDoor);
 
-        //addPatch(leftDoorPatch);
+        getDialogPane().setCurrentDialog(dialogWarmUp());
+        getDialogPane().setVisible(false);
 
+        //addPatch(leftDoorPatch);
         // example Depth of field
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
 
     private void initDialogText() {
+        for (int i = 0; i < DIALOG_CHAIN_NEW.size(); i++) {
+            String dString;
+            try {
+                dString = bundle.getString("dialog." + i);
+            } catch (MissingResourceException ex) {
+                dString = "Dialog Element: " + i + ": Missing item in bundle.";
+            }
+
+            LOGGER.log(Level.CONFIG, "Set DialogChain item: {0}  to: {1}", new Object[]{i, dString});
+            DIALOG_CHAIN_NEW.get(i).setText(dString);
+        }
+
+    }
+
+    private void initNpc() {
         npcCharacter = new Character(bundle.getString("character.npc.name"));
         npcCharacter.setScale(1.6);
         npcCharacter.setLayoutX(580);
         npcCharacter.setLayoutY(480);
 
+        LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
+        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
+
         // TODO:   Check that file exists.  The current exception message is cryptic.
-        npcCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + NPC_POSE_SHEET_FILENAME);
+        npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
 
         getCharacterList().add(npcCharacter);
         getBgGroup().getChildren().add(
@@ -176,12 +212,10 @@ public class PawnShopVignette extends Vignette {
     // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
-        LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
-        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
         // Shin kicks the player out of the shop but gives him his item.
         DialogResponseAction exitAction = () -> {
-            npcCharacter.getDialogPane().setExit(leftDoor);
-            npcCharacter.getDialogPane().setActionDone(true);
+            getDialogPane().setExit(leftDoor);
+            getDialogPane().setActionDone(true);
 
             // Add cyberspace deck to inventory.
             npcCharacter.give(new KomodoDeckThing(), getPlayer());
@@ -214,6 +248,11 @@ public class PawnShopVignette extends Vignette {
         getDialogPane().addDialogSheet(ds2);
         getDialogPane().addDialogSheet(ds3);
         getDialogPane().addDialogSheet(ds4);
+
+        // New way
+        getDialogPane().setDialogChain(DIALOG_CHAIN_NEW);
+    }
+
     @Override
     public void onItemGet() {
         LOGGER.log(Level.SEVERE, "PawnShop: onItemGet() called. What to do?");
