@@ -6,8 +6,9 @@ module com.maehem.chibacityblues {
     requires java.base;
 
     requires com.maehem.abyss;
-    
+
     exports com.maehem.chibacityblues;
+    exports com.maehem.chibacityblues.content.goal;
     exports com.maehem.chibacityblues.content.matrix;
     exports com.maehem.chibacityblues.content.sites;
     exports com.maehem.chibacityblues.content.things.deck;
