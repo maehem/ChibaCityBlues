@@ -1,17 +1,17 @@
 /*
-    Licensed to the Apache Software Foundation (ASF) under one or more 
+    Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with this
-    work for additional information regarding copyright ownership.  The ASF 
-    licenses this file to you under the Apache License, Version 2.0 
-    (the "License"); you may not use this file except in compliance with the 
+    work for additional information regarding copyright ownership.  The ASF
+    licenses this file to you under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with the
     License.  You may obtain a copy of the License at
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software 
-    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
-    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the 
-    License for the specific language governing permissions and limitations 
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+    License for the specific language governing permissions and limitations
     under the License.
 */
 package com.maehem.chibacityblues.content.vignette;
@@ -34,7 +34,8 @@ import javafx.geometry.Point2D;
  */
 public class AsanosVignette extends Vignette {
 
-    //public  static final String PROP_NAME = "body-shop";  
+    private static final int ROOM_NUMBER = 44;
+    //public  static final String PROP_NAME = "body-shop";
     private static final String CONTENT_BASE = "/content/vignette/asanos/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
     //private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
@@ -45,7 +46,7 @@ public class AsanosVignette extends Vignette {
     public  static final Point2D PLAYER_START = new Point2D(0.2, 0.88);
     private static final double[] WALK_BOUNDARY = new double[] {
                 0.04, 0.75,   0.90, 0.75,
-                0.90, 0.95,   0.04, 0.95,   
+                0.90, 0.95,   0.04, 0.95,
                 0.04, 0.75
     };
 
@@ -55,7 +56,7 @@ public class AsanosVignette extends Vignette {
         VignetteTrigger.SHOW_TRIGGER,
         0.7, 0.85,   // player position at destination
         PoseSheet.Direction.TOWARD, "StreetPongAsanosVignette"); // Exit to here
-    
+
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;
 
@@ -64,16 +65,16 @@ public class AsanosVignette extends Vignette {
     }
 
     @Override
-    protected void init() {        
+    protected void init() {
         setHorizon(0.2);
 
         // Do in this order.  TODO: Leverage Z-order of JavaFX?
         // Background is autoloaded by superclass.
-        initNPC();   // then layer in shop owner     
+        initNPC();   // then layer in shop owner
         initBackground(); // then layer in any fixtures on top of them
-        
+
         //getBgGroup().setOpacity(0.7);
-        
+
         addPort(exitPort);
     }
 
@@ -106,10 +107,10 @@ public class AsanosVignette extends Vignette {
 //        DialogResponseAction exitAction = () -> {
 //            barOwnerCharacter.getDialog().setExit(leftDoor);
 //            barOwnerCharacter.getDialog().setActionDone(true);
-//            
+//
 //            // Add cyberspace deck to inventory.
 //            barOwnerCharacter.give(new KomodoDeckThing(), getPlayer());
-//            
+//
 //            // TODO:
 //            // GameState set StreetVignette PawnShop door locked.
 //        };
@@ -121,7 +122,7 @@ public class AsanosVignette extends Vignette {
             npcCharacter.getDialogPane().setActionDone(true);
             npcCharacter.setTalking(false);
         };
-                
+
         // Ratz asks to get paid and player replies with snarky comeback.
         ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), endDialog));
@@ -143,10 +144,10 @@ public class AsanosVignette extends Vignette {
     @Override
     public Properties saveProperties() {
         Properties p = new Properties();
-        
+
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-        
+
         return p;
     }
 
