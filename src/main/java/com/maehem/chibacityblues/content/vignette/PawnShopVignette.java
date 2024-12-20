@@ -28,9 +28,6 @@ import com.maehem.abyss.engine.babble.BabbleNode;
 import com.maehem.abyss.engine.babble.DialogBabbleNode;
 import static com.maehem.abyss.engine.babble.DialogCommand.*;
 import com.maehem.abyss.engine.babble.DialogPane;
-import com.maehem.abyss.engine.babble.DialogResponse2;
-import com.maehem.abyss.engine.babble.DialogResponseAction;
-import com.maehem.abyss.engine.babble.DialogSheet2;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
@@ -81,7 +78,7 @@ public class PawnShopVignette extends Vignette {
     // Dialog chain is a list of dialog types ( NPC or response ).
     // Array slots must match dialog.x fields in the bundle.
     // They are resolved at the init() phase.
-    private static final ArrayList<BabbleNode> DIALOG_CHAIN_NEW = new ArrayList<>() {
+    private static final ArrayList<BabbleNode> DIALOG_CHAIN = new ArrayList<>() {
         {
             add(new NarrationBabbleNode());                         // 0: Long Room Description
             add(new NarrationBabbleNode());                         // 1: Short Room Description
@@ -135,7 +132,7 @@ public class PawnShopVignette extends Vignette {
     }
 
     private void initDialogText() {
-        for (int i = 0; i < DIALOG_CHAIN_NEW.size(); i++) {
+        for (int i = 0; i < DIALOG_CHAIN.size(); i++) {
             String dString;
             try {
                 dString = bundle.getString("dialog." + i);
@@ -144,7 +141,7 @@ public class PawnShopVignette extends Vignette {
             }
 
             LOGGER.log(Level.CONFIG, "Set DialogChain item: {0}  to: {1}", new Object[]{i, dString});
-            DIALOG_CHAIN_NEW.get(i).setText(dString);
+            DIALOG_CHAIN.get(i).setText(dString);
         }
 
     }
@@ -213,44 +210,44 @@ public class PawnShopVignette extends Vignette {
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
         // Shin kicks the player out of the shop but gives him his item.
-        DialogResponseAction exitAction = () -> {
-            getDialogPane().setExit(leftDoor);
-            getDialogPane().setActionDone(true);
+//        DialogResponseAction exitAction = () -> {
+//            getDialogPane().setExit(leftDoor);
+//            getDialogPane().setActionDone(true);
+//
+//            // Add cyberspace deck to inventory.
+//            npcCharacter.give(new KomodoDeckThing(), getPlayer());
+//
+//            // TODO:
+//            // GameState set StreetVignette PawnShop door locked.
+//            getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name());
+//        };
 
-            // Add cyberspace deck to inventory.
-            npcCharacter.give(new KomodoDeckThing(), getPlayer());
+//        DialogSheet2 ds4 = new DialogSheet2(getDialogPane());
+//        ds4.setDialogText(bundle.getString("dialog.ds4.npc"));
+//        ds4.addResponse(new DialogResponse2(bundle.getString("dialog.ds4.p.1"), exitAction)); // Exit action
+//
+//        DialogSheet2 ds3 = new DialogSheet2(getDialogPane());
+//        ds3.setDialogText(bundle.getString("dialog.ds3.npc"));
+//        ds3.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
+//
+//        DialogSheet2 ds2 = new DialogSheet2(getDialogPane());
+//        ds2.setDialogText(bundle.getString("dialog.ds2.npc"));
+//        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
+//        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
+//
+//        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
+//        ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
+//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
+//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
+//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-            // TODO:
-            // GameState set StreetVignette PawnShop door locked.
-            getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name());
-        };
-
-        DialogSheet2 ds4 = new DialogSheet2(getDialogPane());
-        ds4.setDialogText(bundle.getString("dialog.ds4.npc"));
-        ds4.addResponse(new DialogResponse2(bundle.getString("dialog.ds4.p.1"), exitAction)); // Exit action
-
-        DialogSheet2 ds3 = new DialogSheet2(getDialogPane());
-        ds3.setDialogText(bundle.getString("dialog.ds3.npc"));
-        ds3.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
-
-        DialogSheet2 ds2 = new DialogSheet2(getDialogPane());
-        ds2.setDialogText(bundle.getString("dialog.ds2.npc"));
-        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
-        ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
-
-        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
-        ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
-        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
-
-        getDialogPane().addDialogSheet(ds1);
-        getDialogPane().addDialogSheet(ds2);
-        getDialogPane().addDialogSheet(ds3);
-        getDialogPane().addDialogSheet(ds4);
+//        getDialogPane().addDialogSheet(ds1);
+//        getDialogPane().addDialogSheet(ds2);
+//        getDialogPane().addDialogSheet(ds3);
+//        getDialogPane().addDialogSheet(ds4);
 
         // New way
-        getDialogPane().setDialogChain(DIALOG_CHAIN_NEW);
+        getDialogPane().setDialogChain(DIALOG_CHAIN);
     }
 
     @Override
