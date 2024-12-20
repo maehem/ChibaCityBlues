@@ -16,6 +16,7 @@
  */
 package com.maehem.chibacityblues.content.vignette;
 
+import static com.maehem.abyss.Engine.LOGGER;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
@@ -23,6 +24,7 @@ import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
 import java.util.Properties;
+import java.util.logging.Level;
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
 
@@ -96,6 +98,7 @@ public class StreetPawnShopVignette extends Vignette {
         addPort(topDoor);
         addPort(bottomDoor);
 
+        LOGGER.log(Level.CONFIG, "Lock Right Door if Shin goal complete.");
         rightDoor.setLocked(getGameState().hasGoal(ShinClosedGoal.class));
 
         initBackground();
