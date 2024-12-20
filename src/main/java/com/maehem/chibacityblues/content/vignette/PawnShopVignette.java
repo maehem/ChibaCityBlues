@@ -175,29 +175,29 @@ public class PawnShopVignette extends Vignette {
             getGameState().setProperty(getClass().getSimpleName(), Vignette.RoomState.LOCKED.name());
         };
 
-        DialogSheet2 ds4 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds4 = new DialogSheet2(getDialogPane());
         ds4.setDialogText(bundle.getString("dialog.ds4.npc"));
         ds4.addResponse(new DialogResponse2(bundle.getString("dialog.ds4.p.1"), exitAction)); // Exit action
 
-        DialogSheet2 ds3 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds3 = new DialogSheet2(getDialogPane());
         ds3.setDialogText(bundle.getString("dialog.ds3.npc"));
         ds3.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-        DialogSheet2 ds2 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds2 = new DialogSheet2(getDialogPane());
         ds2.setDialogText(bundle.getString("dialog.ds2.npc"));
         ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
         ds2.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
         ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
 
-        npcCharacter.getDialogPane().addDialogSheet(ds1);
-        npcCharacter.getDialogPane().addDialogSheet(ds2);
-        npcCharacter.getDialogPane().addDialogSheet(ds3);
-        npcCharacter.getDialogPane().addDialogSheet(ds4);
+        getDialogPane().addDialogSheet(ds1);
+        getDialogPane().addDialogSheet(ds2);
+        getDialogPane().addDialogSheet(ds3);
+        getDialogPane().addDialogSheet(ds4);
     @Override
     public void onItemGet() {
         LOGGER.log(Level.SEVERE, "PawnShop: onItemGet() called. What to do?");
