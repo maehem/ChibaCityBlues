@@ -156,6 +156,23 @@ public class PawnShopVignette extends Vignette {
 
     }
 
+    @Override
+    public int dialogWarmUp() {
+        if (npcCharacter.canTalk()) {
+            //if (gs.roomCanTalk()) {
+            if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
+                //gs.pawnRecent = GameState.PawnRecent.NONE;
+                LOGGER.log(Level.SEVERE, "Player already bought the deck.");
+
+                // Dialog to player with 9,10
+                return 8;
+            }
+            return 2;
+        } else {
+            return DIALOG_END.num;
+        }
+    }
+
     // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
