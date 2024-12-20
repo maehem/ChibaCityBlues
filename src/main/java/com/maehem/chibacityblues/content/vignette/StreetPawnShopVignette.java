@@ -21,6 +21,7 @@ import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
+import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
 import java.util.Properties;
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
@@ -31,6 +32,7 @@ import javafx.scene.media.Media;
  */
 public class StreetPawnShopVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 14;
     private static final String MUSIC = "/content/audio/music/Uncan - Interpolation.mp3";
 
     private static final String CONTENT_BASE = "/content/vignette/street-shins/";
@@ -75,7 +77,7 @@ public class StreetPawnShopVignette extends Vignette {
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 
     public StreetPawnShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
 
         setMusic(media);
     }
@@ -93,6 +95,8 @@ public class StreetPawnShopVignette extends Vignette {
         addPort(rightDoor);
         addPort(topDoor);
         addPort(bottomDoor);
+
+        rightDoor.setLocked(getGameState().hasGoal(ShinClosedGoal.class));
 
         initBackground();
     }
