@@ -26,6 +26,7 @@ import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.DialogResponse2;
 import com.maehem.abyss.engine.babble.DialogResponseAction;
 import com.maehem.abyss.engine.babble.DialogSheet2;
+import com.maehem.chibacityblues.content.goal.RatzPaidGoal;
 import java.util.Properties;
 import javafx.geometry.Point2D;
 import javafx.scene.effect.DropShadow;
@@ -40,6 +41,7 @@ import javafx.scene.paint.Color;
  */
 public class StreetChatsuboVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 2;
     private static final String MUSIC = "/content/audio/music/Audiorezout - Cepheus.mp3";
     //private static final String PROP_NAME = "street2";
     private static final String CONTENT_BASE = "/content/vignette/street-chatsubo/";
@@ -85,7 +87,7 @@ public class StreetChatsuboVignette extends Vignette {
     private int npcAnimationCount = 0;
 
     public StreetChatsuboVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
         setMusic(media);
     }
 
@@ -109,6 +111,8 @@ public class StreetChatsuboVignette extends Vignette {
 
         initBackground();
         initNpc();
+
+        topDoor.setLocked(getGameState().hasGoal(RatzPaidGoal.class));
 
         // example: Depth of field
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
@@ -148,7 +152,7 @@ public class StreetChatsuboVignette extends Vignette {
 
     // TODO:  Ways to automate this.   JSON file?
     private void initRobotPoliceDialog() {
-        DialogPane dp = policeRobotCharacter.getDialogPane();
+        DialogPane dp = getDialogPane();
         policeRobotCharacter.setAllowTalk(true);
         // Eddie kicks the player out of the shop but gives him his item.
         DialogResponseAction exitAction = () -> {
