@@ -105,6 +105,7 @@ public class PawnShopVignette extends Vignette {
         setHorizon(0.3);
 
         initDialogText();
+        initNpcDialog();
         initBackground();
 
         addPort(leftDoor);
@@ -124,8 +125,6 @@ public class PawnShopVignette extends Vignette {
         // TODO:   Check that file exists.  The current exception message is cryptic.
         npcCharacter.setSkin(PawnShopVignette.class.getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
         LOGGER.config("Add skin for pawn shop owner. " + NPC_POSE_SHEET_FILENAME);
-
-        initShopOwnerDialog();
 
         getCharacterList().add(npcCharacter);
         getBgGroup().getChildren().add(
@@ -158,7 +157,7 @@ public class PawnShopVignette extends Vignette {
     }
 
     // TODO:  Ways to automate this.   JSON file?
-    private void initShopOwnerDialog() {
+    private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
         LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
         npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
