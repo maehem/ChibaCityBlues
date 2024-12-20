@@ -77,7 +77,7 @@ public class PawnShopVignette extends Vignette {
     private int npcAnimationCount = 0;
 
     // Dialog chain is a list of dialog types ( NPC or response ).
-    // Array slots must match dialog.x fields in the bundle.
+    // Array slot index number must match dialog.<number> fields in the text bundle.
     // They are resolved at the init() phase.
     private static final ArrayList<BabbleNode> DIALOG_CHAIN = new ArrayList<>() {
         {
