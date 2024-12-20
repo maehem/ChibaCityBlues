@@ -31,6 +31,7 @@ import javafx.scene.media.Media;
  */
 public class StreetSpacePortVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 18;
     private static final String MUSIC = "/content/audio/music/Uncan - Interpolation.mp3";
 
     private static final String CONTENT_BASE = "/content/vignette/street-spaceport/";
@@ -83,7 +84,7 @@ public class StreetSpacePortVignette extends Vignette {
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 
     public StreetSpacePortVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
 
         setMusic(media);
     }

@@ -31,6 +31,7 @@ import javafx.geometry.Point2D;
  */
 public class GentlemanLoserVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 8;
     //public  static final String PROP_NAME = "body-shop";
     private static final String CONTENT_BASE = "/content/vignette/gentleman-loser/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
@@ -60,7 +61,7 @@ public class GentlemanLoserVignette extends Vignette {
     );
 
     public GentlemanLoserVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
     }
 
     @Override

@@ -30,6 +30,7 @@ import javafx.geometry.Point2D;
  */
 public class StreetSecurityGateVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 52;
     private static final String CONTENT_BASE = "/content/vignette/street-security-gate/";
     public static final Point2D PLAYER_START = new Point2D(0.50, 0.86);
     public static final Point2D PLAYER_START_L = new Point2D(0.15, 0.86);
@@ -68,7 +69,7 @@ public class StreetSecurityGateVignette extends Vignette {
     //private int npcAnimationCount = 0;
 
     public StreetSecurityGateVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override

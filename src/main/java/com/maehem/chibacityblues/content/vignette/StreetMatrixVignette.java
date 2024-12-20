@@ -30,6 +30,7 @@ import javafx.geometry.Point2D;
  */
 public class StreetMatrixVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 45;
     private static final String CONTENT_BASE = "/content/vignette/street-matrix/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
@@ -88,7 +89,7 @@ public class StreetMatrixVignette extends Vignette {
     //private int npcAnimationCount = 0;
 
     public StreetMatrixVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override

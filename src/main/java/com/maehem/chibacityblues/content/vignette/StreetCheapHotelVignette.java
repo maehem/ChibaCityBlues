@@ -31,6 +31,7 @@ import javafx.scene.media.Media;
  */
 public class StreetCheapHotelVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 15;
     private static final String MUSIC = "/content/audio/music/Uncan - Interpolation.mp3";
 
     private static final String CONTENT_BASE = "/content/vignette/street-cheap-hotel/";
@@ -85,7 +86,7 @@ public class StreetCheapHotelVignette extends Vignette {
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 
     public StreetCheapHotelVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
 
         setMusic(media);
     }

@@ -31,6 +31,7 @@ import javafx.scene.media.Media;
  */
 public class StreetMicrosoftsVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 13;
     private static final String CONTENT_BASE = "/content/vignette/street-microsofts/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
@@ -90,7 +91,7 @@ public class StreetMicrosoftsVignette extends Vignette {
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 
     public StreetMicrosoftsVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
         setMusic(media);
     }
 

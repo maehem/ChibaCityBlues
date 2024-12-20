@@ -30,6 +30,7 @@ import javafx.geometry.Point2D;
  */
 public class StreetCrazyEdosVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 39;
     private static final String CONTENT_BASE = "/content/vignette/street-crazy-edos/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "skyline.png";
     //private static final String ROBOT_POSE_SHEET_FILENAME = CONTENT_BASE + "police-robot.png";
@@ -84,7 +85,7 @@ public class StreetCrazyEdosVignette extends Vignette {
     //private int npcAnimationCount = 0;
 
     public StreetCrazyEdosVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override
