@@ -176,7 +176,41 @@ public class PawnShopVignette extends Vignette {
         npcCharacter.getDialogPane().addDialogSheet(ds2);
         npcCharacter.getDialogPane().addDialogSheet(ds3);
         npcCharacter.getDialogPane().addDialogSheet(ds4);
+    @Override
+    public void onItemGet() {
+        LOGGER.log(Level.SEVERE, "PawnShop: onItemGet() called. What to do?");
 
+        // Add cyberspace deck to inventory.
+        npcCharacter.give(new KomodoDeckThing(), getPlayer());
+
+        // Shin kicks out player and locks door.
+    }
+
+    @Override
+    public ArrayList<Thing> getVendItems(GameState gs) {
+
+        KomodoDeckThing thing = new KomodoDeckThing();
+        thing.setValue(100);
+        thing.setCondition(50);
+
+        ArrayList<Thing> list = new ArrayList<>();
+        list.add(thing);
+
+        return list;
+    }
+
+    @Override
+    public boolean onVendItemsFinished(GameState gs) {
+        LOGGER.log(Level.CONFIG, "Pawn Shop: onVendItemsFinished() called.");
+
+        if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
+            // Shin locks door as you leave.
+            LOGGER.log(Level.CONFIG, "Add GameGoal ==> ShinClosedGoal");
+            gs.getGoals().add(new ShinClosedGoal());
+
+            return true;
+        }
+        return false;
     }
 
 //    @Override
@@ -202,4 +236,10 @@ public class PawnShopVignette extends Vignette {
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;
     }
+
+    @Override
+    public int[][] getDialogChain() {
+        return DIALOG_CHAIN;
+    }
+
 }
