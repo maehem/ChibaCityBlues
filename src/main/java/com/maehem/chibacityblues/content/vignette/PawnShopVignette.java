@@ -104,7 +104,7 @@ public class PawnShopVignette extends Vignette {
     protected void init() {
         setHorizon(0.3);
 
-        initShopOwner();
+        initDialogText();
         initBackground();
 
         addPort(leftDoor);
@@ -115,7 +115,7 @@ public class PawnShopVignette extends Vignette {
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
 
-    private void initShopOwner() {
+    private void initDialogText() {
         npcCharacter = new Character(bundle.getString("character.npc.name"));
         npcCharacter.setScale(1.6);
         npcCharacter.setLayoutX(580);
