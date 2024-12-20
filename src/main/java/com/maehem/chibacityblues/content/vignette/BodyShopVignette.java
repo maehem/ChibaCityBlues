@@ -34,6 +34,7 @@ import javafx.geometry.Point2D;
  */
 public class BodyShopVignette extends Vignette {
 
+    private static final int ROOM_NUMBER = 4;
     //public  static final String PROP_NAME = "body-shop";
     private static final String CONTENT_BASE = "/content/vignette/body-shop/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
@@ -62,7 +63,7 @@ public class BodyShopVignette extends Vignette {
     private int npcAnimationCount = 0;
 
     public BodyShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
     }
 
     @Override
@@ -117,12 +118,12 @@ public class BodyShopVignette extends Vignette {
 //            // TODO:
 //            // GameState set StreetVignette PawnShop door locked.
 //        };
-        DialogSheet2 ds1 = new DialogSheet2(npcCharacter.getDialogPane());
+        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
 
         // Ratz has nothing more to say.
         DialogResponseAction endDialog = () -> {
             npcCharacter.setAllowTalk(false);
-            npcCharacter.getDialogPane().setActionDone(true);
+            getDialogPane().setActionDone(true);
             npcCharacter.setTalking(false);
         };
 
@@ -133,7 +134,7 @@ public class BodyShopVignette extends Vignette {
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), endDialog));
         ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), endDialog));
 
-        npcCharacter.getDialogPane().addDialogSheet(ds1);
+        getDialogPane().addDialogSheet(ds1);
     }
 
     @Override
