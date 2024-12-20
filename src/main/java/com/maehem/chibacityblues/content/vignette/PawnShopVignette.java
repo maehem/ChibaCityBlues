@@ -275,9 +275,4 @@ public class PawnShopVignette extends Vignette {
         return PLAYER_START;
     }
 
-    @Override
-    public int[][] getDialogChain() {
-        return DIALOG_CHAIN;
-    }
-
 }
