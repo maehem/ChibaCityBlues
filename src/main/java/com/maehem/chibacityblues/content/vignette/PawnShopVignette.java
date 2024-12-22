@@ -262,7 +262,7 @@ public class PawnShopVignette extends Vignette {
     }
 
     @Override
-    public ArrayList<Thing> getVendItems(GameState gs) {
+    public ArrayList<Thing> getVendItems() {
 
         KomodoDeckThing thing = new KomodoDeckThing();
         thing.setValue(100);
@@ -275,17 +275,23 @@ public class PawnShopVignette extends Vignette {
     }
 
     @Override
-    public boolean onVendItemsFinished(GameState gs) {
+    public boolean onVendItemsFinished() {
         LOGGER.log(Level.CONFIG, "Pawn Shop: onVendItemsFinished() called.");
 
         if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
             // Shin locks door as you leave.
             LOGGER.log(Level.CONFIG, "Add GameGoal ==> ShinClosedGoal");
-            gs.getGoals().add(new ShinClosedGoal());
+            getGameState().getGoals().add(new ShinClosedGoal());
+
+            getDialogPane().setCurrentDialog(9);
 
             return true;
         }
-        return false;
+        npcCharacter.setTalking(false);
+        getDialogPane().setVisible(false);
+        getDialogPane().setCurrentDialog(2);
+
+        return true;
     }
 
 //    @Override
