@@ -149,7 +149,7 @@ public class PawnShopVignette extends Vignette {
 
     private void initNpc() {
         npcCharacter = new Character(bundle.getString("character.npc.name"));
-        npcCharacter.setScale(1.6);
+        npcCharacter.setScale(1.5);
         npcCharacter.setLayoutX(580);
         npcCharacter.setLayoutY(480);
 
