@@ -150,7 +150,7 @@ public class PawnShopVignette extends Vignette {
     private void initNpc() {
         npcCharacter = new Character(bundle.getString("character.npc.name"));
         npcCharacter.setScale(1.5);
-        npcCharacter.setLayoutX(580);
+        npcCharacter.setLayoutX(590);
         npcCharacter.setLayoutY(480);
 
         LOGGER.config("Apply Cameo for NPC. " + NPC_CAMEO_FILENAME);
@@ -171,8 +171,8 @@ public class PawnShopVignette extends Vignette {
         // Display Cases (in front of shop owner )
         final ImageView counterView = new ImageView();
         counterView.setImage(new Image(PawnShopVignette.class.getResourceAsStream(COUNTERS_IMAGE_FILENAME)));
-        counterView.setLayoutX(0);
-        counterView.setLayoutY(0);
+        counterView.setLayoutX(476);
+        counterView.setLayoutY(342);
         //counterView.setBlendMode(BlendMode.MULTIPLY);
 
         // Add these in visual order.  Back to front.
