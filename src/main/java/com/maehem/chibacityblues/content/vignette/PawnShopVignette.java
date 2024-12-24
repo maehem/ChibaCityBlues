@@ -267,6 +267,7 @@ public class PawnShopVignette extends Vignette {
         KomodoDeckThing thing = new KomodoDeckThing();
         thing.setValue(100);
         thing.setCondition(50);
+        thing.setVendQuantity(1);
 
         ArrayList<Thing> list = new ArrayList<>();
         list.add(thing);
