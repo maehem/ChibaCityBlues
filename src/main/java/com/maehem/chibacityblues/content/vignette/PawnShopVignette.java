@@ -243,12 +243,10 @@ public class PawnShopVignette extends Vignette {
 //        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), ds2));
 //        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), ds3));
 //        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), ds4));
-
 //        getDialogPane().addDialogSheet(ds1);
 //        getDialogPane().addDialogSheet(ds2);
 //        getDialogPane().addDialogSheet(ds3);
 //        getDialogPane().addDialogSheet(ds4);
-
         // New way
         getDialogPane().setDialogChain(DIALOG_CHAIN);
     }
@@ -281,6 +279,8 @@ public class PawnShopVignette extends Vignette {
     public boolean onVendItemsFinished() {
         LOGGER.log(Level.CONFIG, "Pawn Shop: onVendItemsFinished() called.");
 
+        getDialogPane().doCloseDialog();
+
         if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
             DeckThing uxbDeck = (DeckThing) getPlayer().getInventory().getFirst(KomodoDeckThing.class.getSimpleName());
             uxbDeck.setCondition((int) (uxbDeck.getMaxCondition() * 0.333));
@@ -293,24 +293,14 @@ public class PawnShopVignette extends Vignette {
             getGameState().getGoals().add(new ShinClosedGoal());
 
             npcCharacter.setAllowTalk(false);
-            getDialogPane().doCloseDialog();
-
-            return true;
+        } else {
+            // Start the conversation here when we return.
+            getDialogPane().setCurrentDialog(2);
         }
-
-        getDialogPane().doCloseDialog();
-
-        // Start the conversation here when we return.
-        getDialogPane().setCurrentDialog(2);
 
         return true;
     }
 
-//    @Override
-//    public String getPropName() {
-//        return getClass().getSimpleName();
-//    }
-//
     @Override
     public Properties saveProperties() {
         Properties p = new Properties();
