@@ -79,6 +79,8 @@ public class ChibaCityBlues extends Application {
         engine.getGameState().initHelp(helpBundle);
 
         pubTerm.getBanking().updateContent(engine.getGameState()); // Lastest player info updated.
+
+        engine.getPlayer().getInventory().add(new PawnTicketThing());
      }
 
     /**
