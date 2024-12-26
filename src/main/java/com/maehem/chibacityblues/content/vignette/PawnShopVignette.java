@@ -284,9 +284,10 @@ public class PawnShopVignette extends Vignette {
         if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
             DeckThing uxbDeck = (DeckThing) getPlayer().getInventory().getFirst(KomodoDeckThing.class.getSimpleName());
             uxbDeck.setCondition((int) (uxbDeck.getMaxCondition() * 0.333));
+            // Configure the Komodo deck with any presets.
             uxbDeck.setValue(50);
             uxbDeck.addSoftware(new ComLink1Thing());
-            // Configure the Komodo deck with any presets.
+
             // Shin locks door as you leave.
             LOGGER.log(Level.CONFIG, "Add GameGoal ==> ShinClosedGoal");
             getGameState().getGoals().add(new ShinClosedGoal());
@@ -296,8 +297,10 @@ public class PawnShopVignette extends Vignette {
 
             return true;
         }
-        npcCharacter.setTalking(false);
-        getDialogPane().setVisible(false);
+
+        getDialogPane().doCloseDialog();
+
+        // Start the conversation here when we return.
         getDialogPane().setCurrentDialog(2);
 
         return true;
