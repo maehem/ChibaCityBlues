@@ -25,8 +25,8 @@ import java.util.logging.Level;
  *
  * @author Mark J Koch [flatlinejack at maehem dot com]
  */
-public class KomodoDeckThing extends DeckThing {
-    public static final String DEFAULT_NAME = "Komodo Spark M3";
+public class YamamitsuUXBDeckThing extends DeckThing {
+    public static final String DEFAULT_NAME = "Yamamitsu UXB";
     public static final int BASE_RAM = 128;
     public static final int BASE_SHIELD = 200;
     public static final int SOFTWARE_CAPACITY = 8;
@@ -35,7 +35,7 @@ public class KomodoDeckThing extends DeckThing {
 
     public static final String ICON_PATH = "/content/things/deck/2600-thing.png";
 
-    public KomodoDeckThing() {
+    public YamamitsuUXBDeckThing() {
         super(  DEFAULT_NAME,
                 BASE_RAM, BASE_SHIELD,
                 SOFTWARE_CAPACITY, RAM_SLOTS
@@ -51,8 +51,8 @@ public class KomodoDeckThing extends DeckThing {
 
     @Override
     public String getDescription() {
-        return "You say Komado, we say Komodo. Who could ask for anything " +
-                "more?  Just kidding, this is junk, find a better deck already.";
+        return "When you absolutely need to get online.\n"
+                + "Caution: May cause serious injury as a result of casual use!";
     }
 
     @Override

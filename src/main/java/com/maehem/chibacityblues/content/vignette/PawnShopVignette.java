@@ -32,7 +32,7 @@ import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
-import com.maehem.chibacityblues.content.things.deck.KomodoDeckThing;
+import com.maehem.chibacityblues.content.things.deck.YamamitsuUXBDeckThing;
 import com.maehem.chibacityblues.content.things.software.ComLink1Thing;
 import java.util.ArrayList;
 import java.util.MissingResourceException;
@@ -196,7 +196,7 @@ public class PawnShopVignette extends Vignette {
     public int dialogWarmUp() {
         if (npcCharacter.canTalk()) {
             //if (gs.roomCanTalk()) {
-            if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
+            if (getPlayer().getInventory().hasItemType(YamamitsuUXBDeckThing.class.getSimpleName())) {
                 //gs.pawnRecent = GameState.PawnRecent.NONE;
                 LOGGER.log(Level.SEVERE, "Player already bought the deck.");
 
@@ -218,7 +218,7 @@ public class PawnShopVignette extends Vignette {
 //            getDialogPane().setActionDone(true);
 //
 //            // Add cyberspace deck to inventory.
-//            npcCharacter.give(new KomodoDeckThing(), getPlayer());
+//            npcCharacter.give(new YamamitsuUXBDeckThing(), getPlayer());
 //
 //            // TODO:
 //            // GameState set StreetVignette PawnShop door locked.
@@ -256,7 +256,7 @@ public class PawnShopVignette extends Vignette {
         LOGGER.log(Level.SEVERE, "PawnShop: onItemGet() called. What to do?");
 
         // Add cyberspace deck to inventory.
-        npcCharacter.give(new KomodoDeckThing(), getPlayer());
+        npcCharacter.give(new YamamitsuUXBDeckThing(), getPlayer());
 
         // Shin kicks out player and locks door.
     }
@@ -264,7 +264,7 @@ public class PawnShopVignette extends Vignette {
     @Override
     public ArrayList<Thing> getVendItems() {
 
-        KomodoDeckThing thing = new KomodoDeckThing();
+        YamamitsuUXBDeckThing thing = new YamamitsuUXBDeckThing();
         thing.setValue(100);
         thing.setCondition(50);
         thing.setVendQuantity(1);
@@ -281,8 +281,8 @@ public class PawnShopVignette extends Vignette {
 
         getDialogPane().doCloseDialog();
 
-        if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
-            DeckThing uxbDeck = (DeckThing) getPlayer().getInventory().getFirst(KomodoDeckThing.class.getSimpleName());
+        if (getPlayer().getInventory().hasItemType(YamamitsuUXBDeckThing.class.getSimpleName())) {
+            DeckThing uxbDeck = (DeckThing) getPlayer().getInventory().getFirst(YamamitsuUXBDeckThing.class.getSimpleName());
             uxbDeck.setCondition((int) (uxbDeck.getMaxCondition() * 0.333));
             // Configure the Komodo deck with any presets.
             uxbDeck.setValue(50);
