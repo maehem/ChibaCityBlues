@@ -18,6 +18,7 @@ package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
 import com.maehem.abyss.engine.Character;
+import com.maehem.abyss.engine.DeckThing;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
@@ -32,6 +33,7 @@ import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
 import com.maehem.chibacityblues.content.things.deck.KomodoDeckThing;
+import com.maehem.chibacityblues.content.things.software.ComLink1Thing;
 import java.util.ArrayList;
 import java.util.MissingResourceException;
 import java.util.Properties;
@@ -280,11 +282,17 @@ public class PawnShopVignette extends Vignette {
         LOGGER.log(Level.CONFIG, "Pawn Shop: onVendItemsFinished() called.");
 
         if (getPlayer().getInventory().hasItemType(KomodoDeckThing.class.getSimpleName())) {
+            DeckThing uxbDeck = (DeckThing) getPlayer().getInventory().getFirst(KomodoDeckThing.class.getSimpleName());
+            uxbDeck.setCondition((int) (uxbDeck.getMaxCondition() * 0.333));
+            uxbDeck.setValue(50);
+            uxbDeck.addSoftware(new ComLink1Thing());
+            // Configure the Komodo deck with any presets.
             // Shin locks door as you leave.
             LOGGER.log(Level.CONFIG, "Add GameGoal ==> ShinClosedGoal");
             getGameState().getGoals().add(new ShinClosedGoal());
 
-            getDialogPane().setCurrentDialog(9);
+            npcCharacter.setAllowTalk(false);
+            getDialogPane().doCloseDialog();
 
             return true;
         }
