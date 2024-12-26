@@ -51,8 +51,9 @@ public class YamamitsuUXBDeckThing extends DeckThing {
 
     @Override
     public String getDescription() {
-        return "When you absolutely need to get online.\n"
-                + "Caution: May cause serious injury as a result of casual use!";
+        return """
+               When you absolutely need to get online.
+               Caution: May cause serious injury as a result of casual use!""";
     }
 
     @Override
