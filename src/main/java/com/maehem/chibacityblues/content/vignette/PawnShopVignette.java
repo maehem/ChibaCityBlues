@@ -25,10 +25,12 @@ import com.maehem.abyss.engine.PoseSheet;
 import com.maehem.abyss.engine.Thing;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
+import com.maehem.abyss.engine.babble.AlertBabbleNode;
 import com.maehem.abyss.engine.babble.BabbleNode;
 import com.maehem.abyss.engine.babble.DialogBabbleNode;
 import static com.maehem.abyss.engine.babble.DialogCommand.*;
 import com.maehem.abyss.engine.babble.DialogPane;
+import com.maehem.abyss.engine.babble.EmptyBabbleNode;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
@@ -66,6 +68,7 @@ public class PawnShopVignette extends Vignette {
             0.02, 0.70, // port XY location
             0.04, 0.06, // port size
             0.72, 0.75, // place player at this XY when they leave the pawn shop.
+            VignetteTrigger.Location.LEFT, // Door is left part of scene.
             PoseSheet.Direction.LEFT, // Face this direction at destination
             //"StreetPawnShopVignette" // Class name of destination vignette
             StreetPawnShopVignette.class // Class name of destination vignette
@@ -92,12 +95,16 @@ public class PawnShopVignette extends Vignette {
             add(new DialogBabbleNode(ITEM_BUY.num));            // 6: NPC Opens Vend window. "Give ticket and money..."
             add(new DialogBabbleNode(3, 4, 5));         // 7: NPC Talks to Player --> 3,4,5. "Your deck scare away customer..."
             add(new DialogBabbleNode(9, 10));               // 8: NPC Talks to Player --> 3,4,5. "What? I no want deck..."
-            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 13)); // 9: Player Response. "Thanks for my deck..."
-            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 13)); // 10: Player Response. "Okay pal!..."
-            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 13)); // 11: Player Response. "Thanks. I knew you'd..."
-            add(new NarrationBabbleNode(DIALOG_NO_MORE.num, EXIT_L.num)); // 12: NPC: "Shin slams door..."
-            add(new NarrationBabbleNode(DESC.num, 12)); // 13: NPC: "Shin gives you your deck."
-            add(new DialogBabbleNode(ITEM_GET.num, DESC.num, 13)); // 14: NPC gives deck. "You no have ticket?..."
+            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 17)); // 9: Player Response. "Thanks for my deck..."
+            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 17)); // 10: Player Response. "Okay pal!..."
+            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 17)); // 11: Player Response. "Thanks. I knew you'd..."
+            add(new EmptyBabbleNode()); // 12 <empty>
+            add(new EmptyBabbleNode());// 13 <empty>
+            add(new AlertBabbleNode(DIALOG_NO_MORE.num, EXIT_L.num)); // 14: NPC: "Shin slams door..."
+            add(new EmptyBabbleNode()); // 15 <empty>
+            add(new EmptyBabbleNode()); // 16 <empty>
+            add(new AlertBabbleNode(14)); // 17: NPC: "Shin gives you your deck."
+            add(new AlertBabbleNode(ITEM_GET.num, 17)); // 18: NPC gives deck. "You no have ticket?..."
         }
     };
 
