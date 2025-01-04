@@ -60,7 +60,7 @@ public class StreetMicrosoftsVignette extends Vignette {
             StreetBodyShopVignette.PLAYER_START_R.getX(),
             StreetBodyShopVignette.PLAYER_START_R.getY(),
             PoseSheet.Direction.LEFT, // Player position and orientation at destination
-            "StreetBodyShopVignette" // Destination
+            StreetBodyShopVignette.class // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.90, 0.66, // Location
@@ -68,7 +68,7 @@ public class StreetMicrosoftsVignette extends Vignette {
             BrothelVignette.PLAYER_START.getX(),
             BrothelVignette.PLAYER_START.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-            "BrothelVignette" // Destination
+            BrothelVignette.class // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.42, 0.60,
@@ -76,7 +76,7 @@ public class StreetMicrosoftsVignette extends Vignette {
             MicroSoftsVignette.PLAYER_START.getX(),
             MicroSoftsVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "MicroSoftsVignette"
+            MicroSoftsVignette.class
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.20, 0.97,
@@ -85,7 +85,7 @@ public class StreetMicrosoftsVignette extends Vignette {
             StreetPawnShopVignette.PLAYER_START.getX(),
             StreetPawnShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "StreetPawnShopVignette"
+            StreetPawnShopVignette.class
     );
 
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());

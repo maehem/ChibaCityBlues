@@ -52,34 +52,17 @@ public class StreetSpacePortVignette extends Vignette {
             StreetBodyShopVignette.PLAYER_START.getX(),
             StreetBodyShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "SpacePortVignette" // Destination
+            SpacePortVignette.class // Destination
     );
-//    private static final VignetteTrigger rightDoor = new VignetteTrigger(
-//            0.98, 0.63, // Location
-//            0.02, 0.20, // Size
-//            VignetteTrigger.SHOW_TRIGGER,
-//            PawnShopVignette.PLAYER_START.getX(),
-//            PawnShopVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-//            "JuliusDeanVignette" // Destination
-//    );
+
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.25, 0.76,
             0.63, 0.014,
             StreetMblJuliusVignette.PLAYER_START.getX(),
             StreetMblJuliusVignette.PLAYER_START.getY(),
             PoseSheet.Direction.AWAY,
-            "StreetMblJuliusVignette"
+            StreetMblJuliusVignette.class
     );
-//    private static final VignetteTrigger bottomDoor = new VignetteTrigger(
-//            0.02, 0.97,
-//            0.96, 0.03,
-//            VignetteTrigger.SHOW_TRIGGER,
-//            DonutWorldVignette.PLAYER_START.getX(),
-//            DonutWorldVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD,
-//            "StreetSpacePortVignette"
-//    );
 
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());
 

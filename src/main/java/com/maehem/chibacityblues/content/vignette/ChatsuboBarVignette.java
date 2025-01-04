@@ -67,7 +67,7 @@ public class ChatsuboBarVignette extends Vignette {
         0.21, 0.03,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.7, 0.80,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetChatsuboVignette"); // Exit to here
+        PoseSheet.Direction.TOWARD, StreetChatsuboVignette.class); // Exit to here
 
     private static final TerminalTrigger terminal = new TerminalTrigger(
         0.43, 0.70,   // trigger location
@@ -103,11 +103,6 @@ public class ChatsuboBarVignette extends Vignette {
         addPort(exitPort);
         addTerminal( terminal );
     }
-
-//    @Override
-//    public void portAction(VignetteTrigger trigger) {
-//        musicTrack.fadeAndStop(0);
-//    }
 
     private void initShopOwner() {
         npcCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.ratz.name"));

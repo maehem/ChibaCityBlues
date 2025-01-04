@@ -44,22 +44,13 @@ public class StreetPongAsanosVignette extends Vignette {
              0.10, 0.97
     };
 
-//    private static final VignetteTrigger leftDoor = new VignetteTrigger(
-//            0.00, 0.70, // Location
-//            0.02, 0.30, // Size
-//            VignetteTrigger.SHOW_TRIGGER,
-//            StreetShinsSideVignette.PLAYER_START.getX(),
-//            StreetShinsSideVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.LEFT, // Player position and orientation at destination
-//            "StreetShinsSideVignette" // Destination
-//    );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.88, 0.72, // Location
             0.06, 0.08, // Size
             AsanosVignette.PLAYER_START.getX(),
             AsanosVignette.PLAYER_START.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-            "AsanosVignette" // Destination
+            AsanosVignette.class // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.44, 0.68,
@@ -67,7 +58,7 @@ public class StreetPongAsanosVignette extends Vignette {
             HouseOfPongVignette.PLAYER_START.getX(),
             HouseOfPongVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "HouseOfPongVignette"
+            HouseOfPongVignette.class
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.05, 0.97,
@@ -76,7 +67,7 @@ public class StreetPongAsanosVignette extends Vignette {
             StreetCrazyEdosVignette.PLAYER_START.getX(),
             StreetCrazyEdosVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "StreetCrazyEdosVignette"
+            StreetCrazyEdosVignette.class
     );
 
     //private com.maehem.abyss.engine.Character policeRobotCharacter;

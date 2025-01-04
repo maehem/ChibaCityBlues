@@ -55,7 +55,7 @@ public class HouseOfPongVignette extends Vignette {
         0.22, 0.03,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.5, 0.80,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetPongAsanosVignette"); // Exit to here
+        PoseSheet.Direction.TOWARD, StreetPongAsanosVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;

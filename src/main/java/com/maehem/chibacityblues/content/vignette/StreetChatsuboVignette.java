@@ -70,7 +70,7 @@ public class StreetChatsuboVignette extends Vignette {
             StreetBodyShopVignette.PLAYER_START_L.getX(),
             StreetBodyShopVignette.PLAYER_START_L.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-            "StreetBodyShopVignette" // Destination
+            StreetBodyShopVignette.class // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.65, 0.65,
@@ -78,7 +78,7 @@ public class StreetChatsuboVignette extends Vignette {
             ChatsuboBarVignette.PLAYER_START.getX(),
             ChatsuboBarVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "ChatsuboBarVignette"
+            ChatsuboBarVignette.class
     );
 
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());

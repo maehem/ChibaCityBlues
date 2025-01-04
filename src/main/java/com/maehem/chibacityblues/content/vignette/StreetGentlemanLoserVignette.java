@@ -52,24 +52,16 @@ public class StreetGentlemanLoserVignette extends Vignette {
             StreetBodyShopVignette.PLAYER_START.getX(),
             StreetBodyShopVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "GentlemanLoserVignette" // Destination
+            GentlemanLoserVignette.class // Destination
     );
-//    private static final VignetteTrigger rightDoor = new VignetteTrigger(
-//            0.98, 0.63, // Location
-//            0.02, 0.20, // Size
-//            VignetteTrigger.SHOW_TRIGGER,
-//            PawnShopVignette.PLAYER_START.getX(),
-//            PawnShopVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-//            "StreetShinSign" // Destination
-//    );
+
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.25, 0.76,
             0.63, 0.014,
             StreetCheapHotelVignette.PLAYER_START.getX(),
             StreetCheapHotelVignette.PLAYER_START.getY(),
             PoseSheet.Direction.AWAY,
-            "StreetCheapHotelVignette"
+            StreetCheapHotelVignette.class
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.02, 0.97,
@@ -78,7 +70,7 @@ public class StreetGentlemanLoserVignette extends Vignette {
             StreetMblJuliusVignette.PLAYER_START.getX(),
             StreetMblJuliusVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "StreetMblJuliusVignette"
+            StreetMblJuliusVignette.class
     );
 
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());

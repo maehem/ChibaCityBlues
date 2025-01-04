@@ -13,7 +13,7 @@
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
     License for the specific language governing permissions and limitations
     under the License.
-*/
+ */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
@@ -47,8 +47,8 @@ public class JuliusDeaneVignette extends Vignette {
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
 
-    public  static final Point2D PLAYER_START = new Point2D(0.2, 0.89);
-    private static final double[] WALK_BOUNDARY = new double[] {
+    public static final Point2D PLAYER_START = new Point2D(0.2, 0.89);
+    private static final double[] WALK_BOUNDARY = new double[]{
         0.02, 0.75, 0.30, 0.70, 0.30, 0.80,
         0.40, 0.88,
         0.40, 0.95, 0.02, 0.95
@@ -59,11 +59,12 @@ public class JuliusDeaneVignette extends Vignette {
     private static final VignetteTrigger exitPort = new VignetteTrigger(
             0.16, 0.7, // exit location
             0.14, 0.03, // exit size
-        0.8, 0.80, // player position at destination
-        PoseSheet.Direction.RIGHT, "StreetMblJuliusVignette"); // Exit to here
+            0.8, 0.80, // player position at destination
+            PoseSheet.Direction.RIGHT,
+            StreetMblJuliusVignette.class); // Exit to here
 
     public JuliusDeaneVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override
@@ -76,7 +77,6 @@ public class JuliusDeaneVignette extends Vignette {
         initBackground(); // then layer in any fixtures on top of them
 
         //getBgGroup().setOpacity(0.7);
-
         addPort(exitPort);
     }
 
@@ -150,7 +150,6 @@ public class JuliusDeaneVignette extends Vignette {
 
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-
         return p;
     }
 
@@ -164,7 +163,6 @@ public class JuliusDeaneVignette extends Vignette {
 //    public String getPropName() {
 //        return PROP_NAME;
 //    }
-
     @Override
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;

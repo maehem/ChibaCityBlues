@@ -13,7 +13,7 @@
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
     License for the specific language governing permissions and limitations
     under the License.
-*/
+ */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
@@ -43,25 +43,26 @@ public class MatrixVignette extends Vignette {
     //private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counter-overlay.png";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
 
-    public  static final Point2D PLAYER_START = new Point2D(0.7, 0.88);
-    private static final double[] WALK_BOUNDARY = new double[] {
-                0.04, 0.78,   0.75, 0.78,
-                0.90, 0.80,
-                0.95, 0.95,   0.04, 0.95,
-                0.04, 0.78
+    public static final Point2D PLAYER_START = new Point2D(0.7, 0.88);
+    private static final double[] WALK_BOUNDARY = new double[]{
+        0.04, 0.78, 0.75, 0.78,
+        0.90, 0.80,
+        0.95, 0.95, 0.04, 0.95,
+        0.04, 0.78
     };
 
     private static final VignetteTrigger exitPort = new VignetteTrigger(
-        0.55, 0.73,   // exit location
-        0.15, 0.04,   // exit size
-        0.7, 0.85,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetMatrixVignette"); // Exit to here
+            0.55, 0.73, // exit location
+            0.15, 0.04, // exit size
+            0.7, 0.85, // player position at destination
+            PoseSheet.Direction.TOWARD,
+            StreetMatrixVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;
 
     public MatrixVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override
@@ -74,7 +75,6 @@ public class MatrixVignette extends Vignette {
         initBackground(); // then layer in any fixtures on top of them
 
         //getBgGroup().setOpacity(0.7);
-
         addPort(exitPort);
     }
 
@@ -94,7 +94,7 @@ public class MatrixVignette extends Vignette {
         initNpcDialog();
 
         getCharacterList().add(npcCharacter);
-        getBgGroup().getChildren().add(npcCharacter );
+        getBgGroup().getChildren().add(npcCharacter);
     }
 
     private void initBackground() {
@@ -136,7 +136,6 @@ public class MatrixVignette extends Vignette {
 
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-
         return p;
     }
 
@@ -150,7 +149,6 @@ public class MatrixVignette extends Vignette {
 //    public String getPropName() {
 //        return PROP_NAME;
 //    }
-
     @Override
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;

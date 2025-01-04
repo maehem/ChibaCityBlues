@@ -56,7 +56,7 @@ public class StreetShinsSideVignette extends Vignette {
             StreetCheapHotelVignette.PLAYER_START_R.getX(),
             StreetCheapHotelVignette.PLAYER_START_R.getY(),
             PoseSheet.Direction.LEFT, // Player position and orientation at destination
-            "StreetCheapHotelVignette" // Destination
+            StreetCheapHotelVignette.class // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.98, 0.70, // Location
@@ -65,28 +65,8 @@ public class StreetShinsSideVignette extends Vignette {
             StreetMetroHoloVignette.PLAYER_START_L.getX(),
             StreetMetroHoloVignette.PLAYER_START_L.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-            "StreetMetroHoloVignette" // Destination
+            StreetMetroHoloVignette.class // Destination
     );
-//    private static final VignetteTrigger topDoor = new VignetteTrigger(
-//            0.32, 0.70,
-//            0.14, 0.014,
-//            ChatsuboBarVignette.PLAYER_START.getX(),
-//            ChatsuboBarVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD,
-//            "MetroHoloVignette"
-//    );
-//    private static final VignetteTrigger bottomDoor = new VignetteTrigger(
-//            0.37, 0.97,
-//            0.26, 0.03,
-//            VignetteTrigger.SHOW_TRIGGER,
-//            DonutWorldVignette.PLAYER_START.getX(),
-//            DonutWorldVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD,
-//            "DonutWorldVignette"
-//    );
-
-    //private com.maehem.abyss.engine.Character policeRobotCharacter;
-    //private int npcAnimationCount = 0;
 
     public StreetShinsSideVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);

@@ -53,7 +53,7 @@ public class JusticeBoothVignette extends Vignette {
         0.00, 0.75,   // exit location
         0.04, 0.25,   // exit size
         0.4, 0.90,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetChatsuboVignette"); // Exit to here
+        PoseSheet.Direction.TOWARD, StreetChatsuboVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;

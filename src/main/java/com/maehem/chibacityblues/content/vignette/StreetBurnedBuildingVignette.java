@@ -56,7 +56,7 @@ public class StreetBurnedBuildingVignette extends Vignette {
             StreetMatrixVignette.PLAYER_START_R.getX(),
             StreetMatrixVignette.PLAYER_START_R.getY(),
             PoseSheet.Direction.LEFT, // Player position and orientation at destination
-            "StreetMatrixVignette" // Destination
+            StreetMatrixVignette.class // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.98, 0.70, // Location
@@ -65,28 +65,8 @@ public class StreetBurnedBuildingVignette extends Vignette {
             StreetSecurityGateVignette.PLAYER_START_L.getX(),
             StreetSecurityGateVignette.PLAYER_START_L.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-            "StreetSecurityGateVignette" // Destination
+            StreetSecurityGateVignette.class // Destination
     );
-//    private static final VignetteTrigger topDoor = new VignetteTrigger(
-//            0.32, 0.70,
-//            0.14, 0.014,
-//            StreetPongAsanosVignette.PLAYER_START.getX(),
-//            StreetPongAsanosVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.AWAY,
-//            "StreetPongAsanosVignette"
-//    );
-//    private static final VignetteTrigger bottomDoor = new VignetteTrigger(
-//            0.37, 0.97,
-//            0.26, 0.03,
-//            VignetteTrigger.SHOW_TRIGGER,
-//            StreetBurnedBuildingVignette.PLAYER_START.getX(),
-//            StreetBurnedBuildingVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.TOWARD,
-//            "CrazyEdosVignette"
-//    );
-
-    //private com.maehem.abyss.engine.Character policeRobotCharacter;
-    //private int npcAnimationCount = 0;
 
     public StreetBurnedBuildingVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player, WALK_BOUNDARY);

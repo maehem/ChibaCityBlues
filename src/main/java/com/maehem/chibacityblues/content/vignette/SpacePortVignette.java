@@ -60,7 +60,7 @@ public class SpacePortVignette extends Vignette {
         0.03, 0.25,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.2, 0.80,   // player position at destination
-        PoseSheet.Direction.RIGHT, "StreetSpacePortVignette"); // Exit to here
+        PoseSheet.Direction.RIGHT, StreetSpacePortVignette.class); // Exit to here
 
     public SpacePortVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);

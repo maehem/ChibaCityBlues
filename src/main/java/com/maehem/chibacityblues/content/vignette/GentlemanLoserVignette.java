@@ -52,7 +52,7 @@ public class GentlemanLoserVignette extends Vignette {
         0.03, 0.25,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.2, 0.80,   // player position at destination
-        PoseSheet.Direction.RIGHT, "StreetGentlemanLoserVignette"); // Exit to here
+        PoseSheet.Direction.RIGHT, StreetGentlemanLoserVignette.class); // Exit to here
 
     private static final TerminalTrigger terminal = new TerminalTrigger(
         0.80, 0.71,   // trigger location

@@ -55,7 +55,7 @@ public class CrazyEdosVignette extends Vignette {
         0.13, 0.05,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.5, 0.90,   // player position at destination
-        PoseSheet.Direction.AWAY, "StreetCrazyEdosVignette"); // Exit to here
+        PoseSheet.Direction.AWAY, StreetCrazyEdosVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;

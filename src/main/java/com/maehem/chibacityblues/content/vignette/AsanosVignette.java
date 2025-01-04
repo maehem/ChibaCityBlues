@@ -55,7 +55,7 @@ public class AsanosVignette extends Vignette {
         0.04, 0.25,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.7, 0.85,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetPongAsanosVignette"); // Exit to here
+        PoseSheet.Direction.TOWARD, StreetPongAsanosVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;

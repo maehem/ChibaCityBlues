@@ -53,20 +53,8 @@ public class StreetSecurityGateVignette extends Vignette {
             StreetBurnedBuildingVignette.PLAYER_START_R.getX(),
             StreetBurnedBuildingVignette.PLAYER_START_R.getY(),
             PoseSheet.Direction.LEFT, // Player position and orientation at destination
-            "StreetBurnedBuildingVignette" // Destination
+            StreetBurnedBuildingVignette.class // Destination
     );
-//    private static final VignetteTrigger rightDoor = new VignetteTrigger(
-//            0.98, 0.70, // Location
-//            0.02, 0.30, // Size
-//            VignetteTrigger.SHOW_TRIGGER,
-//            StreetMatrixVignette.PLAYER_START.getX(),
-//            StreetMatrixVignette.PLAYER_START.getY(),
-//            PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-//            "StreetZone2Vignette" // Destination
-//    );
-
-    //private com.maehem.abyss.engine.Character policeRobotCharacter;
-    //private int npcAnimationCount = 0;
 
     public StreetSecurityGateVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);

@@ -52,14 +52,12 @@ public class MicroSoftsVignette extends Vignette {
                 0.68, 0.95,   0.08, 0.95
     };
 
-    private static final String EXIT_VIGNETTE = StreetMicrosoftsVignette.class.getSimpleName();
-
     private static final VignetteTrigger exitPort = new VignetteTrigger(
         0.39, 0.97,   // exit location
         0.22, 0.03,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.7, 0.80,   // player position at destination
-        PoseSheet.Direction.TOWARD, EXIT_VIGNETTE); // Exit to here
+        PoseSheet.Direction.TOWARD, StreetMicrosoftsVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;

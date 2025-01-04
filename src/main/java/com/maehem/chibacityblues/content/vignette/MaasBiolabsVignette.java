@@ -51,7 +51,7 @@ public class MaasBiolabsVignette extends Vignette {
         0.03, 0.25,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.2, 0.80,   // player position at destination
-        PoseSheet.Direction.RIGHT, "StreetMblJuliusVignette"); // Exit to here
+        PoseSheet.Direction.RIGHT, StreetMblJuliusVignette.class); // Exit to here
 
     public MaasBiolabsVignette(GameState gs, VignetteTrigger prevPort, Player player) {
         super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);

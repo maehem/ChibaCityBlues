@@ -52,7 +52,7 @@ public class CheapHotelVignette extends Vignette {
         0.03, 0.25,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.3, 0.80,   // player position at destination
-        PoseSheet.Direction.RIGHT, "StreetCheapHotelVignette"); // Exit to here
+        PoseSheet.Direction.RIGHT, StreetCheapHotelVignette.class); // Exit to here
 
     private static final TerminalTrigger terminal = new TerminalTrigger(
         0.46, 0.71,   // trigger location

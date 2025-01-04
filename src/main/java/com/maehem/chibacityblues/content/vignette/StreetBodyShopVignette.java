@@ -58,7 +58,7 @@ public class StreetBodyShopVignette extends Vignette {
             StreetChatsuboVignette.PLAYER_START_R.getX(),
             StreetChatsuboVignette.PLAYER_START_R.getY(),
             PoseSheet.Direction.LEFT, // Player position and orientation at destination
-            "StreetChatsuboVignette" // Destination
+            StreetChatsuboVignette.class // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.98, 0.70, // Location
@@ -67,7 +67,7 @@ public class StreetBodyShopVignette extends Vignette {
             StreetMicrosoftsVignette.PLAYER_START_L.getX(),
             StreetMicrosoftsVignette.PLAYER_START_L.getY(),
             PoseSheet.Direction.RIGHT, // Player position and orientation at destination
-            "StreetMicrosoftsVignette" // Destination
+            StreetMicrosoftsVignette.class // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.32, 0.70,
@@ -75,7 +75,7 @@ public class StreetBodyShopVignette extends Vignette {
             ChatsuboBarVignette.PLAYER_START.getX(),
             ChatsuboBarVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "BodyShopVignette"
+            BodyShopVignette.class
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.37, 0.97,
@@ -84,7 +84,7 @@ public class StreetBodyShopVignette extends Vignette {
             DonutWorldVignette.PLAYER_START.getX(),
             DonutWorldVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "DonutWorldVignette"
+            DonutWorldVignette.class
     );
 
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());

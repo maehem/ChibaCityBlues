@@ -53,7 +53,7 @@ public class DonutWorldVignette extends Vignette {
         0.38, 0.68,   // exit location
         0.21, 0.03,   // exit size
         0.50, 0.90,   // player position at destination
-        PoseSheet.Direction.AWAY, "StreetBodyShopVignette");
+        PoseSheet.Direction.AWAY, StreetBodyShopVignette.class);
 
     private com.maehem.abyss.engine.Character npcCharacter;
 

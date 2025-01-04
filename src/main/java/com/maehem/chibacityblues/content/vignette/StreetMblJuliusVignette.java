@@ -52,7 +52,7 @@ public class StreetMblJuliusVignette extends Vignette {
             MaasBiolabsVignette.PLAYER_START.getX(),
             MaasBiolabsVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "MaasBiolabsVignette" // Destination
+            MaasBiolabsVignette.class // Destination
     );
     private static final VignetteTrigger rightDoor = new VignetteTrigger(
             0.92, 0.63, // Location
@@ -60,7 +60,7 @@ public class StreetMblJuliusVignette extends Vignette {
             JuliusDeaneVignette.PLAYER_START.getX(),
             JuliusDeaneVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD, // Player position and orientation at destination
-            "JuliusDeaneVignette" // Destination
+            JuliusDeaneVignette.class // Destination
     );
     private static final VignetteTrigger topDoor = new VignetteTrigger(
             0.25, 0.76,
@@ -68,7 +68,7 @@ public class StreetMblJuliusVignette extends Vignette {
             StreetGentlemanLoserVignette.PLAYER_START.getX(),
             StreetGentlemanLoserVignette.PLAYER_START.getY(),
             PoseSheet.Direction.AWAY,
-            "StreetGentlemanLoserVignette"
+            StreetGentlemanLoserVignette.class
     );
     private static final VignetteTrigger bottomDoor = new VignetteTrigger(
             0.02, 0.97,
@@ -77,7 +77,7 @@ public class StreetMblJuliusVignette extends Vignette {
             StreetSpacePortVignette.PLAYER_START.getX(),
             StreetSpacePortVignette.PLAYER_START.getY(),
             PoseSheet.Direction.TOWARD,
-            "StreetSpacePortVignette"
+            StreetSpacePortVignette.class
     );
 
     private final Media media = new Media(getClass().getResource(MUSIC).toExternalForm());

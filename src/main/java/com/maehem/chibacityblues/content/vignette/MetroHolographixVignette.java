@@ -56,7 +56,7 @@ public class MetroHolographixVignette extends Vignette {
         0.28, 0.03,   // exit size
         VignetteTrigger.SHOW_TRIGGER,
         0.4, 0.80,   // player position at destination
-        PoseSheet.Direction.TOWARD, "StreetMetroHoloVignette"); // Exit to here
+        PoseSheet.Direction.TOWARD, StreetMetroHoloVignette.class); // Exit to here
 
     private com.maehem.abyss.engine.Character npcCharacter;
     private int npcAnimationCount = 0;
