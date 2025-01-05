@@ -99,7 +99,10 @@ public class StreetPawnShopVignette extends Vignette {
         addPort(bottomDoor);
 
         LOGGER.log(Level.CONFIG, "Lock Right Door if Shin goal complete.");
-        rightDoor.setLocked(getGameState().hasGoal(ShinClosedGoal.class));
+        if (getGameState().hasGoal(ShinClosedGoal.class)) {
+            rightDoor.setLocked(true);
+            getGameState().getNarrationQue().add("\nThe door to Shin's Pawn shop is locked.");
+        }
 
         initBackground();
     }

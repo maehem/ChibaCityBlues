@@ -261,10 +261,13 @@ public class PawnShopVignette extends Vignette {
 
     @Override
     public void onItemGet() {
-        LOGGER.log(Level.SEVERE, "PawnShop: onItemGet() called. What to do?");
+        LOGGER.log(Level.SEVERE, "PawnShop: onItemGet() called.");
 
         // Add cyberspace deck to inventory.
         npcCharacter.give(new YamamitsuUXBDeckThing(), getPlayer());
+
+        LOGGER.log(Level.CONFIG, "Add GameGoal ==> ShinClosedGoal");
+        getGameState().getGoals().add(new ShinClosedGoal());
 
         // Shin kicks out player and locks door.
     }
