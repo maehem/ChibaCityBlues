@@ -95,14 +95,15 @@ public class PawnShopVignette extends Vignette {
             add(new DialogBabbleNode(ITEM_BUY.num));            // 6: NPC Opens Vend window. "Give ticket and money..."
             add(new DialogBabbleNode(3, 4, 5));         // 7: NPC Talks to Player --> 3,4,5. "Your deck scare away customer..."
             add(new DialogBabbleNode(9, 10));               // 8: NPC Talks to Player --> 3,4,5. "What? I no want deck..."
-            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 17)); // 9: Player Response. "Thanks for my deck..."
-            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 17)); // 10: Player Response. "Okay pal!..."
-            add(new OptionBabbleNode(ITEM_GET.num, DESC.num, 17)); // 11: Player Response. "Thanks. I knew you'd..."
+            add(new OptionBabbleNode(ITEM_GET.num, DIALOG_NO_X.num, 17)); // 9: Player Response. "Thanks for my deck..."
+            add(new OptionBabbleNode(ITEM_GET.num, DIALOG_NO_X.num, 17)); // 10: Player Response. "Okay pal!..."
+            add(new OptionBabbleNode(ITEM_GET.num, DIALOG_NO_X.num, 17)); // 11: Player Response. "Thanks. I knew you'd..."
             add(new EmptyBabbleNode()); // 12 <empty>
-            add(new EmptyBabbleNode());// 13 <empty>
+            add(new EmptyBabbleNode()); // 13 <empty>
             add(new AlertBabbleNode(DIALOG_NO_MORE.num, EXIT_L.num)); // 14: NPC: "Shin slams door..."
             add(new EmptyBabbleNode()); // 15 <empty>
             add(new EmptyBabbleNode()); // 16 <empty>
+            // TODO: Disable closing of dialog at this point. DIALOG_NO_X.num
             add(new AlertBabbleNode(14)); // 17: NPC: "Shin gives you your deck."
             add(new AlertBabbleNode(ITEM_GET.num, 17)); // 18: NPC gives deck. "You no have ticket?..."
         }
