@@ -38,7 +38,6 @@ import com.maehem.chibacityblues.content.things.deck.YamamitsuUXBDeckThing;
 import com.maehem.chibacityblues.content.things.misc.PawnTicketThing;
 import com.maehem.chibacityblues.content.things.software.ComLink1Thing;
 import java.util.ArrayList;
-import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.logging.Level;
 import javafx.geometry.Point2D;
@@ -124,16 +123,15 @@ public class PawnShopVignette extends Vignette {
     @Override
     protected void init() {
         setHorizon(0.3);
+        addPort(leftDoor);
 
-        initDialogText();
+        initDialogText(DIALOG_CHAIN);
         initNpc();
 
         setDialogPane(new DialogPane(this, npcCharacter));
         initNpcDialog();
 
         initBackground();
-
-        addPort(leftDoor);
 
         getDialogPane().setCurrentDialog(dialogWarmUp());
         getDialogPane().setVisible(false);
@@ -143,20 +141,20 @@ public class PawnShopVignette extends Vignette {
         //fgGroup.setEffect(new BoxBlur(10, 10, 3));
     }
 
-    private void initDialogText() {
-        for (int i = 0; i < DIALOG_CHAIN.size(); i++) {
-            String dString;
-            try {
-                dString = bundle.getString("dialog." + i);
-            } catch (MissingResourceException ex) {
-                dString = "Dialog Element: " + i + ": Missing item in bundle.";
-            }
-
-            LOGGER.log(Level.CONFIG, "Set DialogChain item: {0}  to: {1}", new Object[]{i, dString});
-            DIALOG_CHAIN.get(i).setText(dString);
-        }
-
-    }
+//    private void initDialogText() {
+//        for (int i = 0; i < DIALOG_CHAIN.size(); i++) {
+//            String dString;
+//            try {
+//                dString = bundle.getString("dialog." + i);
+//            } catch (MissingResourceException ex) {
+//                dString = "Dialog Element: " + i + ": Missing item in bundle.";
+//            }
+//
+//            LOGGER.log(Level.CONFIG, "Set DialogChain item: {0}  to: {1}", new Object[]{i, dString});
+//            DIALOG_CHAIN.get(i).setText(dString);
+//        }
+//
+//    }
 
     private void initNpc() {
         npcCharacter = new Character(bundle.getString("character.npc.name"));
@@ -184,7 +182,6 @@ public class PawnShopVignette extends Vignette {
         counterView.setImage(new Image(PawnShopVignette.class.getResourceAsStream(COUNTERS_IMAGE_FILENAME)));
         counterView.setLayoutX(476);
         counterView.setLayoutY(342);
-        //counterView.setBlendMode(BlendMode.MULTIPLY);
 
         // Add these in visual order.  Back to front.
         getBgGroup().getChildren().add(counterView);
