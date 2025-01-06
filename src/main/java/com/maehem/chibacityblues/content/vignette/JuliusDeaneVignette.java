@@ -37,11 +37,7 @@ import javafx.scene.image.ImageView;
 public class JuliusDeaneVignette extends Vignette {
 
     private static final int ROOM_NUMBER = 27;
-    //public  static final String PROP_NAME = "body-shop";
     private static final String CONTENT_BASE = "/content/vignette/julius-deane/";
-    //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
-    //private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
-    //private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";
     private static final String DESK_OVERLAY_IMAGE_FILENAME = CONTENT_BASE + "desk-overlay.png";
     private static final String ARM_OVERLAY_IMAGE_FILENAME = CONTENT_BASE + "arm-overlay-2.png";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
