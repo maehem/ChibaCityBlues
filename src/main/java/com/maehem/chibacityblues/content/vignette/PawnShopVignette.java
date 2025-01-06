@@ -35,6 +35,7 @@ import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
 import com.maehem.chibacityblues.content.things.deck.YamamitsuUXBDeckThing;
+import com.maehem.chibacityblues.content.things.misc.PawnTicketThing;
 import com.maehem.chibacityblues.content.things.software.ComLink1Thing;
 import java.util.ArrayList;
 import java.util.MissingResourceException;
@@ -93,7 +94,7 @@ public class PawnShopVignette extends Vignette {
             add(new OptionBabbleNode(6));                       // 4: Player Response. "Okay. Give me deck..."
             add(new OptionBabbleNode(8));                       // 5: Player Response. "I don't have cash..."
             add(new DialogBabbleNode(ITEM_BUY.num));            // 6: NPC Opens Vend window. "Give ticket and money..."
-            add(new DialogBabbleNode(3, 4, 5));         // 7: NPC Talks to Player --> 3,4,5. "Your deck scare away customer..."
+            add(new DialogBabbleNode(4, 5));               // 7: NPC Talks to Player --> 4,5. "Your deck scare away customer..."
             add(new DialogBabbleNode(9, 10));               // 8: NPC Talks to Player --> 3,4,5. "What? I no want deck..."
             add(new OptionBabbleNode(ITEM_GET.num, DIALOG_NO_X.num, 17)); // 9: Player Response. "Thanks for my deck..."
             add(new OptionBabbleNode(ITEM_GET.num, DIALOG_NO_X.num, 17)); // 10: Player Response. "Okay pal!..."
@@ -284,6 +285,17 @@ public class PawnShopVignette extends Vignette {
         list.add(thing);
 
         return list;
+    }
+
+    @Override
+    public int onVendItemsStart() {
+        // Check if player has PawnTicket.  If not set dialogChain to #18.
+        if (getGameState().getPlayer().getInventory().hasItemType(PawnTicketThing.class.getSimpleName())) {
+            return -1;  // Normal operation.
+        }
+
+        // Player does not have pawn ticket. No vend, do NPC dialog.
+        return 18;
     }
 
     @Override
