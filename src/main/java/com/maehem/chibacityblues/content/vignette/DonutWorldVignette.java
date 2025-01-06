@@ -60,7 +60,14 @@ public class DonutWorldVignette extends Vignette {
             0.38, 0.68, // exit location
             0.21, 0.03, // exit size
             0.50, 0.90, // player position at destination
+            VignetteTrigger.Location.TOP,
             PoseSheet.Direction.AWAY, StreetBodyShopVignette.class);
+    private static final VignetteTrigger jailPort = new VignetteTrigger(
+            -1000, -1000, // exit location
+            0.1, 0.1, // exit size
+            0.50, 0.90, // player position at destination
+            VignetteTrigger.Location.JAIL,
+            PoseSheet.Direction.TOWARD, JusticeBoothVignette.class);
 
     private com.maehem.abyss.engine.Character npcCharacter;
 
@@ -115,6 +122,8 @@ public class DonutWorldVignette extends Vignette {
     protected void init() {
         setHorizon(0.2);
         addPort(exitPort);
+        addPort(jailPort);
+
 
         initDialogText(DIALOG_CHAIN);
         initNpc();
