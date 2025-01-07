@@ -151,9 +151,7 @@ public class DonutWorldVignette extends Vignette {
         npcCharacter.setSkin(getClass().getResourceAsStream(NPC_POSE_SHEET_FILENAME), 1, 4);
 
         getCharacterList().add(npcCharacter);
-        getBgGroup().getChildren().add(
-                npcCharacter
-        );
+        getBgGroup().getChildren().add(npcCharacter);
     }
 
     private void initBackground() {
