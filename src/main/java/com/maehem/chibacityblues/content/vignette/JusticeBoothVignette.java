@@ -34,7 +34,10 @@ import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
 import java.util.ArrayList;
 import java.util.Properties;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.util.Duration;
 
 /**
  *
@@ -146,7 +149,12 @@ public class JusticeBoothVignette extends Vignette {
         getDialogPane().setCurrentDialog(dialogWarmUp());
         getDialogPane().setVisible(false);
 
-        // TODO: Any click opens dialog.
+        // Open the dialog after a delay.
+        final Timeline timeline = new Timeline(new KeyFrame(
+                Duration.seconds(3),
+                e -> getDialogPane().setVisible(true)
+        ));
+        timeline.play();
     }
 
     private void initNPC() {
