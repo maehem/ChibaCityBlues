@@ -13,7 +13,7 @@
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
     License for the specific language governing permissions and limitations
     under the License.
-*/
+ */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
@@ -49,17 +49,17 @@ public class JusticeBoothVignette extends Vignette {
     private static final String NPC_JUDGE_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     private static final String NPC_LAWYER_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
 
-    public  static final Point2D PLAYER_START = new Point2D(0.5, 0.88);
-    private static final double[] WALK_BOUNDARY = new double[] {
-                0.30, 0.75,   0.70, 0.75,
-                0.70, 0.90,   0.30, 0.90
+    public static final Point2D PLAYER_START = new Point2D(0.5, 0.88);
+    private static final double[] WALK_BOUNDARY = new double[]{
+        0.30, 0.75, 0.70, 0.75,
+        0.70, 0.90, 0.30, 0.90
     };
 
     private static final VignetteTrigger exitPort = new VignetteTrigger(
-        0.00, 0.75,   // exit location
-        0.04, 0.25,   // exit size
-        0.4, 0.90,   // player position at destination
-        PoseSheet.Direction.TOWARD, StreetChatsuboVignette.class); // Exit to here
+            0.00, 0.75, // exit location
+            0.04, 0.25, // exit size
+            0.4, 0.90, // player position at destination
+            PoseSheet.Direction.TOWARD, StreetChatsuboVignette.class); // Exit to here
     private static final VignetteTrigger deathPort = new VignetteTrigger(
             -1000, -1000, // exit location
             0.1, 0.1, // exit size
@@ -126,7 +126,7 @@ public class JusticeBoothVignette extends Vignette {
     };
 
     public JusticeBoothVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override
@@ -169,7 +169,6 @@ public class JusticeBoothVignette extends Vignette {
         LOGGER.config("Add skin for lawyer npc. " + NPC_LAWYER_POSE_SHEET_FILENAME);
 
         //initNpcDialog();
-
         getCharacterList().add(npcJudge);
         getCharacterList().add(npcLawyer);
 
@@ -225,7 +224,6 @@ public class JusticeBoothVignette extends Vignette {
 
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-
         return p;
     }
 
@@ -239,7 +237,6 @@ public class JusticeBoothVignette extends Vignette {
 //    public String getPropName() {
 //        return PROP_NAME;
 //    }
-
     @Override
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;
