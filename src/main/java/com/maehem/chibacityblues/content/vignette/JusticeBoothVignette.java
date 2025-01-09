@@ -25,7 +25,6 @@ import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.babble.BabbleNode;
 import com.maehem.abyss.engine.babble.DialogBabbleNode;
 import static com.maehem.abyss.engine.babble.DialogCommand.DEATH;
-import static com.maehem.abyss.engine.babble.DialogCommand.EXIT_ST_CHAT;
 import static com.maehem.abyss.engine.babble.DialogCommand.FINE_BANK_20K;
 import static com.maehem.abyss.engine.babble.DialogCommand.FINE_BANK_500;
 import static com.maehem.abyss.engine.babble.DialogCommand.NPC2;
@@ -38,6 +37,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
+import static com.maehem.abyss.engine.babble.DialogCommand.EXIT_GENERIC;
 
 /**
  *
@@ -62,6 +62,7 @@ public class JusticeBoothVignette extends Vignette {
             0.00, 0.75, // exit location
             0.04, 0.25, // exit size
             0.4, 0.90, // player position at destination
+            VignetteTrigger.Location.NONE,
             PoseSheet.Direction.TOWARD, StreetChatsuboVignette.class); // Exit to here
     private static final VignetteTrigger deathPort = new VignetteTrigger(
             -1000, -1000, // exit location
@@ -94,7 +95,7 @@ public class JusticeBoothVignette extends Vignette {
             add(new OptionBabbleNode(15)); // 14 I'm insane.
             add(new DialogBabbleNode(16)); // 15 The court notes your plea.
             add(new DialogBabbleNode(NPC2.num, 17)); // 16 Ha! Guilty.
-            add(new DialogBabbleNode(FINE_BANK_500.num, EXIT_ST_CHAT.num)); // 17 Guilty. You must remain.
+            add(new DialogBabbleNode(FINE_BANK_500.num, EXIT_GENERIC.num)); // 17 Guilty. You must remain.
             add(new DialogBabbleNode(19)); // 18 Wise choice..
             add(new DialogBabbleNode(20)); // 19 How does the defendant plead.
             add(new DialogBabbleNode(NPC2.num, 21, 22, 23, 24)); // 20 (lawyer)Guilty your honor.
@@ -107,7 +108,7 @@ public class JusticeBoothVignette extends Vignette {
             add(new OptionBabbleNode(30)); // 27 This is a blantant miscarriage of justice.
             add(new OptionBabbleNode(30)); // 28 I'll get you for this.
             add(new OptionBabbleNode(30)); // 29 I'm sorry. I've learned the error of my ways..
-            add(new DialogBabbleNode(FINE_BANK_500.num, EXIT_ST_CHAT.num)); // 30 You are free to go.
+            add(new DialogBabbleNode(FINE_BANK_500.num, EXIT_GENERIC.num)); // 30 You are free to go.
             add(new DialogBabbleNode(32)); // 31 You are becoming a familiar face.
             add(new DialogBabbleNode(NPC2.num, 33, 34, 35, 36, 37, 38, 39)); // 32 Death penalty. Give him the death penalty.
             add(new OptionBabbleNode(44)); // 33 Oh put a sock in it.
@@ -124,7 +125,7 @@ public class JusticeBoothVignette extends Vignette {
             add(new DialogBabbleNode(NPC2.num, 45)); // 44 This is obviously a hardened criminal...
             add(new DialogBabbleNode(46)); // 45 In view of your criminal history...
             add(new DialogBabbleNode(DEATH.num)); // 46 I hereby sentence you to death...
-            add(new DialogBabbleNode(FINE_BANK_20K.num, EXIT_ST_CHAT.num)); // 43 I hereby pronouce you guilty as charged. 20000 fine.
+            add(new DialogBabbleNode(FINE_BANK_20K.num, EXIT_GENERIC.num)); // 43 I hereby pronouce you guilty as charged. 20000 fine.
         }
     };
 
