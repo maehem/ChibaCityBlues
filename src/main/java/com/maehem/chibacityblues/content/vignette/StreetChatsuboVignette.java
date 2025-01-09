@@ -85,8 +85,8 @@ public class StreetChatsuboVignette extends Vignette {
 
     private static final ArrayList<BabbleNode> DIALOG_CHAIN = new ArrayList<>() {
         {
-            add(new DialogBabbleNode(DIALOG_CLOSE.num)); // 0   "You're under arrest!"
-            add(new DialogBabbleNode(TO_JAIL.num));      // 1    "Move along..."
+            add(new DialogBabbleNode(TO_JAIL.num)); // 0   "You're under arrest!"
+            add(new DialogBabbleNode(DIALOG_CLOSE.num, 1));      // 1    "Move along..." and set current dialog back to itself
         }
     };
 
@@ -146,7 +146,6 @@ public class StreetChatsuboVignette extends Vignette {
 
         // Dialog
         //initNpcDialog();
-
         getCharacterList().add(npcCharacter);
         getBgGroup().getChildren().add(npcCharacter);
     }
