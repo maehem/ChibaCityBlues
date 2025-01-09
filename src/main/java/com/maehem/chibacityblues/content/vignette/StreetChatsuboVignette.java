@@ -221,4 +221,15 @@ public class StreetChatsuboVignette extends Vignette {
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;
     }
+
+    @Override
+    public String getDescriptionLong() {
+        return "";
+    }
+
+    @Override
+    public String getDescriptionShort() {
+        return "";
+    }
+
 }
