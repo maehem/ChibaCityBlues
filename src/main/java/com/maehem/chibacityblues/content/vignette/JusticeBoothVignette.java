@@ -25,19 +25,21 @@ import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.babble.BabbleNode;
 import com.maehem.abyss.engine.babble.DialogBabbleNode;
 import static com.maehem.abyss.engine.babble.DialogCommand.DEATH;
+import static com.maehem.abyss.engine.babble.DialogCommand.EXIT_GENERIC;
 import static com.maehem.abyss.engine.babble.DialogCommand.FINE_BANK_20K;
 import static com.maehem.abyss.engine.babble.DialogCommand.FINE_BANK_500;
 import static com.maehem.abyss.engine.babble.DialogCommand.NPC2;
 import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
+import com.maehem.chibacityblues.content.goal.HardenedCriminalGoal;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.logging.Level;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
-import static com.maehem.abyss.engine.babble.DialogCommand.EXIT_GENERIC;
 
 /**
  *
@@ -123,9 +125,8 @@ public class JusticeBoothVignette extends Vignette {
             add(new DialogBabbleNode(43)); // 42 Stop groveling.
             add(new DialogBabbleNode(NPC2.num, 45)); // 43 Innocent? Ha!
             add(new DialogBabbleNode(NPC2.num, 45)); // 44 This is obviously a hardened criminal...
-            add(new DialogBabbleNode(46)); // 45 In view of your criminal history...
-            add(new DialogBabbleNode(DEATH.num)); // 46 I hereby sentence you to death...
-            add(new DialogBabbleNode(FINE_BANK_20K.num, EXIT_GENERIC.num)); // 43 I hereby pronouce you guilty as charged. 20000 fine.
+            add(new DialogBabbleNode(DEATH.num)); // 45 In view of your criminal history (death)...
+            add(new DialogBabbleNode(FINE_BANK_20K.num, EXIT_GENERIC.num)); // 46 I hereby pronounce you guilty as charged.
         }
     };
 
@@ -192,8 +193,13 @@ public class JusticeBoothVignette extends Vignette {
 
     @Override
     public int dialogWarmUp() {
-        // TODO: Check if player has been here more than
-        // n times and return 31 n <gs.convictionCount>
+        if (getGameState().hasGoal(HardenedCriminalGoal.class)) {
+            LOGGER.log(Level.CONFIG, "GameGoal: Player is now a hardened criminal.");
+            return 31;
+        }
+
+        getGameState().getGoals().add(new HardenedCriminalGoal());
+
         return 2;
     }
 
