@@ -153,14 +153,15 @@ public class BodyShopVignette extends Vignette {
 
     @Override
     public ArrayList<Thing> getVendItems() {
-
-        YamamitsuUXBDeckThing thing = new YamamitsuUXBDeckThing();
-        thing.setValue(100);
-        thing.setCondition(50);
-        thing.setVendQuantity(1);
-
         ArrayList<Thing> list = new ArrayList<>();
-        list.add(thing);
+
+        for (BodyPart bp : BodyPart.values()) {
+            BodyPartThing thing = new BodyPartThing(bp);
+//            if ( getPlayer().soldOrgan(bp) ) {
+//                bp.setBuyable(true);
+//            }
+            list.add(thing);
+        }
 
         return list;
     }
