@@ -13,7 +13,7 @@
     WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
     License for the specific language governing permissions and limitations
     under the License.
-*/
+ */
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
@@ -44,12 +44,12 @@ public class BodyShopVignette extends Vignette {
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
 
-    public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
-    private static final double[] WALK_BOUNDARY = new double[] {
-                0.08, 0.75,   0.92, 0.75,
-                0.92, 0.95,   0.89, 0.95,
-                0.89, 1.0,    0.68, 1.0,
-                0.68, 0.95,   0.08, 0.95
+    public static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
+    private static final double[] WALK_BOUNDARY = new double[]{
+        0.08, 0.75, 0.92, 0.75,
+        0.92, 0.95, 0.89, 0.95,
+        0.89, 1.0, 0.68, 1.0,
+        0.68, 0.95, 0.08, 0.95
     };
 
     private static final VignetteTrigger exitPort = new VignetteTrigger(
@@ -63,7 +63,7 @@ public class BodyShopVignette extends Vignette {
     private int npcAnimationCount = 0;
 
     public BodyShopVignette(GameState gs, VignetteTrigger prevPort, Player player) {
-        super(ROOM_NUMBER, gs, CONTENT_BASE,prevPort, player,WALK_BOUNDARY);
+        super(ROOM_NUMBER, gs, CONTENT_BASE, prevPort, player, WALK_BOUNDARY);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class BodyShopVignette extends Vignette {
         initNpcDialog();
 
         getCharacterList().add(npcCharacter);
-        getBgGroup().getChildren().add(npcCharacter );
+        getBgGroup().getChildren().add(npcCharacter);
     }
 
     private void initBackground() {
@@ -138,7 +138,6 @@ public class BodyShopVignette extends Vignette {
 
         // example
         // p.setProperty(PROPERTY_CONDITION, condition.toString());
-
         return p;
     }
 
@@ -152,7 +151,6 @@ public class BodyShopVignette extends Vignette {
 //    public String getPropName() {
 //        return PROP_NAME;
 //    }
-
     @Override
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;
