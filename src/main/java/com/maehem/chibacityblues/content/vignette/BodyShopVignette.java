@@ -17,6 +17,8 @@
 package com.maehem.chibacityblues.content.vignette;
 
 import static com.maehem.abyss.Engine.LOGGER;
+import com.maehem.abyss.engine.BodyPart;
+import com.maehem.abyss.engine.BodyPartThing;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
@@ -31,7 +33,6 @@ import static com.maehem.abyss.engine.babble.DialogCommand.ITEM_BUY;
 import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
-import com.maehem.chibacityblues.content.things.deck.YamamitsuUXBDeckThing;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -46,13 +47,8 @@ import javafx.util.Duration;
  */
 public class BodyShopVignette extends Vignette {
 
-    private static final int ROOM_NUMBER = 4;
-    //public  static final String PROP_NAME = "body-shop";
+    public static final int ROOM_NUMBER = 4;
     private static final String CONTENT_BASE = "/content/vignette/body-shop/";
-    //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
-    //private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
-    //private static final String LOGO_IMAGE_FILENAME   = CONTENT_BASE + "chatsubo-logo.png";
-    //private static final String COUNTERS_IMAGE_FILENAME   = CONTENT_BASE + "counter-overlay.png";
     private static final String NPC_POSE_SHEET_FILENAME = CONTENT_BASE + "npc-pose-sheet.png";
     private static final String NPC_CAMEO_FILENAME = CONTENT_BASE + "npc-cameo.png";
 
@@ -150,30 +146,9 @@ public class BodyShopVignette extends Vignette {
         // Nothing to do here.
     }
 
-    // TODO:  Ways to automate this.   JSON file?
     private void initNpcDialog() {
         npcCharacter.setAllowTalk(true);
         getDialogPane().setDialogChain(DIALOG_CHAIN);
-
-//        npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
-//
-//        DialogSheet2 ds1 = new DialogSheet2(getDialogPane());
-//
-//        // Ratz has nothing more to say.
-//        DialogResponseAction endDialog = () -> {
-//            npcCharacter.setAllowTalk(false);
-//            getDialogPane().setActionDone(true);
-//            npcCharacter.setTalking(false);
-//        };
-//
-//        // Ratz asks to get paid and player replies with snarky comeback.
-//        ds1.setDialogText(bundle.getString("dialog.ds1.npc"));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.1"), endDialog));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.2"), endDialog));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.3"), endDialog));
-//        ds1.addResponse(new DialogResponse2(bundle.getString("dialog.ds1.p.4"), endDialog));
-//
-//        getDialogPane().addDialogSheet(ds1);
     }
 
     @Override
@@ -226,20 +201,16 @@ public class BodyShopVignette extends Vignette {
         Properties p = new Properties();
 
         // example
-        // p.setProperty(PROPERTY_CONDITION, condition.toString());
+        // p.setProperty(PROPERTY_FOO, condition.toString());
         return p;
     }
 
     @Override
     public void loadProperties(Properties p) {
         // example
-        //setCondition(Integer.valueOf(p.getProperty(PROPERTY_CONDITION, String.valueOf(CONDITION_DEFAULT))));
+        //setCondition(Integer.valueOf(p.getProperty(PROPERTY_FOO, String.valueOf(FOO_DEFAULT))));
     }
 
-//    @Override
-//    public String getPropName() {
-//        return PROP_NAME;
-//    }
     @Override
     public Point2D getDefaultPlayerPosition() {
         return PLAYER_START;
