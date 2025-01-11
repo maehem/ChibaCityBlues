@@ -22,7 +22,6 @@ import com.maehem.abyss.engine.DeckThing;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
-import com.maehem.abyss.engine.Thing;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.babble.AlertBabbleNode;
@@ -33,6 +32,7 @@ import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.EmptyBabbleNode;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
+import com.maehem.abyss.engine.babble.VendWidget;
 import com.maehem.chibacityblues.content.goal.ShinClosedGoal;
 import com.maehem.chibacityblues.content.things.deck.YamamitsuUXBDeckThing;
 import com.maehem.chibacityblues.content.things.misc.PawnTicketThing;
@@ -155,7 +155,6 @@ public class PawnShopVignette extends Vignette {
 //        }
 //
 //    }
-
     private void initNpc() {
         npcCharacter = new Character(bundle.getString("character.npc.name"));
         npcCharacter.setScale(1.5);
@@ -270,24 +269,32 @@ public class PawnShopVignette extends Vignette {
         // Shin kicks out player and locks door.
     }
 
+//    @Override
+//    public ArrayList<Thing> getVendItems() {
+//
+//        YamamitsuUXBDeckThing thing = new YamamitsuUXBDeckThing();
+//        thing.setValue(100);
+//        thing.setCondition(50);
+//        thing.setVendQuantity(1);
+//
+//        ArrayList<Thing> list = new ArrayList<>();
+//        list.add(thing);
+//
+//        return list;
+//    }
+
     @Override
-    public ArrayList<Thing> getVendItems() {
+    public int onVendItemsStart(VendWidget widget) {
 
-        YamamitsuUXBDeckThing thing = new YamamitsuUXBDeckThing();
-        thing.setValue(100);
-        thing.setCondition(50);
-        thing.setVendQuantity(1);
-
-        ArrayList<Thing> list = new ArrayList<>();
-        list.add(thing);
-
-        return list;
-    }
-
-    @Override
-    public int onVendItemsStart() {
         // Check if player has PawnTicket.  If not set dialogChain to #18.
         if (getGameState().getPlayer().getInventory().hasItemType(PawnTicketThing.class.getSimpleName())) {
+            YamamitsuUXBDeckThing thing = new YamamitsuUXBDeckThing();
+            thing.setValue(100);
+            thing.setCondition(50);
+            thing.setVendQuantity(1);
+
+            widget.getItems().add(thing);
+
             return -1;  // Normal operation.
         }
 
