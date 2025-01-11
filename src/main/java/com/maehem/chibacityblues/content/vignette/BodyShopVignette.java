@@ -22,7 +22,6 @@ import com.maehem.abyss.engine.BodyPartThing;
 import com.maehem.abyss.engine.GameState;
 import com.maehem.abyss.engine.Player;
 import com.maehem.abyss.engine.PoseSheet;
-import com.maehem.abyss.engine.Thing;
 import com.maehem.abyss.engine.Vignette;
 import com.maehem.abyss.engine.VignetteTrigger;
 import com.maehem.abyss.engine.VignetteTrigger.Location;
@@ -33,6 +32,7 @@ import static com.maehem.abyss.engine.babble.DialogCommand.ITEM_BUY;
 import com.maehem.abyss.engine.babble.DialogPane;
 import com.maehem.abyss.engine.babble.NarrationBabbleNode;
 import com.maehem.abyss.engine.babble.OptionBabbleNode;
+import com.maehem.abyss.engine.babble.VendWidget;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -151,23 +151,46 @@ public class BodyShopVignette extends Vignette {
         getDialogPane().setDialogChain(DIALOG_CHAIN);
     }
 
+//    @Override
+//    public ArrayList<Thing> getVendItems() {
+//        ArrayList<Thing> list = new ArrayList<>();
+//
+//        for (BodyPart bp : BodyPart.values()) {
+//            BodyPartThing thing = new BodyPartThing(bp);
+//            thing.setValue(bp.sellPrice);
+    ////            if ( getPlayer().soldOrgan(bp) ) {
+////                bp.setBuyable(true);
+////                // TODO: Factor discount when Bargaining chip installed.
+////                thing.setValue(bp.buyPrice);
+////            }
+//            list.add(thing);
+//        }
+//
+//        return list;
+//    }
+
+    /**
+     * Configure the Vending Widget. Add body parts here.
+     *
+     * @param widget
+     * @return -1 for normal vending.
+     */
     @Override
-    public ArrayList<Thing> getVendItems() {
-        ArrayList<Thing> list = new ArrayList<>();
+    public int onVendItemsStart(VendWidget widget) {
+        widget.setMode(VendWidget.VendMode.ORGANS);
 
         for (BodyPart bp : BodyPart.values()) {
             BodyPartThing thing = new BodyPartThing(bp);
+            thing.setValue(bp.sellPrice);
+            thing.setVendQuantity(-1); // Negative means we have it to sell.
 //            if ( getPlayer().soldOrgan(bp) ) {
 //                bp.setBuyable(true);
+//                // TODO: Factor discount when Bargaining chip installed.
+//                thing.setValue(bp.buyPrice);
+//                thing.setVendQuantity(1); // We have previously sold it can can buy it.
 //            }
-            list.add(thing);
+            widget.getItems().add(thing);
         }
-
-        return list;
-    }
-
-    @Override
-    public int onVendItemsStart() {
         return -1;
     }
 
