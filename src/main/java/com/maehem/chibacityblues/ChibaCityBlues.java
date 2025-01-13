@@ -66,7 +66,7 @@ public class ChibaCityBlues extends Application {
         // Overide the default menequin skin for the player.
         engine.getPlayer().setSkin(
                 getClass().getResourceAsStream(
-                        "/content/player/pose-sheet-1.png"), 04, 12
+                        "/content/player/pose-sheet-4.png"), 04, 12
         );
 
         PublicTerminalSystem pubTerm = engine.getGameState().getPublicTerminal();
