@@ -69,6 +69,9 @@ public class ChibaCityBlues extends Application {
                         "/content/player/pose-sheet-4.png"), 04, 12
         );
 
+        // TODO: Setting this after init does not work right. Needs fixing.
+        //engine.getPlayer().setOrigin(0.5, 0.8);
+
         PublicTerminalSystem pubTerm = engine.getGameState().getPublicTerminal();
         pubTerm.setHeader(
                 new BBSHeader(PublicTerminalSystem.FONT, SiteHeader.PAX)
