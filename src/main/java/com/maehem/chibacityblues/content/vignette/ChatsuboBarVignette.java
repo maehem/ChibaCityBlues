@@ -180,19 +180,19 @@ public class ChatsuboBarVignette extends Vignette {
 
     private void initNpc() {
         npcCharacter = new com.maehem.abyss.engine.Character(bundle.getString("character.ratz.name"));
-        npcCharacter.setScale(1.2);
-        npcCharacter.setLayoutX(180);
-        npcCharacter.setLayoutY(440);
+        npcCharacter.setScale(2.0);
+        npcCharacter.setLayoutX(140);
+        npcCharacter.setLayoutY(550);
 
         // TODO:   Check that file exists.  The current exception message is cryptic.
         npcCharacter.setSkin(getClass().getResourceAsStream(BARTENDER_POSE_SHEET_FILENAME), 1, 4);
-        LOGGER.config("Add skin for pawn shop owner. " + BARTENDER_POSE_SHEET_FILENAME);
+        LOGGER.config("Add skin for Ratz. " + BARTENDER_POSE_SHEET_FILENAME);
         npcCharacter.setCameo(getClass().getResourceAsStream(NPC_CAMEO_FILENAME));
 
         getCharacterList().add(npcCharacter);
-        getBgGroup().getChildren().add(
-                npcCharacter
-        );
+        getBgGroup().getChildren().add(npcCharacter);
+        npcCharacter.setHearingBoundary(6.0); // Do after skin set.
+        npcCharacter.getHearingBoundary().setTranslateY(100);
     }
 
     private void initBackground() {
