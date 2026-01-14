@@ -46,7 +46,6 @@ public class ChatsuboBarVignette extends Vignette {
 
     private static final double PLAYER_SCALE = DEFAULT_SCALE * 1.4;
 
-    //public  static final String PROP_NAME = "chatsubo-bar";
     private static final String CONTENT_BASE = "/content/vignette/chatsubo-bar/";
     //private static final String SKYLINE_IMAGE_FILENAME   = CONTENT_BASE + "cyberpunk-cityscape.png";
     //private static final String BAR_BACKGROUND_IMAGE_FILENAME   = CONTENT_BASE + "bar-background.png";
@@ -57,12 +56,6 @@ public class ChatsuboBarVignette extends Vignette {
     private static final int PAY_AMOUNT = 46;
 
     public  static final Point2D PLAYER_START = new Point2D(0.5, 0.86);
-//    private static final double[] WALK_BOUNDARY = new double[] {
-//                0.08, 0.75,   0.92, 0.75,
-//                0.92, 0.95,   0.89, 0.95,
-//                0.89, 1.0,    0.68, 1.0,
-//                0.68, 0.95,   0.08, 0.95
-//    };
     private static final double[] WALK_BOUNDARY = new double[]{
         0.7, 0.65, 0.92, 0.65,
         0.92, 0.95, 0.89, 0.95,
@@ -196,45 +189,6 @@ public class ChatsuboBarVignette extends Vignette {
     }
 
     private void initBackground() {
-        // Skyline behind scene, through window.
-//        final ImageView skylineView = new ImageView();
-//        skylineView.setImage(new Image(getClass().getResourceAsStream(SKYLINE_IMAGE_FILENAME)));
-//        skylineView.setFitHeight(360);
-//        skylineView.setPreserveRatio(true);
-//        skylineView.setLayoutX(600);
-//        skylineView.setLayoutY(140);
-//        // Add these in visual order.  Back to front.
-//        getSkylineGroup().getChildren().add( skylineView );
-
-        // Bar bottles behind scene, behind Ratz.
-//        final ImageView barBackground = new ImageView();
-//        barBackground.setImage(new Image(getClass().getResourceAsStream(BAR_BACKGROUND_IMAGE_FILENAME)));
-//        barBackground.setFitHeight(240);
-//        barBackground.setPreserveRatio(true);
-//        barBackground.setLayoutX(100);
-//        barBackground.setLayoutY(110);
-//        // Add these in visual order.  Back to front.
-//        getSkylineGroup().getChildren().add( barBackground );
-
-
-        // Chatsubo logo over background, top of frame.
-//        final ImageView logoView = new ImageView();
-//        logoView.setImage(new Image(getClass().getResourceAsStream(LOGO_IMAGE_FILENAME)));
-//        logoView.setFitHeight(120);
-//        logoView.setPreserveRatio(true);
-//        logoView.setLayoutX(200);
-//        logoView.setLayoutY(-30);
-//        logoView.setEffect(new DropShadow(40, new Color(0.6,0.6,1.0,0.7)));
-//        // Add these in visual order.  Back to front.
-//        getBgGroup().getChildren().add( logoView );
-
-        // Display Cases (in front of shop owner )
-//        final ImageView counterView = new ImageView();
-//        counterView.setImage(new Image(PawnShopVignette.class.getResourceAsStream(COUNTERS_IMAGE_FILENAME)));
-//        counterView.setLayoutX(138);
-//        counterView.setLayoutY(339);
-//        // Add these in visual order.  Back to front.
-//        getBgGroup().getChildren().add( counterView );
     }
 
     // TODO:  Ways to automate this.   JSON file?
